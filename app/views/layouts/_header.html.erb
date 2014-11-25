@@ -1,0 +1,90 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"><%= image_tag "yumster-logo.png", size: "150x40", id: "logo" %></a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+    <% if signed_in? %>
+		
+		<!-- <div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+		    <%= current_user.name %>
+		    <span class="caret"></span>
+		  </button> -->
+			
+		  <div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+		    <%= current_user.name %>
+		    <span class="caret"></span>
+			</div>
+
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Guest Meals</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Host Meals</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">View Profile</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Profile</a></li>
+				<li role="presentation"><%= link_to "Sign out", session_url, method: :delete, role: "menuitem", tabindex: "-1" %></li>
+		  </ul>
+		</div>
+  
+    <% else %>
+			<li>
+				<a data-toggle="modal" data-target="#sign-up-modal">Sign Up
+				</a>
+			</li>
+		<li>
+			<a data-toggle="modal" data-target="#sign-in-modal">Log In
+			</a>
+		</li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+</nav>
+
+<% if flash[:errors] %>
+<div class="alert alert-warning alert-dismissible" role="alert">
+   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<%= flash[:errors].join("<br>").html_safe %>
+</div>
+<% end %>
+
+	<div class="modal fade" id="sign-in-modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Log In</h4>
+				</div>
+				<div class="modal-body">
+				
+					<%= render partial: "sessions/new" %>
+				
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<div class="modal fade" id="sign-up-modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Sign Up</h4>
+				</div>
+				<div class="modal-body">
+				
+					<%= render partial: "users/new" %>
+				
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	

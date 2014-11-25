@@ -1,0 +1,133 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require jquery.ui.datepicker
+
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Raleway:600);
+@import url(http://fonts.googleapis.com/css?family=Lobster+Two);
+@import url(http://fonts.googleapis.com/css?family=Pacifico|Francois+One);
+@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700|Maven+Pro|Amatic+SC:700);
+
+body {
+	background-color: #FFF5EB;
+}
+
+#logo {
+	margin-top: -10px;
+}
+
+#dropdownMenu1 {
+	margin-top: 15px;
+}
+
+div.carousel-caption h4 {
+	position: relative;
+	top: 50%;
+	font-size: 30px;
+	width: 450px;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -200px;
+//	font-family: 'Raleway', sans-serif;
+font-family: 'Quicksand', sans-serif;
+	background-color: rgba(140, 114, 127, 0.44);
+	border-radius: 5px;
+}
+
+.form-control {
+//	margin-left: -5px;
+//	border-radius: 0px;
+}
+
+//would like the search bar to be on the carousel
+//.form-group {
+//	position: relative;
+//	top: 75%;
+//	left: 10%;
+//}
+
+//would like pink button & connected to the rest of search
+//div.form-group .btn.btn-default {
+//	margin-left: -10px;
+//	background-color: rgba(161, 62, 112, 0.63);
+//}
+
+.head {
+	//font-family: 'Raleway', sans-serif;
+//	font-family: 'Francois One', sans-serif;
+font-family: 'Quicksand', sans-serif;
+	font-style: bold;
+	color: #482B48;
+}
+
+.tag {
+//	background-color: #FFF5EB;
+//	width: 70;
+//	height: 20px;
+//	border-radius: 5px;
+//	color: black;
+}
+
+.meal-info {
+	background-size: 270px 315px;
+	box-shadow: inset 0 -50px 200px #000;
+	color: white;
+	width: 270px;
+	height: 315px;
+	margin: 25px;
+	padding-right: 50px;
+	padding-left: -15px;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.meal-info:hover {
+  opacity: .9;
+}
+
+.meal-blurb {
+	position: relative;
+	top: 225px;
+//	margin-left: -15px;
+	float: left;
+	width: 150px;
+}
+
+.host-pic {
+  float: left;
+	border-radius: 50px;
+	border: 2px solid #A34775;
+	width: 40px;
+	height: 40px;
+}
+
+.host-profile {
+	position: relative;
+	top: 15px;
+	left: 10px;
+}
+
+.footer {
+	border: 1px solid rgb(231, 231, 231);
+	height: 50px;
+	background-color: white;
+}
+
+//img.resize{
+////    width:540px; can also use %
+//    height: auto;
+//}
