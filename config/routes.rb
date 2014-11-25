@@ -4,5 +4,5 @@ Rails.application.routes.draw do
  resources :users
  resource :session
  get '/home' => 'static_pages#home'
- 
+ post '/search' => 'site#search'
 end

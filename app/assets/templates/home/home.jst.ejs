@@ -1,0 +1,148 @@
+<!--Carousel -->
+
+	<div class="row">
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" max-width="600" max-height="400">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox" max-width="600" max-height="400">
+				<div class="item active" >
+					<%= image_tag "rsz_thai_food.jpg", class: "carousel-img" %>
+					<div class="carousel-caption">
+						<h4> Join a community of food lovers and cooks. Experience unique meals together.</h4>
+					</div>
+				</div>
+		
+				<div class="item">
+					<%= image_tag "rsz_candle-light.jpg", class: "carousel-img"%>
+					<div class="carousel-caption">
+						<h4> Join a community of food lovers and cooks. Experience unique meals together.</h4>
+					</div>
+				</div>
+		
+				<div class="item">
+					<%= image_tag "rsz_mexican.jpg", class: "carousel-img" %>
+					<div class="carousel-caption">
+						<h4> Join a community of food lovers and cooks. Experience unique meals together.</h4>
+					</div>
+				</div>
+		
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+		
+	</div>
+	
+<!--Search Bar -->
+	<div class="row">
+	<form class="navbar-form navbar-left" role="search">
+		<div class="form-group">
+		
+			<select class="form-control" name="query[tag]">
+				<option value="" disabled selected>What are you craving?</option>
+				<option value="asian">Asian</option>
+				<option value="italian">European</option>
+				<option value="indian">Indian</option>
+				<option value="american">American</option>
+				<option value="seafood">Seafood</option>
+				<option value="fusion">Fusion</option>
+			</select>
+		
+			<input type="text" name="query[location]" class="form-control" placeholder="Location">
+		
+			<input type="date" name="query[start_date]" class="form-control" name="date" value="Start Date">
+			
+				<input type="date" name="query[end_date]" class="form-control" name="date" value="End Date">
+		
+			<select class="form-control" name="query[guest_num]">
+				<option value="1">1 Guest</option>
+				<option value="2">2 Guests</option>
+				<option value="3">3 Guests</option>
+				<option value="4">4 Guests</option>
+				<option value="5">5+ Guests</option>
+			</select>
+					
+		</div>
+		<input type="submit" class="btn btn-default form-control" value="Search">
+		
+	</form>
+	</div>
+	
+<!--Explore your Neighborhood Header -->
+	
+	<div class="row" style="margin-top: 15px;">
+		<div class="col-md-8 col-md-offset-4 head">
+			<h2> Explore your Neighborhood </h2>
+			<h5> <i>...what tantalizing tastes await around the corner </i> </h5>
+		</div>
+	</div>
+	
+<!-- Meal Info Samples -->
+	
+	<div class="row">
+		<div class="col-xs-4 meal-info" style="background-image: url('/assets/rsz_seafood.jpg');">
+			<div class="host-profile">
+				<%= image_tag "host1.jpg", class: "host-pic"%>
+				<span style="float: left; margin-left: 5px;">
+					 Natasha R's
+				 </span>
+			</div>
+			<div class="meal-blurb">
+				<p class="tag" style="font-size: 10px; color: #A34775">SEAFOOD<p>
+				<p> Under the Sea <p>
+					<p style="font-size: 10px;">
+						<span style="float: left;"> @Mission </span>
+					  <span style="float: right;">$25/p </span>
+					</p>
+			</div>
+		</div>
+		
+		<div class="col-xs-4 meal-info" style="background-image: url('/assets/rsz_quiche.jpg');">
+			<div class="host-profile">
+				<%= image_tag "rsz_host2.jpg", class: "host-pic"%>
+				<span style="float: left; margin-left: 5px;">
+					 Andrei T's
+				 </span>
+			</div>
+			<div class="meal-blurb">
+				<p class="tag" style="font-size: 10px; color: #A34775">EUROPEAN<p>
+				<p> French Breakfast <p>
+					<p style="font-size: 10px;">
+						<span style="float: left;"> @Castro </span>
+					  <span style="float: right;">$20/p </span>
+					</p>
+			</div>
+			
+		</div>
+		
+			<div class="col-xs-4 meal-info" style="background-image: url('/assets/rsz_philly-cheese.jpg');">
+				<div class="host-profile">
+					<%= image_tag "rsz_host3.jpg", class: "host-pic"%>
+					<span style="float: left; margin-left: 5px;">
+						 Marina Z's
+					 </span>
+				</div>
+				<div class="meal-blurb">
+					<p class="tag" style="font-size: 10px; color: #A34775">AMERICAN<p>
+					<p> Philly Style <p>
+						<p style="font-size: 10px;">
+							<span style="float: left;"> @Japantown </span>
+						  <span style="float: right;">$30/p </span>
+						</p>
+				</div>
+			</div>
+	</div>

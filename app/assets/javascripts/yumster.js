@@ -9,7 +9,3 @@ window.Yumster = {
 		Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  Yumster.initialize();
-});

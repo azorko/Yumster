@@ -4,19 +4,33 @@ Yumster.Routers.Router = Backbone.Router.extend({
   },
 	
   routes: {
-		"search/:query": "search",
+		"": "home"
+		"search/*query": "search",
     "meals/:id": "mealShow"
   },
+	
+	home: function () {
+    var view = new Yumster.Views.Home();
+    this._swapView(view);
+	},
 
   search: function (query) {
     // var board = Yumster.Collections.meals.getOrFetch(id);
-
-    var view = new Yumster.Views.MealShow({
+    var view = new Yumster.Views.Search({
       // model: board
     });
 
     this._swapView(view);
   },
+	
+	mealShow: function (id) {
+    var meal = Yumster.Collections.meals.getOrFetch(id);
+    var view = new Yumster.Views.MealShow({
+      model: meal
+    });
+
+    this._swapView(view);
+	},
 
   _swapView: function (view) {
     this.currentView && this.currentView.remove();
