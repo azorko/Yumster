@@ -48,11 +48,10 @@
 	</div>
 	
 <!--Search Bar -->
-	<div class="row">
-	<form class="navbar-form navbar-left" role="search">
-		<div class="form-group">
+	<div class="row search-div">
+	<form>
 		
-			<select class="form-control" name="tag">
+			<select class="search-bar" name="tag">
 				<option value="" disabled selected>What are you craving?</option>
 				<option value="asian">Asian</option>
 				<option value="italian">European</option>
@@ -62,13 +61,13 @@
 				<option value="fusion">Fusion</option>
 			</select>
 		
-			<input type="text" name="location" class="form-control" placeholder="Location">
+			<input type="text" name="location" class="search-bar" value="Current Location">
 		
-			<input type="date" name="start_date" class="form-control" name="date" value="Start Date">
+			<input type="date" name="start_date" class="search-bar" name="date" value="Start Date">
 			
-				<input type="date" name="end_date" class="form-control" name="date" value="End Date">
+				<input type="date" name="end_date" class="search-bar" name="date" value="End Date">
 		
-			<select class="form-control" name="guest_num">
+			<select class="search-bar" name="guest_num">
 				<option value="1">1 Guest</option>
 				<option value="2">2 Guests</option>
 				<option value="3">3 Guests</option>
@@ -76,8 +75,7 @@
 				<option value="5">5+ Guests</option>
 			</select>
 					
-		</div>
-		<button type="submit" class="btn btn-default form-control" >Search </button>
+		<button type="submit" class="search-button" >Search </button>
 		
 	</form>
 	</div>
@@ -102,7 +100,7 @@
 				 </span>
 			</div>
 			<div class="meal-blurb">
-				<p class="tag" style="font-size: 10px; color: #A34775">SEAFOOD<p>
+				<p class="tag">SEAFOOD<p>
 				<p> Under the Sea <p>
 					<p style="font-size: 10px;">
 						<span style="float: left;"> @Mission </span>
@@ -119,7 +117,7 @@
 				 </span>
 			</div>
 			<div class="meal-blurb">
-				<p class="tag" style="font-size: 10px; color: #A34775">EUROPEAN<p>
+				<p class="tag">EUROPEAN<p>
 				<p> French Breakfast <p>
 					<p style="font-size: 10px;">
 						<span style="float: left;"> @Castro </span>
@@ -137,7 +135,7 @@
 					 </span>
 				</div>
 				<div class="meal-blurb">
-					<p class="tag" style="font-size: 10px; color: #A34775">AMERICAN<p>
+					<p class="tag">AMERICAN<p>
 					<p> Philly Style <p>
 						<p style="font-size: 10px;">
 							<span style="float: left;"> @Japantown </span>

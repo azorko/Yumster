@@ -18,9 +18,6 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import url(http://fonts.googleapis.com/css?family=Raleway:600);
-@import url(http://fonts.googleapis.com/css?family=Lobster+Two);
-@import url(http://fonts.googleapis.com/css?family=Pacifico|Francois+One);
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700|Maven+Pro|Amatic+SC:700);
 
 body {
@@ -43,44 +40,56 @@ div.carousel-caption h4 {
 	left: 50%;
 	margin-left: -200px;
 	margin-top: -200px;
-//	font-family: 'Raleway', sans-serif;
-font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 	background-color: rgba(140, 114, 127, 0.44);
-	border-radius: 5px;
 }
 
-.form-control {
-//	margin-left: -5px;
-//	border-radius: 0px;
+.search-div {
+	margin-left: 35px;
 }
 
-//would like the search bar to be on the carousel
-//.form-group {
-//	position: relative;
-//	top: 75%;
-//	left: 10%;
-//}
+.search-bar {
+	margin-left: -1px;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	float: left;
+	height: 50px;
+	display: inline-block;
+	background-color: #F8F8F8;
+	border: 1px solid #A6A6A6;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #777;
+}
 
-//would like pink button & connected to the rest of search
-//div.form-group .btn.btn-default {
-//	margin-left: -10px;
-//	background-color: rgba(161, 62, 112, 0.63);
-//}
+.search-button {
+	margin-left: -1px;
+	float: left;
+	height: 50px;
+	background-color: #F8F8F8;
+	border: 1px solid #A6A6A6;
+	width: 100px;
+}
+
+.search-button:hover {
+	background-color: #993366;
+	color: white;
+}
 
 .head {
-	//font-family: 'Raleway', sans-serif;
-//	font-family: 'Francois One', sans-serif;
 font-family: 'Quicksand', sans-serif;
 	font-style: bold;
 	color: #482B48;
 }
 
 .tag {
-//	background-color: #FFF5EB;
-//	width: 70;
-//	height: 20px;
-//	border-radius: 5px;
-//	color: black;
+	background-color: #A34775;
+	height: 13px;
+	border-radius: 5px;
+	color: black;
+  display: inline-block;
+	font-size: 10px;
+	margin-bottom: -15px;
 }
 
 .meal-info {
@@ -101,8 +110,7 @@ font-family: 'Quicksand', sans-serif;
 
 .meal-blurb {
 	position: relative;
-	top: 225px;
-//	margin-left: -15px;
+	top: 210px;
 	float: left;
 	width: 150px;
 }
