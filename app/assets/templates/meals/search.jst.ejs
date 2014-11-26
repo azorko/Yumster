@@ -1,0 +1,28 @@
+<div class="row" style="margin-top: 70px;">
+	
+	<div class="col-md-5">
+	</div>
+	
+	<div class="col-md-7">
+		
+		<div class="row current">
+			<div class="col-xs-3 filter-header">
+			Current Filters:
+			</div>
+			<div class="col-md-6">
+			<% for (var item in filters) { %>
+			<div class="current-filter">
+				<b style="font-size: 10px;">#<%= item %></b>
+				<br>
+				<%= filters[item] %>
+			</div>
+			<% } %>
+		</div>
+		</div>
+		
+		<div class= "row filter-choose">
+			</div>
+		
+	</div>
+	
+	</div>
