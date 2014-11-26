@@ -13,6 +13,8 @@
 
 class User < ActiveRecord::Base
   
+  has_many :meals
+  
   validates :email, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, uniqueness: true

@@ -4,7 +4,7 @@ window.Yumster = {
   Views: {},
   Routers: {},
   initialize: function() {
-		var $rootEL = $("#content");
+		var $rootEl = $("#content");
 		new Yumster.Routers.Router({ $rootEl: $rootEl });
 		Backbone.history.start();
   }

@@ -4,7 +4,7 @@ Yumster.Routers.Router = Backbone.Router.extend({
   },
 	
   routes: {
-		"": "home"
+		"": "home",
 		"search/*query": "search",
     "meals/:id": "mealShow"
   },
@@ -15,9 +15,11 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	},
 
   search: function (query) {
-    // var board = Yumster.Collections.meals.getOrFetch(id);
-    var view = new Yumster.Views.Search({
-      // model: board
+		Yumster.Collections.meals.fetch({data: query});
+		Yumster.current_query = query;
+		// Backbone.history.navigate("search/query + new query params", { replace: true }); //can use to add diff query based on search page changes
+    var view = new Yumster.Views.MealsSearch({
+      collection: Yumster.Collections.meals
     });
 
     this._swapView(view);
