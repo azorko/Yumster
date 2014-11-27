@@ -19,7 +19,11 @@ class Api::MealsController < Api::ApiController
   def index
     #will want to sort by tag, price, date, guests, location
     params[:price] ||= 50000
-    @meals = Meal.where([ "price <= :price and date between :start_date and :end_date and tag = :tag and max_guests >= :guest_num",
+    # params[:start_date] ||= "2000-01-01"
+    # params[:end_date] ||= "2020-01-01"
+    # params[:tag] = [params[:tag]] || ["Asian", "European", "Indian", "American", "Seafood", "Fusion"]
+    
+    @meals = Meal.where([ "price <= :price and date between :start_date and :end_date and tag in :tag and max_guests >= :guest_num",
       {price: params[:price], start_date: params[:start_date], end_date: params[:end_date], tag: params[:tag], guest_num: params[:guest_num]} ]);
     render json: @meals
   end
