@@ -4,6 +4,9 @@ Yumster.Views.Home = Backbone.View.extend({
 	
 	tagName: "form",
 	
+	initialize: function () {
+	},
+	
 	events: {
 		"click button": "submit"
 	},
@@ -11,6 +14,10 @@ Yumster.Views.Home = Backbone.View.extend({
   render: function () {
     var content = this.template();
     this.$el.html(content);
+		this._autocomplete = new google.maps.places.Autocomplete(this.$el.find("#location")[0], { types: ['geocode'] });
+
+		google.maps.event.addListener(this._autocomplete, "place_changed", this.autocomplete.bind(this));
+				
     return this;
   },
 	
@@ -18,6 +25,11 @@ Yumster.Views.Home = Backbone.View.extend({
 		event.preventDefault();
 		var attrs = this.$el.serialize();
 		Backbone.history.navigate("search/" + attrs, {trigger: true});
+	},
+	
+	autocomplete: function () {
+		var loc = this._autocomplete.getPlace();
+		this.$el.find("#location").attr("value", loc);
 	}
 
 });

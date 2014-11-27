@@ -16,13 +16,44 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 			query[i] = query[i].split("=");
 			filters[query[i][0]] = query[i][1];
 		}
-		new Date(2014,12,28);
+		
+		// filters["location"].
+		// new Date(2014,12,28);
     var content = this.template({
     	meals: this.collection,
 			filters: filters
     });
     this.$el.html(content);
+		
+		this.updateMap(filters["location"]);
+		
     return this;
-  }
+  },
+	
+	updateMap: function (location) {
+		var address = location;
+		var that = this;
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({ 'address': address }, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+				that.attachMap(results);
+			}
+		});
+	},
+	
+	attachMap: function (results) {
+		var mapOptions = {
+			center: { lat: 37.726666666, lng: -122.395555555 },
+			zoom: 10
+		};
+		this._map = new google.maps.Map(document.getElementById('map-canvas'),
+			mapOptions);
+			
+    this._map.setCenter(results[0].geometry.location);
+    var marker = new google.maps.Marker({
+      map: this._map,
+      position: results[0].geometry.location
+    });
+	}
 
 });
