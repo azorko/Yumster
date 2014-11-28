@@ -1,3 +1,5 @@
+<div class="container-fluid">
+
 <div class="row" style="margin-top: 50px;">
 	
 	<div class="col-md-5" id="map-canvas">
@@ -6,36 +8,30 @@
 	<div class="col-md-7">
 		
 		<div class= "row filter-div">
-			<div class="col-xs-3 filter-header">
+			<div class="col-md-3 filter-header">
 				Dates:
 			</div>
 			  
-			<div class="col-lg-9" style="margin-left: 180px; float: left;">
-				<!-- <div class="col-sm-3" id="start_date"> -->
-					<input id="start_date" type="date" name="start_date" class="search-bar filter" placeholder="Start Date">
-				<!-- </div> -->
-				<!-- <div class="col-sm-3 col-sm-offset-1" id="end_date"> -->
-					<input id="end_date" type="date" name="end_date" class="search-bar filter" placeholder="End Date">
-				<!-- </div> -->
-				<!-- <div class="col-sm-3 col-sm-offset-1" id="end_date"> -->
-					<select id="guest_num" class="search-bar filter" name="guest_num">
+			<div class="col-md-9">
+					<input id="start_date" type="date" name="start_date" class="search-bar" placeholder="Start Date">
+					<input id="end_date" type="date" name="end_date" class="search-bar" placeholder="End Date">
+					<select id="guest_num" class="search-bar" name="guest_num">
 						<option value="1">1 Guest </option>
 						<option value="2">2 Guests</option>
 						<option value="3">3 Guests</option>
 						<option value="4">4 Guests</option>
 						<option value="5">5+ Guests</option>
 					</select>
-				<!-- </div> -->
 			</div>
 		</div>
 			
 		<div class= "row filter-div">
-			<div class="col-sm-3 filter-header">
+			<div class="col-md-3 filter-header">
 				Cuisine:
 			</div>
 			  
-			<div class="col-lg-9" style="margin-left: 180px;">
-				<select id="tag" class="search-bar filter" name="tag"> <!-- style="margin-top: -20px;"> -->
+			<div class="col-md-9">
+				<select id="tag" class="search-bar" name="tag"> 
 					<option value="" disabled selected>What are you craving?</option>
 					<option value="asian">Asian</option>
 					<option value="italian">European</option>
@@ -48,24 +44,24 @@
 		</div>
 			
 		<div class= "row filter-div">
-			<div class="col-xs-3 filter-header">
+			<div class="col-md-3 filter-header">
 				Price Range:
 			</div>
 			  
-			<div class="col-lg-9" style="margin-left: 180px;">
+			<div class="col-md-9">
 				<div id="price" class="slider"></div>
 				<div style="margin-top: 5px;">
 					<span id="min-price" style="float: left; margin-left: -7px;">$0 </span>
-					<span id="min-price" style="float: right; margin-right: 50px;">$1000+ </span>
+					<span id="min-price" style="float: right;">$1000+ </span>
 				</div>
 			</div>
 		</div>
 			
 		<div class="row filter-div">
-			<div class="col-xs-3 filter-header">
+			<div class="col-md-3 filter-header">
 				Current Filters:
 			</div>
-			<div class="col-md-6" style="width: 440px; margin-left: 180px;">
+			<div class="col-md-9"> <!-- style="width: 440px; margin-left: 180px;"> -->
 				<% for (var item in filters) { %>
 					<div class="search-bar current-filter">
 						<b style="font-size: 10px;">
@@ -89,7 +85,7 @@
 			</div>
 				
 			<div class="row filter-div matches-bar">
-				<div class="col-xs-3 filter-header">
+				<div class="col-md-3 filter-header">
 					<%= meals.length %> Matches
 					<span class="glyphicon glyphicon-chevron-down"></span>
 				</div>
@@ -154,3 +150,4 @@
 								</div>
 	
 							</div>
+</div>							

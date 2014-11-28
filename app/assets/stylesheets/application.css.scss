@@ -102,8 +102,8 @@ font-family: 'Quicksand', sans-serif;
 	width: 270px;
 	height: 315px;
 	margin: 25px;
-	padding-right: 50px;
-	padding-left: -15px;
+//	padding-right: 25px;
+//	padding-left: -15px;
 	font-family: 'Quicksand', sans-serif;
 }
 
@@ -150,7 +150,9 @@ font-family: 'Quicksand', sans-serif;
 
 .filter-div {
 	border-bottom: 1px solid #E7E7E7;
-	padding: 20px;
+//	padding: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 	font-family: 'Quicksand', sans-serif;
 }
 
@@ -192,13 +194,9 @@ font-family: 'Quicksand', sans-serif;
 .filter-header {
 	font-weight: bold;
 	font-size: 15px;
-	margin-left: -20px;
+//	margin-left: -20px;
 	font-family: 'Quicksand', sans-serif;
-	width: 200px;
-}
-
-.search-bar.filter {
-//	margin-left: 15px;
+//	width: 200px;
 }
 
 .matches-bar {
@@ -208,7 +206,7 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .slider {
-	width: 450px;
+//	width: 450px;
 }
 
 //########## Map ###########
