@@ -2,8 +2,13 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 
   template: JST['meals/search'],
 	
+	initialize: function () {
+		this.listenTo(this.collection, "sync", this.render);
+	},
+	
 	events: {
-		"click button": "submit"
+		"click button": "submit",
+		"slide .slider": "updatePrice"
 	},
 	
 			// Backbone.history.navigate("search/query + new query params", { replace: true }); //can use to add diff query based on search page changes
@@ -17,15 +22,25 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 			filters[query[i][0]] = query[i][1];
 		}
 		
-		// filters["location"].
+		// if(filters["start_date"] === "") {
+		//   filters
+		// }
+		filters["location"] = filters["location"].replace(/\+/g, " ");
 		// new Date(2014,12,28);
     var content = this.template({
     	meals: this.collection,
-			filters: filters
+			filters: filters,
+			cuisines: Yumster.cuisines
     });
     this.$el.html(content);
+		// $("#location-search").attr("value", filters["location"]);
 		
-		this.$el.find(".slider").slider({ min: 0, max: 1000 });
+		this.$el.find(".slider").slider({
+			min: 0,
+			max: 1000,
+			range: true,
+			values: [0, 1000]
+		 });
 		this.updateMap(filters["location"]);
 		
     return this;
@@ -55,6 +70,13 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
       map: this._map,
       position: results[0].geometry.location
     });
+	},
+	
+	updatePrice: function (event) {
+		var minValue = $(event.currentTarget).slider( "values", 0 );
+		this.$el.find("#min-price").text("$" + minValue);
+		var maxValue = $(event.currentTarget).slider( "values", 1 );
+		this.$el.find("#max-price").text("$" + maxValue);
 	}
 
 });

@@ -41,3 +41,5 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	
 	
 });
+
+Yumster.cuisines = ["Asian", "European", "Indian", "American", "Seafood", "Fusion"];

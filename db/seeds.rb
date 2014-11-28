@@ -4,7 +4,7 @@ Meal.create({tag: "european", title: "French Breakfast", price: 20.00, max_guest
 
 Meal.create({tag: "american", title: "Philly Style", price: 30.00, max_guests: 10, host_id: 3, date: "2014-12-30"})
 
-User.create({email: "natasha@yumster.com", password: "secret", name: "Natasha Rostov"});
+User.create({email: "natasha@yumster.com", password: "secret", name: "Natasha Rostov", address: "3255 21st St, San Francisco, CA"});
 
 User.create({email: "andrei@yumster.com", password: "secret", name: "Andrei Truman"});
 

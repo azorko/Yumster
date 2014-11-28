@@ -13,14 +13,17 @@
 			</div>
 			  
 			<div class="col-md-9">
-					<input id="start_date" type="date" name="start_date" class="search-bar" placeholder="Start Date">
-					<input id="end_date" type="date" name="end_date" class="search-bar" placeholder="End Date">
+					<input id="start_date" type="date" name="start_date" class="search-bar" value="<%= filters["start_date"] %>">
+					<input id="end_date" type="date" name="end_date" class="search-bar" value="<%= filters["end_date"] %>">
+					
 					<select id="guest_num" class="search-bar" name="guest_num">
-						<option value="1">1 Guest </option>
-						<option value="2">2 Guests</option>
-						<option value="3">3 Guests</option>
-						<option value="4">4 Guests</option>
-						<option value="5">5+ Guests</option>
+						<% for (var i = 1; i < 6; i ++) { %>
+							<% if (filters["guest_num"] === ""+i) { %>
+								<option selected value="<%= i %>"><%= i %> Guests</option>
+							<% } else { %>
+							  <option value="<%= i %>"><%= i %> Guests</option>
+								<% } %>
+					  <% } %>
 					</select>
 			</div>
 		</div>
@@ -31,14 +34,17 @@
 			</div>
 			  
 			<div class="col-md-9">
-				<select id="tag" class="search-bar" name="tag"> 
-					<option value="" disabled selected>What are you craving?</option>
-					<option value="asian">Asian</option>
-					<option value="italian">European</option>
-					<option value="indian">Indian</option>
-					<option value="american">American</option>
-					<option value="seafood">Seafood</option>
-					<option value="fusion">Fusion</option>
+				<select id="tag" class="search-bar" name="tag">
+					<% if (!filters["tag"]) { %>
+					  <option value="" disabled selected>What are you craving?</option>
+					<% } %>
+					<% for (var item in cuisines) { %>
+						<% if (filters["tag"] === cuisines[item]) { %>
+							<option selected value="<%= cuisines[item].toLowerCase() %>"><%= cuisines[item] %></option>
+						<% } else { %>
+						  <option value="<%= cuisines[item].toLowerCase() %>"><%= cuisines[item] %></option>
+							<% } %>
+				  <% } %>
 				</select>
 			</div>
 		</div>
@@ -51,8 +57,8 @@
 			<div class="col-md-9">
 				<div id="price" class="slider"></div>
 				<div style="margin-top: 5px;">
-					<span id="min-price" style="float: left; margin-left: -7px;">$0 </span>
-					<span id="min-price" style="float: right;">$1000+ </span>
+					<span id="min-price" style="float: left; margin-left: -7px;">$0</span>
+					<span id="max-price" style="float: right;">$1000+ </span>
 				</div>
 			</div>
 		</div>
@@ -63,6 +69,9 @@
 			</div>
 			<div class="col-md-9"> <!-- style="width: 440px; margin-left: 180px;"> -->
 				<% for (var item in filters) { %>
+					<% if (item === "start_date" || item === "end_date") { %>
+						<% continue %>
+					<% } %>
 					<div class="search-bar current-filter">
 						<b style="font-size: 10px;">
 							<% if (item === "location") { %>

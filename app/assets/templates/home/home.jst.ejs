@@ -57,19 +57,16 @@
 		
 				<select class="search-bar" name="tag">
 					<option value="" disabled selected>What are you craving?</option>
-					<option value="asian">Asian</option>
-					<option value="italian">European</option>
-					<option value="indian">Indian</option>
-					<option value="american">American</option>
-					<option value="seafood">Seafood</option>
-					<option value="fusion">Fusion</option>
+					<% for (var item in cuisines) { %>
+						<option value="<%= cuisines[item].toLowerCase() %>"><%= cuisines[item] %></option>
+					<% } %>
 				</select>
 		
-				<input id="location" type="text" name="location" class="search-bar" placeholder="Location" style="width: 230px;">
+				<input id="location-search" type="text" name="location" class="search-bar" placeholder="Location" style="width: 230px;">
 		
-				<input type="date" name="start_date" class="search-bar" value="Start Date">
+				<input type="date" name="start_date" class="search-bar">
 			
-				<input type="date" name="end_date" class="search-bar" value="End Date">
+				<input type="date" name="end_date" class="search-bar">
 		
 				<select class="search-bar" name="guest_num">
 					<option value="1" selected>1 Guest</option>
@@ -79,7 +76,7 @@
 					<option value="5">5+ Guests</option>
 				</select>
 					
-				<button type="submit" class="search-button" >Search </button>
+				<button type="submit" id="button-search" class="search-button" >Search </button>
 		
 			</form>
 		</div>
