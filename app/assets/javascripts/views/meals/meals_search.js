@@ -25,6 +25,7 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
     });
     this.$el.html(content);
 		
+		this.$el.find(".slider").slider({ min: 0, max: 1000 });
 		this.updateMap(filters["location"]);
 		
     return this;

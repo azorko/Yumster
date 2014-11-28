@@ -1,7 +1,10 @@
-<!--Carousel -->
+<div class="container-fluid">
+
+	<!--Carousel -->
 
 	<div class="row">
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" max-width="600" max-height="400">
+		<div class="col-md-12" style="padding-right: 0; padding-left: 0;">
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -44,45 +47,45 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-		
+		</div>
 	</div>
 	
-<!--Search Bar -->
+	<!--Search Bar -->
 	<div class="row search-div">
 		<div class="col-md-10 col-sm-offset-1">
-	<form>
+			<form>
 		
-			<select class="search-bar" name="tag">
-				<option value="" disabled selected>What are you craving?</option>
-				<option value="asian">Asian</option>
-				<option value="italian">European</option>
-				<option value="indian">Indian</option>
-				<option value="american">American</option>
-				<option value="seafood">Seafood</option>
-				<option value="fusion">Fusion</option>
-			</select>
+				<select class="search-bar" name="tag">
+					<option value="" disabled selected>What are you craving?</option>
+					<option value="asian">Asian</option>
+					<option value="italian">European</option>
+					<option value="indian">Indian</option>
+					<option value="american">American</option>
+					<option value="seafood">Seafood</option>
+					<option value="fusion">Fusion</option>
+				</select>
 		
-			<input id="location" type="text" name="location" class="search-bar" placeholder="Location" style="width: 230px;">
+				<input id="location" type="text" name="location" class="search-bar" placeholder="Location" style="width: 230px;">
 		
-			<input type="date" name="start_date" class="search-bar" value="Start Date">
+				<input type="date" name="start_date" class="search-bar" value="Start Date">
 			
 				<input type="date" name="end_date" class="search-bar" value="End Date">
 		
-			<select class="search-bar" name="guest_num">
-				<option value="1" selected>1 Guest</option>
-				<option value="2">2 Guests</option>
-				<option value="3">3 Guests</option>
-				<option value="4">4 Guests</option>
-				<option value="5">5+ Guests</option>
-			</select>
+				<select class="search-bar" name="guest_num">
+					<option value="1" selected>1 Guest</option>
+					<option value="2">2 Guests</option>
+					<option value="3">3 Guests</option>
+					<option value="4">4 Guests</option>
+					<option value="5">5+ Guests</option>
+				</select>
 					
-		<button type="submit" class="search-button" >Search </button>
+				<button type="submit" class="search-button" >Search </button>
 		
-	</form>
-	</div>
+			</form>
+		</div>
 	</div>
 	
-<!--Explore your Neighborhood Header -->
+	<!--Explore your Neighborhood Header -->
 	
 	<div class="row" style="margin-top: 15px;">
 		<div class="col-md-8 col-md-offset-4 head">
@@ -91,58 +94,59 @@
 		</div>
 	</div>
 	
-<!-- Meal Info Samples -->
+	<!-- Meal Info Samples -->
 	
 	<div class="row" style="margin-left: 127px;">
 		<div class="col-xs-3 col-sm-offset-2 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/seafood.jpg');">
 			<div class="host-profile">
 				<img src="https://s3-us-west-1.amazonaws.com/yumster/host1.jpg" class= "host-pic">
 				<span style="float: left; margin-left: 5px;">
-					 Natasha R's
-				 </span>
+					Natasha R's
+				</span>
 			</div>
 			<div class="meal-blurb">
 				<p class="tag">SEAFOOD<p>
-				<p> Under the Sea <p>
-					<p style="font-size: 10px;">
-						<span style="float: left;"> @Mission </span>
-					  <span style="float: right;">$25/p </span>
-					</p>
-			</div>
-		</div>
-		
-		<div class="col-xs-3 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/quiche.jpg');">
-			<div class="host-profile">
-				<img src="https://s3-us-west-1.amazonaws.com/yumster/host2.jpg" class= "host-pic">
-				<span style="float: left; margin-left: 5px;">
-					 Andrei T's
-				 </span>
-			</div>
-			<div class="meal-blurb">
-				<p class="tag">EUROPEAN<p>
-				<p> French Breakfast <p>
-					<p style="font-size: 10px;">
-						<span style="float: left;"> @Castro </span>
-					  <span style="float: right;">$20/p </span>
-					</p>
-			</div>
-			
-		</div>
-		
-			<div class="col-xs-3 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/philly-cheese.jpg');">
-				<div class="host-profile">
-					<img src="https://s3-us-west-1.amazonaws.com/yumster/host3.jpg" class= "host-pic">
-					<span style="float: left; margin-left: 5px;">
-						 Marina Z's
-					 </span>
-				</div>
-				<div class="meal-blurb">
-					<p class="tag">AMERICAN<p>
-					<p> Philly Style <p>
+					<p> Under the Sea <p>
 						<p style="font-size: 10px;">
-							<span style="float: left;"> @Japantown </span>
-						  <span style="float: right;">$30/p </span>
+							<span style="float: left;"> @Mission </span>
+							<span style="float: right;">$25/p </span>
 						</p>
+					</div>
 				</div>
-			</div>
-	</div>
+		
+				<div class="col-xs-3 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/quiche.jpg');">
+					<div class="host-profile">
+						<img src="https://s3-us-west-1.amazonaws.com/yumster/host2.jpg" class= "host-pic">
+						<span style="float: left; margin-left: 5px;">
+							Andrei T's
+						</span>
+					</div>
+					<div class="meal-blurb">
+						<p class="tag">EUROPEAN<p>
+							<p> French Breakfast <p>
+								<p style="font-size: 10px;">
+									<span style="float: left;"> @Castro </span>
+									<span style="float: right;">$20/p </span>
+								</p>
+							</div>
+			
+						</div>
+		
+						<div class="col-xs-3 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/philly-cheese.jpg');">
+							<div class="host-profile">
+								<img src="https://s3-us-west-1.amazonaws.com/yumster/host3.jpg" class= "host-pic">
+								<span style="float: left; margin-left: 5px;">
+									Marina Z's
+								</span>
+							</div>
+							<div class="meal-blurb">
+								<p class="tag">AMERICAN<p>
+									<p> Philly Style <p>
+										<p style="font-size: 10px;">
+											<span style="float: left;"> @Japantown </span>
+											<span style="float: right;">$30/p </span>
+										</p>
+									</div>
+								</div>
+							</div>
+</div>
