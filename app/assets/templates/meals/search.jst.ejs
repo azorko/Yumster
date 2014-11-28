@@ -40,7 +40,7 @@
 					<% } %>
 					<% for (var item in cuisines) { %>
 						<% if (filters["tag"] === cuisines[item]) { %>
-							<option selected value="<%= cuisines[item].toLowerCase() %>"><%= cuisines[item] %></option>
+							<option selected value="<%= cuisines[item] %>"><%= cuisines[item] %></option>
 						<% } else { %>
 						  <option value="<%= cuisines[item].toLowerCase() %>"><%= cuisines[item] %></option>
 							<% } %>
@@ -101,6 +101,25 @@
 			</div>
 			
 			<!--listings -->
+			<div class="row">
+			<% for (var i = 0; i < meals.length; i++) { %>
+				<div class="col-xs-3 col-sm-offset-1 meal-info" style="background-image: url('<%= meals[i].get("photo_url") %>');">
+					<div class="host-profile">
+						<img src="<%= users.get(meals[i].get('host_id')) %>" class= "host-pic">
+						<span style="float: left; margin-left: 5px;">
+							Natasha R's
+						</span>
+					</div>
+					<div class="meal-blurb">
+						<p class="tag">SEAFOOD<p>
+							<p> Under the Sea <p>
+								<p style="font-size: 10px;">
+									<span style="float: left;"> @Mission </span>
+									<span style="float: right;">$25/p </span>
+								</p>
+							</div>
+			<% } %>
+		  </div>
 			
 			<div class="row">
 				<div class="col-xs-3 col-sm-offset-1 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/seafood.jpg');">

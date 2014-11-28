@@ -20,12 +20,9 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 		for(var i = 0; i < query.length; i++) {
 			query[i] = query[i].split("=");
 			filters[query[i][0]] = query[i][1];
+			filters[query[i][0]] = filters[query[i][0]].replace(/\+/g, " ");
 		}
 		
-		// if(filters["start_date"] === "") {
-		//   filters
-		// }
-		filters["location"] = filters["location"].replace(/\+/g, " ");
 		// new Date(2014,12,28);
     var content = this.template({
     	meals: this.collection,

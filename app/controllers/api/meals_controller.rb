@@ -21,7 +21,7 @@ class Api::MealsController < Api::ApiController
     params[:price] ||= 50000
     params[:start_date] = "2000-01-01" if (params[:start_date] == "")
     params[:end_date] = "2020-01-01" if (params[:end_date] == "")
-    params[:tag] ||= '"asian", "european", "indian", "american", "seafood", "fusion"'
+    params[:tag] ||= '"Asian", "Western", "Middle Eastern", "Latin American"'
     @meals = Meal.where([ "price <= :price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num",
       {price: params[:price], start_date: params[:start_date], end_date: params[:end_date], tag: params[:tag], guest_num: params[:guest_num]} ]);
     render json: @meals
