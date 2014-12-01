@@ -13,7 +13,26 @@
 
 class User < ActiveRecord::Base
   
-  has_many :meals
+  has_many(
+  :meals,
+  class_name: "Meal",
+  primary_key: :id,
+  foreign_key: :host_id
+  )
+  
+  has_many(
+  :ratings,
+  class_name: "Rating",
+  primary_key: :id,
+  foreign_key: :host_id
+  )
+  
+  has_many(
+  :reviews,
+  class_name: "Rating",
+  primary_key: :id,
+  foreign_key: :author_id
+  )
   
   validates :email, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }

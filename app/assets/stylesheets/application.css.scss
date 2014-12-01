@@ -20,6 +20,30 @@
 @import "bootstrap";
 @import url(http://fonts.googleapis.com/css?family=Quicksand:400,700|Maven+Pro|Amatic+SC:700);
 
+//################## Modals ###################
+
+.modal-content {
+	width: 300px;
+	margin-left: 150px;
+	font-family: 'Quicksand', sans-serif;
+	text-align: center;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	
+}
+
+.modal-content input, button.modal-button {
+	width: 250px;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	margin-bottom: 10px;
+}
+
+.modal-header {
+	background-color: #A34775;
+	color: white;
+}
+
 //################## Home #####################
 
 body {
@@ -32,6 +56,10 @@ body {
 
 #dropdownMenu1 {
 	margin-top: 15px;
+}
+
+.carousel-inner #carousel-img {
+	height: 100vh;
 }
 
 div.carousel-caption h4 {
@@ -57,7 +85,7 @@ div.carousel-caption h4 {
 	float: left;
 	height: 40px;
 	display: inline-block;
-	background-color: #F8F8F8;
+	background-color: white;
 	border: 1px solid #cccccc;
 	padding-left: 10px;
 	padding-right: 5px;
@@ -68,16 +96,10 @@ div.carousel-caption h4 {
 .search-button {
 	float: left;
 	height: 40px;
-	background-color: #F8F8F8;
-	border: 1px solid #A6A6A6;
 	width: 100px;
 	font-family: 'Quicksand', sans-serif;
-}
-
-.search-button:hover {
-//	background-color: #993366;
-  background-color: #E8E8F0;
-//	color: white;
+	border-radius: 0px;
+	-webkit-appearance: none;
 }
 
 .head {
@@ -97,15 +119,16 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .meal-info {
-	background-size: 270px 315px;
+	position: relative;
+	background-size: 260px 305px; //270 * 315
 	box-shadow: inset 0 -50px 200px #000;
 	color: white;
-	width: 270px;
-	height: 315px;
+	width: 260px;
+	height: 305px;
 	margin: 25px;
-//	padding-right: 25px;
-//	padding-left: -15px;
+	border: 10px solid white;
 	font-family: 'Quicksand', sans-serif;
+	outline: 1px solid #cccccc;
 }
 
 .meal-info:hover {
@@ -114,7 +137,7 @@ font-family: 'Quicksand', sans-serif;
 
 .meal-blurb {
 	position: relative;
-	top: 210px;
+	top: 180px;
 	float: left;
 	width: 150px;
 }
@@ -200,7 +223,7 @@ font-family: 'Quicksand', sans-serif;
 //	width: 200px;
 }
 
-.matches-bar {
+.header-bar {
 	background-color: white;//#E7E7E7;
 	border-bottom: 1px solid #e7e7e7;//#A6A6A6;
 	//border-top: 1px solid #e7e7e7;//#A6A6A6;
@@ -218,7 +241,85 @@ font-family: 'Quicksand', sans-serif;
 	padding: 0;
 }
 
+//############ Show ############
+
+.meal-header {
+	background-color: white;//#E7E7E7;
+	border: 1px solid #e7e7e7;//#A6A6A6;
+	height: 50px;
+	padding: 10px;
+}
+
+.meal-div {
+	background-color: white;//#E7E7E7;
+	border: 1px solid #e7e7e7;//#A6A6A6;
+	width: 100%;
+  overflow: auto;
+	padding: 15px;
+	margin-top: -12px;
+	margin-left: 0px;
+}
+
+.meal-img {
+//	left: 0px;
+//	top: 30vh;
+	width: 100%;
+	height: 50vh;
+	background-size: cover;
+//	background-repeat: repeat-y;
+//	background-size: cover;
+//	background-size: 400px 600px; 
+	margin-top: -12px;
+	border-right: 1px solid #e7e7e7;
+	border-left: 1px solid #e7e7e7;
+	outline: none;
+}
+
+.host-pic.host {
+	width: 125px;
+	height: 125px;
+	border-radius: 75px;
+	outline: none;
+	margin: 5px;
+	margin-left: -9px;
+}
+
+.host-pic.author {
+	width: 75px;
+	height: 75px;
+	border-radius: 50px;
+	outline: none;
+	margin: 5px;
+	margin-left: -3px;
+	margin-top: 10px;
+}
+
+.indiv-rating {
+	width: 100%;
+	height: 15vh;
+	border-bottom: 1px solid #e7e7e7;
+	min-height: 125px;
+}
+
+.book-table {
+	margin-top: 10px;
+}
+
+.dividers {
+	border-right: 1px solid #e7e7e7;
+	height: 80px;
+}
+
+.meal-div:hover {
+	opacity: 0.9;
+}
+
+//.btn.btn-default.pink-button:hover {
+//	opacity: 0.9;
+//}
+
+
 //img.resize{
 ////    width:540px; can also use %
 //    height: auto;
-//}
+//	}

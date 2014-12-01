@@ -24,8 +24,14 @@ class Api::MealsController < Api::ApiController
     params[:tag] ||= '"Asian", "Western", "Middle Eastern", "Latin American"'
     @meals = Meal.where([ "price <= :price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num",
       {price: params[:price], start_date: params[:start_date], end_date: params[:end_date], tag: params[:tag], guest_num: params[:guest_num]} ]);
-    render json: @meals
+    render :index
   end
+  
+  def show
+    @meal = Meal.find(params[:id])
+    render :show
+  end
+  
   #
   # def show
   #   @meal = Meal.includes(:members, lists: :cards).find(params[:id])

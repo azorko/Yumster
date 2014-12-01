@@ -6,8 +6,9 @@ class SessionsController < ApplicationController
       sign_in!(@user)
       redirect_to root_url
     else
-      flash.now[:errors] = ["Invalid email and/or password"]
-      render :new
+      render json: ["Invalid email and/or password."].to_json, status: 422
+      # flash.now[:errors] = ["Invalid email and/or password"]
+#       render :new
     end
   end
 

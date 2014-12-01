@@ -15,21 +15,21 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox" max-width="600" max-height="400">
 				<div class="item active" >
-					<img src="https://s3-us-west-1.amazonaws.com/yumster/rsz_thai_food.jpg" class= "carousel-img">
+					<img src="https://s3-us-west-1.amazonaws.com/yumster/rsz_thai_food.jpg" id="carousel-img">
 					<div class="carousel-caption">
 						<h4> Join a community of food lovers and cooks. Experience unique meals together.</h4>
 					</div>
 				</div>
 		
 				<div class="item">
-					<img src="https://s3-us-west-1.amazonaws.com/yumster/rsz_candle-light.jpg" class= "carousel-img">
+					<img src="https://s3-us-west-1.amazonaws.com/yumster/rsz_candle-light.jpg" id="carousel-img">
 					<div class="carousel-caption">
 						<h4> Join a community of food lovers and cooks. Experience unique meals together.</h4>
 					</div>
 				</div>
 		
 				<div class="item">
-					<img src="https://s3-us-west-1.amazonaws.com/yumster/rsz_mexican.jpg" class= "carousel-img">
+					<img src="https://s3-us-west-1.amazonaws.com/yumster/rsz_mexican.jpg" id="carousel-img">
 					<div class="carousel-caption">
 						<h4> Join a community of food lovers and cooks. Experience unique meals together.</h4>
 					</div>
@@ -63,10 +63,11 @@
 				</select>
 		
 				<input id="location-search" type="text" name="location" class="search-bar" placeholder="Location" style="width: 230px;">
-		
-				<input type="date" name="start_date" class="search-bar">
-			
-				<input type="date" name="end_date" class="search-bar">
+		    <input placeholder="Start Date" name="start_date" class="search-bar" class="textbox-n" type="text" onfocus="(this.type='date')">
+				<input placeholder="End Date" name="end_date" class="search-bar" class="textbox-n" type="text" onfocus="(this.type='date')">
+				<!-- <input type="date" name="start_date" class="search-bar">
+
+				<input type="date" name="end_date" class="search-bar"> -->
 		
 				<select class="search-bar" name="guest_num">
 					<option value="1" selected>1 Guest</option>
@@ -76,7 +77,7 @@
 					<option value="5">5+ Guests</option>
 				</select>
 					
-				<button type="submit" id="button-search" class="search-button" >Search </button>
+				<button type="submit" id="button-search" class="search-button btn btn-default" >Search </button>
 		
 			</form>
 		</div>

@@ -13,8 +13,17 @@
 			</div>
 			  
 			<div class="col-md-9">
+				<% if (filters["start_date"] === "") { %>
+		    <input placeholder="Start Date" name="start_date" class="search-bar" class="textbox-n" type="text" onfocus="(this.type='date')"  id="start_date">
+				<% } else { %>
 					<input id="start_date" type="date" name="start_date" class="search-bar" value="<%= filters["start_date"] %>">
+					<% } %>
+					
+				<% if (filters["end_date"] === "") { %>	
+				<input placeholder="End Date" name="end_date" class="search-bar" class="textbox-n" type="text" onfocus="(this.type='date')"  id="end_date">
+				<% } else { %>
 					<input id="end_date" type="date" name="end_date" class="search-bar" value="<%= filters["end_date"] %>">
+					<% } %>
 					
 					<select id="guest_num" class="search-bar" name="guest_num">
 						<% for (var i = 1; i < 6; i ++) { %>
@@ -62,6 +71,19 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class= "row filter-div">
+			<div class="col-md-3 filter-header">
+				Radius:
+			</div>
+			  
+			<div class="col-md-9">
+				<div id="radius">
+					<input type="text" name="radius" class="search-bar" value="15 Miles">
+				</div>
+				
+			</div>
+		</div>
 			
 		<div class="row filter-div">
 			<div class="col-md-3 filter-header">
@@ -69,7 +91,7 @@
 			</div>
 			<div class="col-md-9"> <!-- style="width: 440px; margin-left: 180px;"> -->
 				<% for (var item in filters) { %>
-					<% if (item === "start_date" || item === "end_date") { %>
+					<% if (item === "start_date" || item === "end_date" || item === "location" && filters[item] === "") { %>
 						<% continue %>
 					<% } %>
 					<div class="search-bar current-filter">
@@ -93,7 +115,7 @@
 				</div>
 			</div>
 				
-			<div class="row filter-div matches-bar">
+			<div class="row filter-div header-bar">
 				<div class="col-md-3 filter-header">
 					<%= meals.length %> Matches
 					<span class="glyphicon glyphicon-chevron-down"></span>
@@ -102,80 +124,26 @@
 			
 			<!--listings -->
 			<div class="row">
+				<% meals = meals.models %>
 			<% for (var i = 0; i < meals.length; i++) { %>
-				<div class="col-xs-3 col-sm-offset-1 meal-info" style="background-image: url('<%= meals[i].get("photo_url") %>');">
+				<% host = meals[i].basicHostData() %>
+				<div class="col-md-3 col-md-offset-1 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meals[i].get("photo_url") %>');">
 					<div class="host-profile">
-						<img src="<%= users.get(meals[i].get('host_id')) %>" class= "host-pic">
+						<img src="<%= host.get('photo_url') %>" class= "host-pic">
 						<span style="float: left; margin-left: 5px;">
-							Natasha R's
+							<%= host.get("name")%>'s
 						</span>
 					</div>
 					<div class="meal-blurb">
-						<p class="tag">SEAFOOD<p>
-							<p> Under the Sea <p>
+						<p class="tag"><%= meals[i].get("tag") %></p>
+							<p> <%= meals[i].get("title") %> </p>
 								<p style="font-size: 10px;">
-									<span style="float: left;"> @Mission </span>
-									<span style="float: right;">$25/p </span>
+									<span style="float: left; width: 100px;"> @<%= host.get('address') %> </span>
+									<span style="float: right;">$<%= meals[i].get('price') %>/p </span>
 								</p>
 							</div>
+					</div>
 			<% } %>
 		  </div>
 			
-			<div class="row">
-				<div class="col-xs-3 col-sm-offset-1 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/seafood.jpg');">
-					<div class="host-profile">
-						<img src="https://s3-us-west-1.amazonaws.com/yumster/host1.jpg" class= "host-pic">
-						<span style="float: left; margin-left: 5px;">
-							Natasha R's
-						</span>
-					</div>
-					<div class="meal-blurb">
-						<p class="tag">SEAFOOD<p>
-							<p> Under the Sea <p>
-								<p style="font-size: 10px;">
-									<span style="float: left;"> @Mission </span>
-									<span style="float: right;">$25/p </span>
-								</p>
-							</div>
-						</div>
-		
-						<div class="col-xs-3 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/quiche.jpg');">
-							<div class="host-profile">
-								<img src="https://s3-us-west-1.amazonaws.com/yumster/host2.jpg" class= "host-pic">
-								<span style="float: left; margin-left: 5px;">
-									Andrei T's
-								</span>
-							</div>
-							<div class="meal-blurb">
-								<p class="tag">EUROPEAN<p>
-									<p> French Breakfast <p>
-										<p style="font-size: 10px;">
-											<span style="float: left;"> @Castro </span>
-											<span style="float: right;">$20/p </span>
-										</p>
-									</div>
-			
-								</div>
-		
-								<div class="col-xs-3 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/philly-cheese.jpg');">
-									<div class="host-profile">
-										<img src="https://s3-us-west-1.amazonaws.com/yumster/host3.jpg" class= "host-pic">
-										<span style="float: left; margin-left: 5px;">
-											Marina Z's
-										</span>
-									</div>
-									<div class="meal-blurb">
-										<p class="tag">AMERICAN<p>
-											<p> Philly Style <p>
-												<p style="font-size: 10px;">
-													<span style="float: left;"> @Japantown </span>
-													<span style="float: right;">$30/p </span>
-												</p>
-											</div>
-										</div>
-									</div>
-		
-								</div>
-	
-							</div>
-</div>							
+</div>

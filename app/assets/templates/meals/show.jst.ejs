@@ -1,0 +1,109 @@
+<div class="container-fluid" style="margin-top: 50px;">
+<% var host = meal.basicHostData() %>
+	<div class="row" style="font-family: 'Quicksand', sans-serif;">
+		<div class="col-md-6 col-md-offset-1">
+			
+			<div class="row">
+			  <h3 class="meal-header"> <%= meal.get("title") %> </h3>
+			  <div class="meal-img" style="background-image: url('<%= meal.get("photo_url") %>');"> </div>
+			</div> <!-- meal-photo -->
+			
+			<div class="row">
+				<h3 class="meal-header"> About This Meal </h3>
+				<div class="meal-div">
+						<p><%= meal.get("about") %></p>
+						<div class="col-md-3 dividers">
+							<span class="glyphicon glyphicon-map-marker"> </span><br>
+							<%= host.get("address") %>
+						</div>
+						<div class="col-md-3 dividers">
+							<span class="glyphicon glyphicon-calendar"> </span><br>
+							<%= meal.get("date") %>
+						</div>
+						<div class="col-md-3 dividers">
+							<span class="glyphicon glyphicon-user"> </span><br>
+							<%= meal.get("max_guests") %>
+						</div>
+						<div class="col-md-3">
+							<span class="glyphicon glyphicon-cutlery"> </span><br>
+							<%= meal.get("tag") %>
+						</div>
+				</div>
+			</div>
+			
+			<div class="row">
+			
+				<h3 id="meal-rating" class="meal-header"> </h3>
+				<div class="meal-div" style="margin-bottom: 20px;">
+					
+				<% meal.ratings().forEach( function (rating) { %>
+	        <div class="indiv-rating">
+						<div class="col-md-2">
+					    <img class="host-pic author" src="<%= rating.get('author').photo_url %>">
+							<h5 style="text-align: center; margin-top: 20px;"><%= rating.get("author").name %> </h5>
+						</div>
+						<div class="col-md-8" style="float: left; margin-left: 10px;">
+							<p style="margin-top: 5px; "> <%= rating.get("review") %> </p>
+						</div>
+					</div> <!-- individual-rating -->
+					<% }) %>
+					
+					
+				</div>
+				<!-- <span id="stars"> </span> -->
+			</div> <!-- reviews -->
+			
+		</div> <!-- meal info -->
+		
+		<div class="col-md-4" style="margin-left: 20px;">
+			
+			<div class="row">
+				<h3 class="meal-header" style="background-color: #A34775; color: white;"> Join This Meal </h3>
+				<div class="meal-div">
+					<div class="row" style="margin-left: 0px;">
+						<span style="float: left; font-size: 15px; padding: 10px;"> $<%= meal.get("price") %>/Person </span>
+						<!-- <span style="float: right;"> Per Person </span> -->
+						<select id="guest_num" class="search-bar" name="guest_num" placeholder="Guests">
+							<% for (var i = 1; i < 6; i ++) { %>
+								<% if (filters && filters["guest_num"] === ""+i) { %>
+									<option selected value="<%= i %>"><%= i %> Guests</option>
+								<% } else { %>
+								  <option value="<%= i %>"><%= i %> Guests</option>
+									<% } %>
+						  <% } %>
+						</select>
+						
+						<button style="margin-left: 10px; width: 130px;" type="submit" id="button-search" class="search-button btn btn-default calc">Calculate Price </button>
+					</div>
+					
+					
+					
+					<div style="margin-top: 10px;" class="row" id="price-grid"> </div>
+					
+					<div class="row">
+						<div class="col-md-11" style="margin-left: 5px;" id="book-div">
+						</div>
+					</div>
+					
+				</div> <!-- meal-sign-up -->
+			</div>
+			
+			<div class="row">
+				<h3 class="meal-header"> Your Host </h3>
+				<div class="meal-div">
+					<div class="col-md-5">
+				    <img class="host-pic host" src="<%= host.get('photo_url') %>">
+					</div>
+					<div class="col-md-7" style="float: left;">
+						<div style="font-size: 20px; border-bottom: 1px solid #e7e7e7;"><%= host.get("name") %> </div>
+						<p style="margin-top: 5px;"> <%= host.get("about") %> </p>
+					</div> 
+			  </div> <!-- host info -->
+		  </div>
+			 
+		</div> <!-- right side -->
+		
+	</div> <!-- main div -->
+
+
+</div> <!-- container -->

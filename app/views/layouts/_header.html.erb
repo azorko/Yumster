@@ -24,26 +24,25 @@
 				</li>
 								
 				<% if signed_in? %>
-		
-				<!-- <div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-					<%= current_user.name %>
-					<span class="caret"></span>
-					</button> -->
-			
+					
+			    <li class='left-nav-list-item' style="margin-left: 130px; margin-top: 5px;">
+						<img src="<%= current_user.photo_url %>" class= "host-pic">
+					</li>
+					
+					<li class='left-nav-list-item' style="margin-left: 5px;">
 					<div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 						<%= current_user.name %>
 						<span class="caret"></span>
 					</div>
 
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="margin-top: 16px;">
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Guest Meals</a></li>
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Host Meals</a></li>
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">View Profile</a></li>
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Profile</a></li>
 						<li role="presentation"><%= link_to "Sign out", session_url, method: :delete, role: "menuitem", tabindex: "-1" %></li>
 					</ul>
-				</div>
+					</li>
   
 				<% else %>
 				<li>
@@ -71,7 +70,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<button type="button" class="close btn" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title">Log In</h4>
 			</div>
 			<div class="modal-body">
@@ -87,12 +86,12 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<button type="button" class="close btn" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title">Sign Up</h4>
 			</div>
 			<div class="modal-body">
 				
-				<%= render partial: "users/new" %>
+				<%= render partial: "api/users/new" %>
 				
 			</div>
 		</div><!-- /.modal-content -->
