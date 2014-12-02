@@ -7,7 +7,7 @@ Yumster.Views.Home = Backbone.View.extend({
 	initialize: function () {
 		this.user = new Yumster.Models.User();
 		this.user.fetch();
-		$('#button-header').on('click', this.submitHeader.bind(this));
+		// $('#button-header').on('click', this.submitHeader.bind(this));
 	},
 	
 	events: {
@@ -35,13 +35,13 @@ Yumster.Views.Home = Backbone.View.extend({
 		Backbone.history.navigate("search/" + attrs, {trigger: true});
 	},
 	
-	submitHeader: function (event) {
-		debugger
-		event.preventDefault();
-		debugger
-		var attrs = $("#location-header").serialize();
-		Backbone.history.navigate("search/" + attrs, {trigger: true});
-	},
+	// submitHeader: function (event) {
+	// 	debugger
+	// 	event.preventDefault();
+	// 	debugger
+	// 	var attrs = $("#location-header").serialize();
+	// 	Backbone.history.navigate("search/" + attrs, {trigger: true});
+	// },
 	
 	autocompleteSearch: function () {
 		var loc = this.searchAuto.getPlace();

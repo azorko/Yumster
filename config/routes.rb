@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  root :to => "site#site"
+ get "map", to: 'site#map'
  
  # resources :users
  resource :session

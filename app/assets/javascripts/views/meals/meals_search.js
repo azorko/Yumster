@@ -86,14 +86,14 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 // 	},
 	
 	renderMap: function () {
+		debugger
 		var lat = Number(Yumster.current_filters["lat"]);
 		var lng = Number(Yumster.current_filters["lng"]);
 		var mapOptions = {
 			center: new google.maps.LatLng(lat, lng),
 			zoom: 12,
-			draggable: true
 		};
-		this._map = new google.maps.Map(this.$el.find("#map-canvas")[0], mapOptions);
+		this._map = new google.maps.Map(this.$el.find("#search-map")[0], mapOptions);
 		var that = this;
 		var geocoder = new google.maps.Geocoder();
 		for (var i = 0; i < this.collection.length; i++) {

@@ -1,6 +1,12 @@
 Yumster.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
   	this.$rootEl = options.$rootEl;
+		// $('#button-header').on('submit', function (event) {
+// 			debugger
+// 			event.preventDefault();
+// 			var query = $('#location-header').serialize();
+// 			Backbone.history.navigate("#/search/" + query, { trigger: true });
+// 		});
   },
 	
   routes: {
