@@ -51,7 +51,7 @@
 						<% if (filters["tag"] === cuisines[item]) { %>
 							<option selected value="<%= cuisines[item] %>"><%= cuisines[item] %></option>
 						<% } else { %>
-						  <option value="<%= cuisines[item].toLowerCase() %>"><%= cuisines[item] %></option>
+						  <option value="<%= cuisines[item]%>"><%= cuisines[item] %></option>
 							<% } %>
 				  <% } %>
 				</select>
@@ -66,22 +66,9 @@
 			<div class="col-md-9">
 				<div id="price" class="slider"></div>
 				<div style="margin-top: 5px;">
-					<span id="min-price" style="float: left; margin-left: -7px;">$0</span>
-					<span id="max-price" style="float: right;">$1000+ </span>
+					<span id="min-price" style="float: left; margin-left: -7px;"></span>
+					<span id="max-price" style="float: right;"></span>
 				</div>
-			</div>
-		</div>
-		
-		<div class= "row filter-div">
-			<div class="col-md-3 filter-header">
-				Radius:
-			</div>
-			  
-			<div class="col-md-9">
-				<div id="radius">
-					<input type="text" name="radius" class="search-bar" value="15 Miles">
-				</div>
-				
 			</div>
 		</div>
 			
@@ -107,7 +94,7 @@
 						<% price = true %>
 					<% } %>
 						
-					<% if (item === "lat" || item === "lng" || item === "location" && filters[item] === "") { %>
+					<% if (item === "lat" || item === "lng" || item === "location") { %>
 						<% continue %>
 					<% } %>
 					<div class="search-bar current-filter" style="padding: 10px; text-align: center;">
@@ -126,6 +113,7 @@
 								<span class="glyphicon" style="font-weight: bold;"> &dollar;</span>
 							<% } %>
 						</b>
+						<button data-filter="<%= item %>" type="button" class="close btn remove-filter"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 					</div>
 					<% } %>
 				</div>
@@ -143,7 +131,7 @@
 				<% meals = meals.models %>
 			<% for (var i = 0; i < meals.length; i++) { %>
 				<% host = meals[i].basicHostData() %>
-				<div class="col-md-3 col-md-offset-1 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meals[i].get("photo_url") %>');">
+				<div data-listing-num="<%= i %>" class="col-md-3 col-md-offset-1 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meals[i].get("photo_url") %>');">
 					<div class="host-profile">
 						<img src="<%= host.get('photo_url') %>" class= "host-pic">
 						<span style="float: left; margin-left: 5px;">

@@ -13,7 +13,9 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 		"slidestop .slider": "updatePrice",
 		"click .meal-info": "show",
 		"change input": "filterChange",
-		"change select": "filterChange"
+		"change select": "filterChange",
+		"click .remove-filter": "removeFilter",
+		// "mouseenter .meal-info": "colorMarker"
 	},
 	
   render: function () {
@@ -46,10 +48,10 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 	
 	renderSlider: function () {
 		var min = Yumster.current_filters["min_price"] || "0";
-		var max = Yumster.current_filters["max_price"] || 1000;
+		var max = Yumster.current_filters["max_price"] || 250;
 		this.$el.find(".slider").slider({
 			min: 0,
-			max: 1000,
+			max: 250,
 			range: true,
 			values: [Number(min), max]
 		 });
@@ -88,7 +90,8 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 		var lng = Number(Yumster.current_filters["lng"]);
 		var mapOptions = {
 			center: new google.maps.LatLng(lat, lng),
-			zoom: 12
+			zoom: 12,
+			draggable: true
 		};
 		this._map = new google.maps.Map(this.$el.find("#map-canvas")[0], mapOptions);
 		var that = this;
@@ -104,11 +107,24 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 	},
 	
 	attachMarker: function (results) {
+		this.markers = [];
     var marker = new google.maps.Marker({
       map: this._map,
-      position: results[0].geometry.location
+      position: results[0].geometry.location,
+			animation: google.maps.Animation.DROP
     });
+		this.markers.push(marker);
+		// google.maps.event.addListener(this.markers[this.markers.indexOf(marker)], 'click', this.toggleBounce.bind(this));
 	},
+	
+	// toggleBounce: function () {
+//
+// 	  if (marker.getAnimation() != null) {
+// 	    marker.setAnimation(null);
+// 	  } else {
+// 	    marker.setAnimation(google.maps.Animation.BOUNCE);
+// 	  }
+// 	},
 	
 	updateSlider: function (event) {
 		var minValue = $(event.currentTarget).slider( "values", 0 );
@@ -120,8 +136,6 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 	},
 	
 	updatePrice: function (event) {
-		// var minValue = $(event.currentTarget).slider( "values", 0 );
-		// $(event.currentTarget).slider( "values", 0, 55 );
 		this.updateSlider(event);
 		this.collection.fetch({data: Yumster.current_filters});
 	},
@@ -135,6 +149,37 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 		var $filterEl = $(event.currentTarget);
 		Yumster.current_filters[$filterEl.attr("name")] = $filterEl.val();
 		this.collection.fetch({data: Yumster.current_filters});
+	},
+	
+	removeFilter: function (event) {
+		var filterId = $(event.currentTarget).data("filter");
+		var $filterEl = this.$el.find("#" + filterId);
+		if ($filterEl.is("input")) {
+			if(filterId === "start_date") {
+				$("#end_date").removeAttr("value");
+				delete Yumster.current_filters["end_date"];
+			} else if (filterId === "end_date") {
+				$("#start_date").removeAttr("value");
+				delete Yumster.current_filters["start_date"];
+			}
+			$filterEl.removeAttr("value");
+		} else if ($filterEl.is("select")) {
+			$filterEl.prop('selectedIndex', 0);
+		} else { //it is a slider
+			if(filterId === "min_price") {
+				delete Yumster.current_filters["max_price"];
+			} else if (filterId === "max_price") {
+				delete Yumster.current_filters["min_price"];
+			}
+		}
+		delete Yumster.current_filters[filterId];
+		this.collection.fetch({data: Yumster.current_filters});
+	},
+	
+	colorMarker: function (event) {
+		debugger
+		var num = $(event.currentTarget).data("listing-num");
+		this.markers[num].setIcon("http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
 	}
 
 });

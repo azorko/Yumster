@@ -22,9 +22,10 @@ class Api::MealsController < Api::ApiController
     params[:lng] ||= -122.395555555
     params[:max_price] ||= 50000
     params[:min_price] ||= 0
-    params[:start_date] = "2000-01-01" if (params[:start_date] == "")
-    params[:end_date] = "2020-01-01" if (params[:end_date] == "")
-    params[:tag] ||= '"Asian", "Western", "Middle Eastern", "Latin American"'
+    params[:start_date] = "2000-01-01" if (!params[:start_date] ||params[:start_date] == "")
+    params[:end_date] = "2020-01-01" if (!params[:end_date] || params[:end_date] == "")
+    params[:tag] ||= ["Asian", "Western", "Middle Eastern", "Latin American"]
+    params[:guest_num] ||= 1;
     @meals = Meal.where([ "price between :min_price and :max_price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num",
       {max_price: params[:max_price], min_price: params[:min_price], start_date: params[:start_date], end_date: params[:end_date], tag: params[:tag], guest_num: params[:guest_num]} ]);
     @meals = @meals.select do |meal|
