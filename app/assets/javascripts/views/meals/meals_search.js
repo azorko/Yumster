@@ -15,7 +15,8 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 		"change input": "filterChange",
 		"change select": "filterChange",
 		"click .remove-filter": "removeFilter",
-		// "mouseenter .meal-info": "colorMarker"
+		"mouseenter .meal-info": "blueMarker",
+		"mouseleave .meal-info": "redMarker",
 	},
 	
   render: function () {
@@ -84,18 +85,11 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 // 		});
 //
 // 	},
-	
-	renderMap: function () {
-		debugger
-		var lat = Number(Yumster.current_filters["lat"]);
-		var lng = Number(Yumster.current_filters["lng"]);
-		var mapOptions = {
-			center: new google.maps.LatLng(lat, lng),
-			zoom: 12,
-		};
-		this._map = new google.maps.Map(this.$el.find("#search-map")[0], mapOptions);
-		var that = this;
+
+	addMarkers: function(){
+		this.markers = [];
 		var geocoder = new google.maps.Geocoder();
+		var that = this;
 		for (var i = 0; i < this.collection.length; i++) {
 		  var address = this.collection.models[i].basicHostData().get("address");
 			geocoder.geocode({ 'address': address }, function(results, status) {
@@ -105,26 +99,55 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 			});
 		}
 	},
+	renderMap: function () {
+		var lat = Number(Yumster.current_filters["lat"]) || 37.7749295;
+		var lng = Number(Yumster.current_filters["lng"]) || -122.4194155;
+		var mapOptions = {
+			center: new google.maps.LatLng(lat, lng),
+			zoom: 12
+		};
+		this._map = new google.maps.Map(this.$el.find("#search-map")[0], mapOptions);
+		this.addMarkers();
+		
+
+		
+	  // google.maps.event.addListener(this._map, 'bounds_changed', function() {
+ // 			var topLeftLat = that._map.getBounds().Fa.j;
+ // 			var topLeftLng = that._map.getBounds().wa.j;
+ // 			var bottomRightLat = that._map.getBounds().Fa.k;
+ // 			var bottomRightLng = that._map.getBounds().wa.k;
+ // 			Yumster.current_filters["top_left"] = [topLeftLat, topLeftLng];
+ // 			Yumster.current_filters["bottom_right"] = [bottomRightLat, bottomRightLng];
+ // 			that.collection.fetch({data: Yumster.current_filters});
+ // 	  });
+	},
 	
 	attachMarker: function (results) {
-		this.markers = [];
+		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
+		        new google.maps.Size(21, 34),
+		        new google.maps.Point(0,0),
+		        new google.maps.Point(10, 34));
+		
     var marker = new google.maps.Marker({
       map: this._map,
       position: results[0].geometry.location,
-			animation: google.maps.Animation.DROP
+			animation: google.maps.Animation.DROP,
+			icon: pinImage
     });
 		this.markers.push(marker);
-		// google.maps.event.addListener(this.markers[this.markers.indexOf(marker)], 'click', this.toggleBounce.bind(this));
+		google.maps.event.addListener(marker, 'click', this.toggleBounce.bind(this));
 	},
+	// this.markers[this.markers.indexOf(marker)]
 	
-	// toggleBounce: function () {
-//
-// 	  if (marker.getAnimation() != null) {
-// 	    marker.setAnimation(null);
-// 	  } else {
-// 	    marker.setAnimation(google.maps.Animation.BOUNCE);
-// 	  }
-// 	},
+	toggleBounce: function (event) {
+		debugger
+    var marker = event.currentTarget;
+	  if (marker.getAnimation() != null) {
+	    marker.setAnimation(null);
+	  } else {
+	    marker.setAnimation(google.maps.Animation.BOUNCE);
+	  }
+	},
 	
 	updateSlider: function (event) {
 		var minValue = $(event.currentTarget).slider( "values", 0 );
@@ -176,10 +199,14 @@ Yumster.Views.MealsSearch = Backbone.View.extend({
 		this.collection.fetch({data: Yumster.current_filters});
 	},
 	
-	colorMarker: function (event) {
-		debugger
+	blueMarker: function (event) {
 		var num = $(event.currentTarget).data("listing-num");
-		this.markers[num].setIcon("http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
+		this.markers[num].setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|005CB8");
+	},
+	
+	redMarker: function (event) {
+		var num = $(event.currentTarget).data("listing-num");
+		this.markers[num].setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569");
 	}
 
 });

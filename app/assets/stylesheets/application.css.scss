@@ -59,7 +59,8 @@ body {
 }
 
 .carousel-inner #carousel-img {
-	height: 100vh;
+	height: 93vh;
+  width: 100%;
 }
 
 div.carousel-caption h4 {
@@ -116,6 +117,8 @@ font-family: 'Quicksand', sans-serif;
   display: inline-block;
 	font-size: 10px;
 	margin-bottom: -15px;
+	padding-right: 2px;
+	padding-left: 2px;
 }
 
 .meal-info {
@@ -125,7 +128,7 @@ font-family: 'Quicksand', sans-serif;
 	color: white;
 	width: 260px;
 	height: 305px;
-	margin: 25px;
+	margin-top: 25px;
 	border: 10px solid white;
 	font-family: 'Quicksand', sans-serif;
 	outline: 1px solid #cccccc;
@@ -172,8 +175,9 @@ font-family: 'Quicksand', sans-serif;
 
 //################## Search #####################
 
-.filter-choose {
-	
+.search-content {
+	overflow: auto;
+	height: 100vh;
 }
 
 .filter-div {
@@ -185,7 +189,7 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .filter-div:hover {
-	background-color: #F7F7F7;//#FBFBFB;//#FFF8F8;
+	background-color: #FFF7EF;//#FFF9F3;//#F7F7F7;//#FBFBFB;//#FFF8F8;
 }
 
 .search-bar.current-filter {
@@ -237,6 +241,10 @@ font-family: 'Quicksand', sans-serif;
 	//border-top: 1px solid #e7e7e7;//#A6A6A6;
 }
 
+.header-bar:hover {
+	background-color: white;
+}
+
 .glyphicon {
 	font-size: 20px;
 }
@@ -244,9 +252,14 @@ font-family: 'Quicksand', sans-serif;
 //########## Map ###########
 
 #search-map {
-	height: 100vh;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	margin: 0;
 	padding: 0;
+//	overflow: hidden;
 }
 
 //############ Show ############
@@ -277,6 +290,7 @@ font-family: 'Quicksand', sans-serif;
 //	top: 30vh;
 	width: 100%;
 	height: 50vh;
+	background-position: 50% 50%;
 	background-size: cover;
 //	background-repeat: repeat-y;
 //	background-size: cover;
@@ -334,8 +348,25 @@ font-family: 'Quicksand', sans-serif;
 	overflow: auto;
 	padding-right: 10px;
 	padding-left: 10px;
-	font-size: 15px;
 	text-align: center;
+}
+
+.meal-content {
+	overflow: auto;
+	height: 100vh;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.people_info {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
 }
 
 //.btn.btn-default.pink-button:hover {

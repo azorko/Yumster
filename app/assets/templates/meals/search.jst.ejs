@@ -1,14 +1,14 @@
 <div class="container-fluid">
 
-<div class="row" style="margin-top: 50px;">
+<div class="row">
 	
-	<div class="col-md-5">
-		<div id="search-map">
-		</div>
+	<div class="col-md-5" style="height: 100vh;">
+		<div style="height: 50px; width: auto;"></div>
+		<div id="search-map"></div>
 	</div>
 	
-	<div class="col-md-7">
-		
+	<div class="col-md-7 search-content">
+		<div style="height: 50px; width: auto;"> </div>
 		<div class= "row filter-div">
 			<div class="col-md-3 filter-header">
 				Dates:
@@ -82,7 +82,7 @@
 				<% for (var item in filters) { %>
 					<% var date %>
 					  <% if (item === "start_date" || item === "end_date") { %>
-							<% if (date) { %>
+							<% if (date || filters[item] === "") { %>
 							  <% continue %>	
 							<% } %>
 							<% date = true %>
@@ -109,8 +109,6 @@
 								<span class="glyphicon glyphicon-user"> </span>
 							<% } else if (item === "start_date" || item === "end_date") { %>
 								<span class="glyphicon glyphicon-calendar"> </span>
-							<% } else if (item === "guest_num") { %>
-								<span class="glyphicon glyphicon-calendar"> </span>
 							<% } else if (item === "min_price" || item === "max_price") { %>
 								<span class="glyphicon" style="font-weight: bold;"> &dollar;</span>
 							<% } %>
@@ -129,7 +127,7 @@
 			</div>
 			
 			<!--listings -->
-			<div class="row">
+			<div class="row" style="margin-left: 0.5vw;">
 				<% meals = meals.models %>
 			<% for (var i = 0; i < meals.length; i++) { %>
 				<% host = meals[i].basicHostData() %>
