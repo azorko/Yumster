@@ -46,8 +46,9 @@
 							<p style="margin-top: 5px; "> <%= rating.get("review") %> </p>
 						</div>
 					</div> <!-- individual-rating -->
-					<% }) %>
-					
+				<% }) %>
+				<div class="new-review" style="margin-top: 10px;">
+				</div>
 					
 				</div>
 				<!-- <span id="stars"> </span> -->
@@ -68,8 +69,12 @@
 								<% if (filters && filters["guest_num"] === ""+i) { %>
 									<option selected value="<%= i %>"><%= i %> Guests</option>
 								<% } else { %>
+									<% if (i === 1 && !filters) { %>
+										<option selected value="<%= i %>"><%= i %> Guests</option>
+									<% } else { %>
 								  <option value="<%= i %>"><%= i %> Guests</option>
 									<% } %>
+								<% } %>
 						  <% } %>
 						</select>
 						
@@ -81,6 +86,7 @@
 					<div style="margin-top: 10px;" class="row" id="price-grid"> </div>
 					
 					<div class="row">
+						<div class="col-md-11" style="margin-left: 5px;" id="book-errors"> </div>
 						<div class="col-md-11" style="margin-left: 5px;" id="book-div">
 						</div>
 					</div>
@@ -100,6 +106,22 @@
 					</div> 
 			  </div> <!-- host info -->
 		  </div>
+			
+			<div class="row">
+				<h3 class="meal-header"> Meet the Guests </h3>
+				<div class="meal-div">
+					<% meal.guests().forEach( function (guest) { %>
+						<div class="guest-div">
+							<img class="host-pic author" src="<%= guest.get('photo_url') %>">
+							<div><%= guest.get("name") %> </div>
+							<div>
+								<span class="glyphicon glyphicon-user"> </span>
+								x <%= guest.get("booking").guest_num %>
+							</div>
+						</div>
+					<% }) %>
+				</div>
+			</div>
 			 
 		</div> <!-- right side -->
 		

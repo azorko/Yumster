@@ -14,10 +14,23 @@
 class User < ActiveRecord::Base
   
   has_many(
-  :meals,
+  :host_meals,
   class_name: "Meal",
   primary_key: :id,
   foreign_key: :host_id
+  )
+  
+  has_many(
+  :guest_meals,
+  through: :guest_meal_joins,
+  source: :meal
+  )
+  
+  has_many(
+  :guest_meal_joins,
+  class_name: "GuestMealJoin",
+  primary_key: :id,
+  foreign_key: :guest_id
   )
   
   has_many(

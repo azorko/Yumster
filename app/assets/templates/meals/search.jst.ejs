@@ -91,11 +91,27 @@
 			</div>
 			<div class="col-md-9"> <!-- style="width: 440px; margin-left: 180px;"> -->
 				<% for (var item in filters) { %>
-					<% if (item === "start_date" || item === "end_date" || item === "location" && filters[item] === "") { %>
+					<% var date %>
+					  <% if (item === "start_date" || item === "end_date") { %>
+							<% if (date) { %>
+							  <% continue %>	
+							<% } %>
+							<% date = true %>
+						<% } %>
+						
+				<% var price %>
+				  <% if (item === "max_price" || item === "min_price") { %>
+						<% if (price) { %>
+						  <% continue %>	
+						<% } %>
+						<% price = true %>
+					<% } %>
+						
+					<% if (item === "lat" || item === "lng" || item === "location" && filters[item] === "") { %>
 						<% continue %>
 					<% } %>
-					<div class="search-bar current-filter">
-						<b style="font-size: 10px;">
+					<div class="search-bar current-filter" style="padding: 10px; text-align: center;">
+						<b>
 							<% if (item === "location") { %>
 								<span class="glyphicon glyphicon-map-marker"> </span>
 							<% } else if (item === "tag") { %>
@@ -106,10 +122,10 @@
 								<span class="glyphicon glyphicon-calendar"> </span>
 							<% } else if (item === "guest_num") { %>
 								<span class="glyphicon glyphicon-calendar"> </span>
+							<% } else if (item === "min_price" || item === "max_price") { %>
+								<span class="glyphicon" style="font-weight: bold;"> &dollar;</span>
 							<% } %>
 						</b>
-						<br>
-						<%= filters[item] %>
 					</div>
 					<% } %>
 				</div>

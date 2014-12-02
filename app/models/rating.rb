@@ -14,6 +14,6 @@ class Rating < ActiveRecord::Base
   foreign_key: :author_id
   )
   
-  validates :rating, :review, :host_id, :author_id, presence: true
+  validates :stars, :review, :host_id, :author_id, presence: true
   
 end

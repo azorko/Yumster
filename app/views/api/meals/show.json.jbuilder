@@ -6,9 +6,16 @@ json.extract! @meal, :id, :title, :price, :max_guests, :tag, :host_id, :photo_ur
 	end
 		
 	json.ratings host.ratings do |rating|
-	  json.extract! rating, :id, :rating, :review
+	  json.extract! rating, :id, :stars, :review
 		json.author do
-		  json.extract! rating.author, :photo_url, :name
+		  json.extract! rating.author, :id, :photo_url, :name
+		end
+	end
+	
+	json.guests @meal.guests do |guest|
+	  json.extract! guest, :id, :photo_url, :name
+		json.booking do
+		  json.extract! guest.guest_meal_joins.where(meal_id: @meal.id).first, :id, :guest_num
 		end
 	end
 	

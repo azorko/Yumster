@@ -16,8 +16,13 @@ class Api::UsersController < Api::ApiController
   end
   
   def index
-    @users = User.all
-    render json: @users
+    @user = current_user
+    render json: @user
+  end
+  
+  def show
+    @user = User.find(params[:id])
+    render json: @user
   end
 
   private

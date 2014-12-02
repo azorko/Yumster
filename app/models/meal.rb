@@ -7,5 +7,13 @@ class Meal < ActiveRecord::Base
   foreign_key: :host_id
   )
   
+  has_many :guest_meal_joins
+  
+  has_many(
+  :guests,
+  through: :guest_meal_joins,
+  source: :guest
+  )
+  
   validates :title, :price, :max_guests, :tag, :host_id, :date, presence: true
 end

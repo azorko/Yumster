@@ -7,5 +7,7 @@ Rails.application.routes.draw do
  namespace :api, defaults: { format: :json } do
    resources :meals
    resources :users
+   resources :guest_meal_joins
+   resources :ratings
  end
 end

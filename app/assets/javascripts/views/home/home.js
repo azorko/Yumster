@@ -5,11 +5,13 @@ Yumster.Views.Home = Backbone.View.extend({
 	// tagName: "form",
 	
 	initialize: function () {
+		this.user = new Yumster.Models.User();
+		this.user.fetch();
+		$('#button-header').on('click', this.submitHeader.bind(this));
 	},
 	
 	events: {
 		"click #button-search": "submitSearch",
-		"click #button-header": "submitHeader"
 	},
 	
   render: function () {
@@ -34,13 +36,18 @@ Yumster.Views.Home = Backbone.View.extend({
 	},
 	
 	submitHeader: function (event) {
+		debugger
 		event.preventDefault();
+		debugger
 		var attrs = $("#location-header").serialize();
 		Backbone.history.navigate("search/" + attrs, {trigger: true});
 	},
 	
 	autocompleteSearch: function () {
 		var loc = this.searchAuto.getPlace();
+		var geoLoc = this.searchAuto.getPlace().geometry.location;
+		this.$el.find("#lat-search").attr("value", geoLoc.k);
+		this.$el.find("#lng-search").attr("value", geoLoc.B);
 		this.$el.find("#location-search").attr("value", loc);
 	},
 	

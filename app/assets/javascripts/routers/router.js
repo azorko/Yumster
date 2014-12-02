@@ -6,7 +6,8 @@ Yumster.Routers.Router = Backbone.Router.extend({
   routes: {
 		"": "home",
 		"search/*query": "search",
-    "meals/:id": "mealShow"
+    "meals/:id": "mealShow",
+		"guest_meals": "guestMealsIndex"
   },
 	
 	home: function () {
@@ -32,9 +33,14 @@ Yumster.Routers.Router = Backbone.Router.extend({
 
     this._swapView(view);
 	},
+	
+	guestMealsIndex: function () {
+		debugger
+	},
 
   _swapView: function (view) {
     this.currentView && this.currentView.remove();
+		// $('#button-header').off("click"); //is this removing the search bar listener?
     this.currentView = view;
     this.$rootEl.html(view.render().$el);
   }

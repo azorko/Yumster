@@ -54,7 +54,8 @@
 	<div class="row search-div">
 		<div class="col-md-10 col-md-offset-1">
 			<form>
-		
+		    <input type="hidden" id="lat-search" name="lat">
+				<input type="hidden" id="lng-search" name="lng">
 				<select class="search-bar" name="tag">
 					<option value="" disabled selected>What are you craving?</option>
 					<% for (var item in cuisines) { %>
