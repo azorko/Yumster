@@ -1,0 +1,141 @@
+		<div style="height: 50px; width: auto;"> </div>
+		<div class= "row filter-div">
+			<div class="col-md-3 filter-header">
+				Dates:
+			</div>
+			  
+			<div class="col-md-9">
+				<% if (filters["start_date"] === "") { %>
+		    <input placeholder="Start Date" name="start_date" class="search-bar" class="textbox-n" type="text" onfocus="(this.type='date')"  id="start_date">
+				<% } else { %>
+					<input id="start_date" type="date" name="start_date" class="search-bar" value="<%= filters["start_date"] %>">
+					<% } %>
+					
+				<% if (filters["end_date"] === "") { %>	
+				<input placeholder="End Date" name="end_date" class="search-bar" class="textbox-n" type="text" onfocus="(this.type='date')"  id="end_date">
+				<% } else { %>
+					<input id="end_date" type="date" name="end_date" class="search-bar" value="<%= filters["end_date"] %>">
+					<% } %>
+					
+					<select id="guest_num" class="search-bar" name="guest_num">
+						<% for (var i = 1; i < 6; i ++) { %>
+							<% if (filters["guest_num"] === ""+i) { %>
+								<option selected value="<%= i %>"><%= i %> Guests</option>
+							<% } else { %>
+							  <option value="<%= i %>"><%= i %> Guests</option>
+								<% } %>
+					  <% } %>
+					</select>
+			</div>
+		</div>
+			
+		<div class= "row filter-div">
+			<div class="col-md-3 filter-header">
+				Cuisine:
+			</div>
+			  
+			<div class="col-md-9">
+				<select id="tag" class="search-bar" name="tag">
+					<% if (!filters["tag"]) { %>
+					  <option value="" disabled selected>What are you craving?</option>
+					<% } %>
+					<% for (var item in cuisines) { %>
+						<% if (filters["tag"] === cuisines[item]) { %>
+							<option selected value="<%= cuisines[item] %>"><%= cuisines[item] %></option>
+						<% } else { %>
+						  <option value="<%= cuisines[item]%>"><%= cuisines[item] %></option>
+							<% } %>
+				  <% } %>
+				</select>
+			</div>
+		</div>
+			
+		<div class= "row filter-div">
+			<div class="col-md-3 filter-header">
+				Price Range:
+			</div>
+			  
+			<div class="col-md-9">
+				<div id="price" class="slider"></div>
+				<div style="margin-top: 5px;">
+					<span id="min-price" style="float: left; margin-left: -7px;"></span>
+					<span id="max-price" style="float: right;"></span>
+				</div>
+			</div>
+		</div>
+			
+		<div class="row filter-div">
+			<div class="col-md-3 filter-header">
+				Current Filters:
+			</div>
+			<div class="col-md-9"> <!-- style="width: 440px; margin-left: 180px;"> -->
+				<% for (var item in filters) { %>
+					<% var date %>
+					  <% if (item === "start_date" || item === "end_date") { %>
+							<% if (date || filters[item] === "") { %>
+							  <% continue %>	
+							<% } %>
+							<% date = true %>
+						<% } %>
+						
+				<% var price %>
+				  <% if (item === "max_price" || item === "min_price") { %>
+						<% if (price) { %>
+						  <% continue %>	
+						<% } %>
+						<% price = true %>
+					<% } %>
+						
+					<% if (item === "lat" || item === "lng" || item === "location" || item === "top_left" || item === "bottom_right") { %>
+						<% continue %>
+					<% } %>
+					<div class="search-bar current-filter" style="padding: 10px; text-align: center;">
+						<b>
+							<% if (item === "location") { %>
+								<span class="glyphicon glyphicon-map-marker"> </span>
+							<% } else if (item === "tag") { %>
+							  <span class="glyphicon glyphicon-cutlery"> </span>
+							<% } else if (item === "guest_num") { %>
+								<span class="glyphicon glyphicon-user"> </span>
+							<% } else if (item === "start_date" || item === "end_date") { %>
+								<span class="glyphicon glyphicon-calendar"> </span>
+							<% } else if (item === "min_price" || item === "max_price") { %>
+								<span class="glyphicon" style="font-weight: bold;"> &dollar;</span>
+							<% } %>
+						</b>
+						<button data-filter="<%= item %>" type="button" class="close btn remove-filter"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					</div>
+					<% } %>
+				</div>
+			</div>
+				
+			<div class="row filter-div header-bar">
+				<div class="col-md-3 filter-header">
+					<%= meals.length %> Matches
+					<span class="glyphicon glyphicon-chevron-down"></span>
+				</div>
+			</div>
+			
+			<!--listings -->
+			<div class="row" style="padding-left: 0.5vw;">
+				<% meals = meals.models %>
+			<% for (var i = 0; i < meals.length; i++) { %>
+				<% host = meals[i].basicHostData() %>
+				<div data-listing-num="<%= i %>" class="col-md-3 col-md-offset-1 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meals[i].get("photo_url") %>');">
+					<div class="host-profile">
+						<img src="<%= host.get('photo_url') %>" class= "host-pic">
+						<span style="float: left; margin-left: 5px;">
+							<%= host.get("name")%>'s
+						</span>
+					</div>
+					<div class="meal-blurb">
+						<p class="tag"><%= meals[i].get("tag") %></p>
+							<p> <%= meals[i].get("title") %> </p>
+								<p style="font-size: 10px;">
+									<span style="float: left; width: 100px;"> @<%= host.get('address') %> </span>
+									<span style="float: right;">$<%= meals[i].get('price') %>/p </span>
+								</p>
+							</div>
+					</div>
+			<% } %>
+		  </div>
