@@ -14,6 +14,7 @@ gem 'pg'
 gem 'uglifier', '>= 1.3.0'
 gem 'newrelic_rpm'
 gem 'faker'
+gem 'kaminari'
 
 group :doc do
   gem 'sdoc', require: false

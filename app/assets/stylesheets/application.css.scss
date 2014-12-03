@@ -72,7 +72,7 @@ div.carousel-caption h4 {
 	margin-left: -200px;
 	margin-top: -200px;
   font-family: 'Quicksand', sans-serif;
-	background-color: rgba(140, 114, 127, 0.44);
+	background-color: rgba(191, 116, 63, 0.17);//rgba(140, 114, 114, 0.22);//rgba(140, 114, 127, 0.44);
 }
 
 .search-div {
@@ -216,23 +216,13 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .current-filter:hover {
-//	background-color: #D4D4D6;
-  border: 1px solid #47475E;//#83ACFF;//#cccccc;//#83ACFF;//#47475E;//#6B2447;//black;
-//border: 2px solid #D147A3;
+  border: 1px solid #47475E;
 }
-
-//on button press
-.current-filter:active {
-//	box-shadow: 1px 1px 1px 1px #94E9FF;
-//	border: 2px solid #94E9FF;
-} 
 
 .filter-header {
 	font-weight: bold;
 	font-size: 15px;
-//	margin-left: -20px;
 	font-family: 'Quicksand', sans-serif;
-//	width: 200px;
 }
 
 .header-bar {

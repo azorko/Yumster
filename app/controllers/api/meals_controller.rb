@@ -18,6 +18,13 @@ class Api::MealsController < Api::ApiController
         # distance(center, [meal.user.lat.to_f, meal.user.lng.to_f] ) <= params[:radius] * 1609 #convert mile radius to meters
       end
     end
+    # paginates_per 6
+ #    @meals = @meals.page(params[:page])
+    # render :index => {
+#               models: @meals,
+#               page_number: params[:page],
+#               total_pages: @meals.total_pages
+#             }
     render :index
   end
   
