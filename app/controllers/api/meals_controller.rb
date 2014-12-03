@@ -9,7 +9,7 @@ class Api::MealsController < Api::ApiController
     params[:guest_num] ||= 1;
     @meals = Meal.where([ "price between :min_price and :max_price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num",
       {max_price: params[:max_price], min_price: params[:min_price], start_date: params[:start_date], end_date: params[:end_date], tag: params[:tag], guest_num: params[:guest_num]} ]);
-    if params[:top_left] && params[:bottom_left]
+    if params[:top_left] && params[:bottom_right]
       @meals = @meals.select do |meal|
         lat = meal.user.lat.to_f
         lng = meal.user.lng.to_f
