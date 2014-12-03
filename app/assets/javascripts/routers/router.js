@@ -1,19 +1,28 @@
 Yumster.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
   	this.$rootEl = options.$rootEl;
-		// $('#button-header').on('submit', function (event) {
-// 			debugger
-// 			event.preventDefault();
-// 			var query = $('#location-header').serialize();
-// 			Backbone.history.navigate("#/search/" + query, { trigger: true });
-// 		});
+		$('#button-header').on('click', function (event) {
+			event.preventDefault();
+			var attrs = $("#search-wrapper").serialize();
+			Backbone.history.navigate("#/search/" + attrs, { trigger: true });
+		});
+    
+		$('#guest-login').on('click', function (event) {
+			event.preventDefault();
+			$("#guest-email").attr("value", "guest@yumster.com");
+			$("#guest-pass").attr("value", "secret");
+		});
+		
+		this.headerAuto = new google.maps.places.Autocomplete($("#location-header")[0], { types: ['geocode'] });
+		google.maps.event.addListener(this.headerAuto, "place_changed", this.autocompleteHeader.bind(this));
+    
   },
 	
   routes: {
 		"": "home",
 		"search/*query": "search",
     "meals/:id": "mealShow",
-		"guest_meals": "guestMealsIndex"
+		"guest-meals": "guestMealsIndex"
   },
 	
 	home: function () {
@@ -46,11 +55,17 @@ Yumster.Routers.Router = Backbone.Router.extend({
 
   _swapView: function (view) {
     this.currentView && this.currentView.remove();
-		// $('#button-header').off("click"); //is this removing the search bar listener?
     this.currentView = view;
     this.$rootEl.html(view.render().$el);
-  }
+  },
 	
+	autocompleteHeader: function () {
+		var loc = this.headerAuto.getPlace();
+		var geoLoc = this.headerAuto.getPlace().geometry.location;
+		$("#location-header").attr("value", loc);
+		$("#header-lat").attr("value", geoLoc.k);
+		$("#header-lng").attr("value", geoLoc.B);
+	}
 	
 });
 

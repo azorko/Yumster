@@ -2,12 +2,9 @@ Yumster.Views.Home = Backbone.View.extend({
 
   template: JST['home/home'],
 	
-	// tagName: "form",
-	
 	initialize: function () {
-		this.user = new Yumster.Models.User();
-		this.user.fetch();
-		// $('#button-header').on('click', this.submitHeader.bind(this));
+		// this.user = new Yumster.Models.User();
+		// this.user.fetch();
 	},
 	
 	events: {
@@ -21,10 +18,10 @@ Yumster.Views.Home = Backbone.View.extend({
     this.$el.html(content);
 
 		this.searchAuto = new google.maps.places.Autocomplete(this.$el.find("#location-search")[0], { types: ['geocode'] });
-		this.headerAuto = new google.maps.places.Autocomplete($("#location-header")[0], { types: ['geocode'] });
+		// this.headerAuto = new google.maps.places.Autocomplete($("#location-header")[0], { types: ['geocode'] });
 
 		google.maps.event.addListener(this.searchAuto, "place_changed", this.autocompleteSearch.bind(this));
-		google.maps.event.addListener(this.headerAuto, "place_changed", this.autocompleteHeader.bind(this));
+		// google.maps.event.addListener(this.headerAuto, "place_changed", this.autocompleteHeader.bind(this));
 				
     return this;
   },
@@ -35,14 +32,6 @@ Yumster.Views.Home = Backbone.View.extend({
 		Backbone.history.navigate("search/" + attrs, {trigger: true});
 	},
 	
-	// submitHeader: function (event) {
-	// 	debugger
-	// 	event.preventDefault();
-	// 	debugger
-	// 	var attrs = $("#location-header").serialize();
-	// 	Backbone.history.navigate("search/" + attrs, {trigger: true});
-	// },
-	
 	autocompleteSearch: function () {
 		var loc = this.searchAuto.getPlace();
 		var geoLoc = this.searchAuto.getPlace().geometry.location;
@@ -51,9 +40,12 @@ Yumster.Views.Home = Backbone.View.extend({
 		this.$el.find("#location-search").attr("value", loc);
 	},
 	
-	autocompleteHeader: function () {
-		var loc = this.headerAuto.getPlace();
-		this.$el.find("#location-header").attr("value", loc);
-	}
+	// autocompleteHeader: function () {
+// 		var loc = this.headerAuto.getPlace();
+// 		var geoLoc = this.headerAuto.getPlace().geometry.location;
+// 		$("#location-header").attr("value", loc);
+// 		$("#header-lat").attr("value", geoLoc.k);
+// 		$("#header-lng").attr("value", geoLoc.B);
+// 	}
 
 });

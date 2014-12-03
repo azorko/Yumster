@@ -1,8 +1,9 @@
 <form action="/session" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<span class="error-message"></span>
-    <input name="user[email]" type="text" placeholder="Email"><br>
-    <input name="user[password]" type="password" placeholder="Password"><br>
+    <input id="guest-email" name="user[email]" type="text" placeholder="Email"><br>
+    <input id="guest-pass" name="user[password]" type="password" placeholder="Password"><br>
 	<button style="border-radius: 0px; -webkit-appearance: none; margin-left: 2px;" type="submit" class='btn btn-default modal-button'>Submit</button>
-	<br>
+	<!-- <br> -->
+	<button style="border-radius: 0px; -webkit-appearance: none; margin-left: 2px;" id="guest-login" type="submit" class='btn btn-default modal-button'>Guest Login</button>
 </form>

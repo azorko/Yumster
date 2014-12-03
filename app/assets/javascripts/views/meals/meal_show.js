@@ -76,13 +76,15 @@ Yumster.Views.MealShow = Backbone.View.extend({
 			
 			var error = "<p style='text-align: center; color: green;'> Your request was sent. View the status of your request in your 'Guest Meals'. </p>";
 			
-			function success () {
-				Backbone.history.navigate("#guest_meals", {trigger: true});
-			};
+			// function success () {
+// 				Backbone.history.navigate("#guest_meals", {trigger: true});
+// 			};
 			var that = this;
 			var booking = new Yumster.Models.GuestMealJoin();
 			booking.save({ meal_id: this.model.get("id"), guest_id: this.user.get("id"), guest_num: this.guest_num }, {
-				success: function () { that.model.fetch(); }
+				success: function () {
+					setTimeout(function () { that.model.fetch(); }, 3000);
+				}
 			});
 		}
 		this.$el.find("#book-errors").html(error);

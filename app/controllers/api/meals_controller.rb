@@ -1,10 +1,6 @@
 class Api::MealsController < Api::ApiController
   def index
     # params[:radius] ||= 15 #in miles
-    # params[:lat] ||= 37.726666666
-    # params[:lng] ||= -122.395555555
-    # params[:top_left] ||= [37.82855023223887, -122.49222870434573] # top left
-    # params[:bottom_right] ||= [37.725703997784656, -122.32159729565433] # bottom right
     params[:max_price] ||= 50000
     params[:min_price] ||= 0
     params[:start_date] = "2000-01-01" if (!params[:start_date] ||params[:start_date] == "")
