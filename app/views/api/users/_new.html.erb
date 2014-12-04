@@ -1,9 +1,27 @@
-<form action="/api/users" method="post">
+<span class='error' id='signup-errors'> </span>
+<form id='signup-form' method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	  <span class="error-message"></span>
     <input name="user[name]" type="text" placeholder="Name"><br>
     <input name="user[email]" type="text" placeholder="Email"><br>
     <input name="user[password]" type="password" placeholder="Password"><br>
 		<button style="border-radius: 0px; -webkit-appearance: none; margin-left: 2px;" type='submit' class='btn btn-default modal-button'>Submit</button>
-		<br>
 </form>
+
+<script type="text/javascript">
+	$(function () {
+		$('#signup-form').on('submit', function (event) {
+			event.preventDefault();
+      $.ajax({
+      	url: '/api/users',
+				data: $(event.currentTarget).serialize(),
+				type: "POST",
+				success: function (data) {
+					window.location = '/';
+				},
+				error: function (resp) {
+					$('#signup-errors').text(resp.responseJSON)
+				},
+      })
+		})
+	})
+</script>

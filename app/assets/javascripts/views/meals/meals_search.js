@@ -41,5 +41,3 @@ Yumster.Views.MealsSearch = Backbone.CompositeView.extend({
   },
 
 });
-
-_.extend(Yumster.Views.MealsSearch.prototype);

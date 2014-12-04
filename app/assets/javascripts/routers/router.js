@@ -20,9 +20,9 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	
   routes: {
 		"": "home",
+		"users/:id/:query": "userShow", //could make it optional /(:query)
 		"search/*query": "search",
-    "meals/:id": "mealShow",
-		"guest-meals": "guestMealsIndex"
+    "meals/:id": "mealShow"
   },
 	
 	home: function () {
@@ -31,7 +31,9 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	},
 
   search: function (query) {
-		Yumster.Collections.meals.fetch({data: query});
+		Yumster.current_filters = Yumster.current_filters || {};
+		Yumster.Collections.meals.fetch({data: { filters: Yumster.current_filters, page: 1 } });
+		// Yumster.Collections.meals.fetch({data: query});
 		Yumster.current_query = query;
     var view = new Yumster.Views.MealsSearch({
       collection: Yumster.Collections.meals
@@ -40,7 +42,7 @@ Yumster.Routers.Router = Backbone.Router.extend({
     this._swapView(view);
   },
 	
-	mealShow: function (id) {
+	mealShow: function (id, query) {
     var meal = Yumster.Collections.meals.getOrFetch(id);
     var view = new Yumster.Views.MealShow({
       model: meal
@@ -49,8 +51,14 @@ Yumster.Routers.Router = Backbone.Router.extend({
     this._swapView(view);
 	},
 	
-	guestMealsIndex: function () {
-		debugger
+	userShow: function (id, query) {
+    var user = Yumster.Collections.users.getOrFetch(id);
+    var view = new Yumster.Views.UserShow({
+      model: user,
+			query: query
+    });
+
+    this._swapView(view);
 	},
 
   _swapView: function (view) {

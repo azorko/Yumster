@@ -1,0 +1,21 @@
+<h3> Meals </h3>
+
+<% meals.forEach( function (meal) { %>
+<div class="row">
+	<h3 class="meal-header"> <%= meal.get("title") %> </h3>
+	<div class="meal-div">
+		<div class="col-md-3">
+	    <div class="user-meal meals" style="background-image: url('<%= meal.get("photo_url") %>');"></div>
+		</div>
+		<div class="col-md-9">
+			<div class="row">
+				<span class="glyphicon glyphicon-calendar"> </span>
+				<%= meal.get("date") %>
+			</div>
+			<div class="row">
+				<span class="glyphicon glyphicon-map-marker"> </span>
+			</div>
+		</div>	
+	</div>
+</div>
+<% }) %>

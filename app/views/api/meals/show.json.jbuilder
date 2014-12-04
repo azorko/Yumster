@@ -1,4 +1,4 @@
-json.extract! @meal, :id, :title, :price, :max_guests, :tag, :host_id, :photo_url, :date, :created_at, :updated_at, :about
+json.extract! @meal, :id, :title, :price, :max_guests, :tag, :host_id, :photo_url, :date, :about
 	
 	host = @meal.user
 	json.host do

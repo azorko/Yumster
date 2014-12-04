@@ -3,6 +3,8 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 	template: JST['meals/search_content'],
 	
 	initialize: function () {
+		this.meal_page = 1;
+		// this.collection.page = 1;
     this.listenTo(this.collection, "sync", this.render);		
 	},
 	
@@ -15,14 +17,16 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 		"change select": "filterChange",
 		"click .remove-filter": "removeFilter",
 		"mouseenter .meal-info": "blueMarker",
-		"mouseleave .meal-info": "redMarker"
+		"mouseleave .meal-info": "redMarker",
+		"click .pagination": "pageChange"
 	},
 	
   render: function () {
     var content = this.template({
     	meals: this.collection,
 			filters: Yumster.current_filters,
-			cuisines: Yumster.cuisines
+			cuisines: Yumster.cuisines,
+			page_num: this.meal_page
     });
     this.$el.html(content);
 		this.renderSlider();
@@ -54,7 +58,8 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 	
 	updatePrice: function (event) {
 		this.updateSlider(event);
-		this.collection.fetch({data: Yumster.current_filters});
+		this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
+		// this.collection.fetch({data: Yumster.current_filters});
 	},
 	
 	show: function (event) {
@@ -65,7 +70,8 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 	filterChange: function (event) {
 		var $filterEl = $(event.currentTarget);
 		Yumster.current_filters[$filterEl.attr("name")] = $filterEl.val();
-		this.collection.fetch({data: Yumster.current_filters});
+		this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
+		// this.collection.fetch({data: Yumster.current_filters});
 	},
 	
 	removeFilter: function (event) {
@@ -90,23 +96,34 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 			}
 		}
 		delete Yumster.current_filters[filterId];
-		this.collection.fetch({data: Yumster.current_filters});
+		this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
+		// this.collection.fetch({data: Yumster.current_filters});
 	},
 	
 	blueMarker: function (event) {
 		var num = $(event.currentTarget).data("listing-num");
 		var marker = Yumster.markers[num];
-		marker.setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|005CB8");
-	  // this.pinBounce(marker);
+		marker.setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|A1C6EB");
 		marker.setAnimation(google.maps.Animation.BOUNCE);
 	},
 	
 	redMarker: function (event) {
 		var num = $(event.currentTarget).data("listing-num");
 		Yumster.markers[num].setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569");
-		// this.pinBounce(marker);
 		Yumster.markers[num].setAnimation(null);
 	},
 	
+	pageChange: function (event) {
+		event.preventDefault();
+		var chosenPage = Number($(event.target).data("page"));
+		if (chosenPage === 0) {
+			this.meal_page--;
+		} else if (chosenPage === -1) {
+			this.meal_page++;
+		} else {
+			this.meal_page = chosenPage;
+		}
+		this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
+	}
+	
 });
-_.extend(Yumster.Views.SearchContent.prototype);

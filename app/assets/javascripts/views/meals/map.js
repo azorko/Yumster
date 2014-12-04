@@ -26,15 +26,16 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 		this._map = new google.maps.Map(this.$el.find("#search-map")[0], mapOptions);
 
 		var that = this;
-	  google.maps.event.addListener(this._map, 'dragend', function() { //"bounds_changed"
-			debugger
+		// console.log("registering event")
+	  google.maps.event.addListener(this._map, 'idle', function() { //"bounds_changed"
  			var topLeftLat = that._map.getBounds().Fa.j;
  			var topLeftLng = that._map.getBounds().wa.j;
  			var bottomRightLat = that._map.getBounds().Fa.k;
  			var bottomRightLng = that._map.getBounds().wa.k;
  			Yumster.current_filters["top_left"] = [topLeftLat, topLeftLng];
  			Yumster.current_filters["bottom_right"] = [bottomRightLat, bottomRightLng];
- 			that.collection.fetch({data: Yumster.current_filters});
+			// that.collection.fetch({data: query});
+ 			that.collection.fetch({data: { filters: Yumster.current_filters, page: Yumster.meal_page } });
  	  });
 	},
 	
@@ -124,5 +125,3 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 // 	},
 
 });
-
-_.extend(Yumster.Views.Map.prototype);

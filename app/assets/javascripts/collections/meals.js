@@ -1,5 +1,6 @@
 Yumster.Collections.Meals = Backbone.Collection.extend({
   url: "/api/meals",
+	
   model: Yumster.Models.Meal,
 	
   getOrFetch: function (id) {
@@ -18,6 +19,12 @@ Yumster.Collections.Meals = Backbone.Collection.extend({
     }
 
     return meal;
+  },
+	
+  parse: function(response) {
+	  this.page = parseInt(response.page);
+	  this.total_pages = parseInt(response.total_pages);
+	  return response.meals;
   }
 
 });

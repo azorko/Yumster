@@ -44,10 +44,16 @@
 	color: white;
 }
 
+.error {
+	color: red;
+	margin-bottom: 10px;
+}
+
 //################## Home #####################
 
 body {
 	background-color: white;//#FFF5EB;
+	font-family: 'Quicksand', sans-serif;
 }
 
 #logo {
@@ -360,10 +366,54 @@ font-family: 'Quicksand', sans-serif;
 //	overflow: hidden;
 }
 
-//.btn.btn-default.pink-button:hover {
-//	opacity: 0.9;
-//}
+//######################## User Profile ##################################
 
+.host-pic.user {
+	width: 40vh;
+	height: 40vh;
+	border-radius: 200px;
+	outline: none;
+//	background-size: 300px 300px;
+	margin-top: 3px;
+	background-position: 50% 50%;
+	background-size: cover;
+}
+
+.indiv-rating.about-user {
+	min-height: 100px;
+	height: 8vh;
+  font-size: 12px;
+}
+
+.bold-header {
+	font-weight: bold;	
+}
+
+.listings, .meals {
+	width: 100%;
+	height: 25vh;
+	background-position: 50% 50%;
+	background-size: cover;
+	outline: none;
+}
+
+.listings:hover, .meals:hover{
+  opacity: 0.9;
+}
+
+.meals.user-meal {
+	height: 12vh;
+}
+
+//.host-pic.author {
+//	width: 75px;
+//	height: 75px;
+//	border-radius: 50px;
+//	outline: none;
+//	margin: 5px;
+//	margin-left: -3px;
+//	margin-top: 10px;
+//}
 
 //img.resize{
 ////    width:540px; can also use %

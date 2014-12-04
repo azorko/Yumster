@@ -1,5 +1,7 @@
 class Meal < ActiveRecord::Base
   
+  paginates_per 6
+  
   belongs_to(
   :user,
   class_name: "User",

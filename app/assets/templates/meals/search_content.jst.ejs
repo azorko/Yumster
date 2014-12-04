@@ -118,10 +118,9 @@
 			
 			<!--listings -->
 			<div class="row" style="padding-left: 0.5vw;">
-				<% meals = meals.models %>
-			<% for (var i = 0; i < meals.length; i++) { %>
-				<% host = meals[i].basicHostData() %>
-				<div data-listing-num="<%= i %>" class="col-md-3 col-md-offset-1 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meals[i].get("photo_url") %>');">
+			<% for (var i = 0; i < meals.models.length; i++) { %>
+				<% host = meals.models[i].basicHostData() %>
+				<div data-listing-num="<%= i %>" class="col-md-3 col-md-offset-1 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meals.models[i].get("photo_url") %>');">
 					<div class="host-profile">
 						<img src="<%= host.get('photo_url') %>" class= "host-pic">
 						<span style="float: left; margin-left: 5px;">
@@ -129,13 +128,30 @@
 						</span>
 					</div>
 					<div class="meal-blurb">
-						<p class="tag"><%= meals[i].get("tag") %></p>
-							<p> <%= meals[i].get("title") %> </p>
+						<p class="tag"><%= meals.models[i].get("tag") %></p>
+							<p> <%= meals.models[i].get("title") %> </p>
 								<p style="font-size: 10px;">
 									<span style="float: left; width: 100px;"> @<%= host.get('address') %> </span>
-									<span style="float: right;">$<%= meals[i].get('price') %>/p </span>
+									<span style="float: right;">$<%= meals.models[i].get('price') %>/p </span>
 								</p>
 							</div>
 					</div>
 			<% } %>
 		  </div>
+			
+		<% console.log("Outside conditional: " + meals.total_pages); %>
+		<% if (meals.total_pages) { %>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-1" style="padding-left: 5px;">
+			<nav>
+			  <ul class="pagination">
+			    <li><a style="color: #A34775;" data-page="0" href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+			    <li><a style="color: #A34775;" data-page="<%= page_num %>" href="#"><%= page_num %></a></li>
+			    <li><a style="color: #A34775;" data-page="<%= page_num + 1 %>" href="#"><%= page_num + 1 %></a></li>
+			    <li><a style="color: #A34775;" data-page="<%= page_num + 2 %>" href="#"><%= page_num + 2 %></a></li>
+			    <li><a style="color: #A34775;" data-page="-1" href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+			  </ul>
+			</nav>
+			</div>
+		</div>
+		<% } %>
