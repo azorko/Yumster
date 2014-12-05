@@ -15,7 +15,8 @@ Yumster.Views.UserShow = Backbone.CompositeView.extend({
 	
 	events: {
 		"click .listings": "showListings",
-		"click .meals": "showMeals"
+		"click .meals": "showMeals",
+		"click .header-button": "changeSubview"
 	},
 	
   render: function () {
@@ -59,5 +60,16 @@ Yumster.Views.UserShow = Backbone.CompositeView.extend({
 		this.$el.find("#listings").attr("style", "display: none;");
     this.$el.find("#meals").attr("style", "display: block;");
 	},
+	
+	changeSubview: function (event) {
+		$(".header-button").removeAttr("style");
+		$(event.currentTarget).attr("style", "background-color: #E7E7E7;");
+		var action = $(event.currentTarget).data("action");
+		if (action === "listings") {
+			this.showListings();
+		} else if (action === "meals") {
+			this.showMeals();
+		}
+	}
 
 });

@@ -15,7 +15,8 @@ class Api::MealsController < Api::ApiController
     render :index_pages, locals: {
               models: @meals, 
               page_number: params[:page].to_i || 1,
-              total_pages: @meals.total_pages
+              total_pages: @meals.total_pages,
+              total_count: @meals.total_count
             }
             
     # else

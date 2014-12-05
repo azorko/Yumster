@@ -12,3 +12,4 @@ end
 
 json.page page_number
 json.total_pages total_pages
+json.total_count total_count

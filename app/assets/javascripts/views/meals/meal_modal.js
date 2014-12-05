@@ -4,6 +4,7 @@ Yumster.Views.MealModal = Backbone.CompositeView.extend({
 	
 	initialize: function (options) {
 		this.user = options.user;
+		this.host_meals = options.host_meals
     this.listenTo(this.model, "sync", this.render);
 		this.listenTo(this.user, "sync", this.render);
 		$("body").attr("style", "overflow: hidden;");
@@ -38,13 +39,18 @@ Yumster.Views.MealModal = Backbone.CompositeView.extend({
 		
 		var that = this;
 		function success () {
+			that.host_meals.push(that.model);
 			$("body").removeAttr("style");
 			that.remove();
 		};
 
 		if(this.model.isNew()) {
 			this.collection.create(attrs, {
-				success: success
+				success: function () {
+					that.host_meals.push(that.model);
+					$("body").removeAttr("style");
+					that.remove();
+				}
 			});
 		} else {
 			this.model.save(attrs, { success: success });

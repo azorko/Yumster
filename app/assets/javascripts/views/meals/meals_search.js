@@ -14,18 +14,6 @@ Yumster.Views.MealsSearch = Backbone.CompositeView.extend({
     return this;
   },
 	
-	// parseQuery: function () {
-// 		var filters = {};
-// 		var query = Yumster.current_query;
-// 		query = query.split("&");
-// 		for(var i = 0; i < query.length; i++) {
-// 			query[i] = query[i].split("=");
-// 			filters[query[i][0]] = query[i][1];
-// 			filters[query[i][0]] = filters[query[i][0]].replace(/\+/g, " ");
-// 		}
-// 		Yumster.current_filters = filters;
-// 	},
-	
   renderMap: function () {
     this.addSubview('#map', Yumster.map);
   },

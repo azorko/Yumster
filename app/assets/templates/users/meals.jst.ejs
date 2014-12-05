@@ -1,4 +1,4 @@
-<h3> Meals </h3>
+<!-- <h3> Meals </h3> -->
 
 <% meals.forEach( function (meal, index) { %>
 <% var booking = meal.get("booking") %>
@@ -26,9 +26,10 @@
 			<div class="row">
 				<span class="glyphicon glyphicon-map-marker"> </span>
 				<%= user.get("address") %>
-			</div>
-			<% if (current_user.get('id') === user.get('id')) { %>
+			</div>		
 		</div>	
+			<% if (current_user.get('id') === user.get('id')) { %>
+
 			<div class="col-md-2">
 				<button style="width: 80px;" type="submit" data-meal-ind="<%= index %>" data-booking-id="<%= booking.id %>" id="button-search" class="search-button btn btn-default update" >Cancel </button>
 			</div>
