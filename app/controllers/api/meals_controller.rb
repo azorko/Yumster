@@ -1,15 +1,15 @@
 class Api::MealsController < Api::ApiController
   def index
     # @meals.includes(:users)
-    # filter_params[:top_left] ||= [37.82809893199069, -122.51091101391603]
-    # filter_params[:bottom_right] ||= [37.72172180283414, -122.327919986084]
+    filter_params[:top_left] ||= [37.82809893199069, -122.51091101391603]
+    filter_params[:bottom_right] ||= [37.72172180283414, -122.327919986084]
     filter_params[:max_price] ||= 50000
     filter_params[:min_price] ||= 0
     filter_params[:start_date] = "2000-01-01" if (!filter_params[:start_date] ||filter_params[:start_date] == "")
     filter_params[:end_date] = "2020-01-01" if (!filter_params[:end_date] || filter_params[:end_date] == "")
     filter_params[:tag] ||= ["Asian", "Western", "Middle Eastern", "Latin American"]
     filter_params[:guest_num] ||= 1
-    if filter_params[:top_left] && filter_params[:bottom_right]
+    # if filter_params[:top_left] && filter_params[:bottom_right]
     @meals = Meal.joins("LEFT OUTER JOIN users ON meals.host_id = users.id").where([ "price between :min_price and :max_price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num and lat between :bottom_right_lat and :top_left_lat and lng between :top_left_lng and :bottom_right_lng",
       {max_price: filter_params[:max_price], min_price: filter_params[:min_price], start_date: filter_params[:start_date], end_date: filter_params[:end_date], tag: filter_params[:tag], guest_num: filter_params[:guest_num], bottom_right_lat: filter_params[:bottom_right][0], top_left_lat: filter_params[:top_left][0], top_left_lng: filter_params[:top_left][1], bottom_right_lng: filter_params[:bottom_right][1] } ]).page(params[:page].to_i)
     render :index_pages, locals: {
@@ -17,18 +17,19 @@ class Api::MealsController < Api::ApiController
               page_number: params[:page].to_i || 1,
               total_pages: @meals.total_pages
             }
-    else
-      filter_params[:radius] ||= 15 #in miles
-      filter_params[:lat] ||= 37.7749295
-      filter_params[:lng] ||= -122.41941550000001
-      @meals = Meal.where([ "price between :min_price and :max_price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num",
-        {max_price: filter_params[:max_price], min_price: filter_params[:min_price], start_date: filter_params[:start_date], end_date: filter_params[:end_date], tag: filter_params[:tag], guest_num: filter_params[:guest_num]} ]);
-      @meals = @meals.select do |meal|
-        center = [filter_params[:lat].to_f, filter_params[:lng].to_f]
-        distance(center, [meal.user.lat.to_f, meal.user.lng.to_f] ) <= filter_params[:radius] * 1609
-      end
-      render :index
-    end
+            
+    # else
+    #   filter_params[:radius] ||= 15 #in miles
+    #   filter_params[:lat] ||= 37.7749295
+    #   filter_params[:lng] ||= -122.41941550000001
+    #   @meals = Meal.where([ "price between :min_price and :max_price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num",
+    #     {max_price: filter_params[:max_price], min_price: filter_params[:min_price], start_date: filter_params[:start_date], end_date: filter_params[:end_date], tag: filter_params[:tag], guest_num: filter_params[:guest_num]} ]);
+    #   @meals = @meals.select do |meal|
+    #     center = [filter_params[:lat].to_f, filter_params[:lng].to_f]
+    #     distance(center, [meal.user.lat.to_f, meal.user.lng.to_f] ) <= filter_params[:radius] * 1609
+    #   end
+    #   render :index
+    # end
     
   end
   

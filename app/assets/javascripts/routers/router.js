@@ -1,5 +1,10 @@
 Yumster.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
+		Yumster.current_filters = {};
+		Yumster.map = new Yumster.Views.Map({
+		  collection: Yumster.Collections.meals
+		});
+		
   	this.$rootEl = options.$rootEl;
 		$('#button-header').on('click', function (event) {
 			event.preventDefault();
@@ -40,13 +45,34 @@ Yumster.Routers.Router = Backbone.Router.extend({
   search: function (query) {
 		Yumster.current_query = query;
 		this.parseQuery();
-		Yumster.Collections.meals.fetch({data: { filters: Yumster.current_filters, page: 1 } });
+		Yumster.map.changeCenter();
+		// if (Yumster.markers) { //remove all markers if they have already been set
+		// 	Yumster.markers.forEach(function(marker) {
+		// 		marker.setMap(null);
+		// 		marker = null;
+		// 	});
+		// }
+		
     var view = new Yumster.Views.MealsSearch({
       collection: Yumster.Collections.meals
     });
+		
+		Yumster.Collections.meals.fetch({
+			data: { filters: Yumster.current_filters, page: 1 },
+			success: function (collection) {
+			  // Yumster.map.addMarkers(collection);
+			} //will this have an event? then could just use the addMarkers method in map.js
+		});
 
     this._swapView(view);
+		Yumster.map.refreshListeners();
   },
+	
+	// Yumster.markers = [];
+// 	for (var i = 0; i < Yumster.Collections.meals.length; i++) {
+// 		Yumster.map.attachMarker(Yumster.Collections.meals.models[i]);
+// 	}
+// 	Yumster.map.listenTo(Yumster.Collections.meals, "add", Yumster.map.attachMarker);
 	
 	mealShow: function (id, query) {
     var meal = Yumster.Collections.meals.getOrFetch(id);

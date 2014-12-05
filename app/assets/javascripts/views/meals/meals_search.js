@@ -27,10 +27,7 @@ Yumster.Views.MealsSearch = Backbone.CompositeView.extend({
 // 	},
 	
   renderMap: function () {
-    var view = new Yumster.Views.Map({
-      collection: this.collection
-    });
-    this.addSubview('#map', view);
+    this.addSubview('#map', Yumster.map);
   },
 	
   renderSearchContent: function () {

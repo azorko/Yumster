@@ -1,63 +1,71 @@
 <div class="container-fluid" style="margin-bottom: 20px;">
-<!-- <div class="row">
-	<div class="host-pic user" style="background-image: url('');"> </div>
-</div> -->
-<div class="row">
 	<div style="height: 50px; width: auto;"></div>
-	<div class="col-md-3 col-md-offset-1">
-		
-		<div class="host-pic user" style="background-image: url('<%= user.get("photo_url") %>');"> </div>
-		<h2> <%= user.get("name") %> </h2>
-  	<div class="row">
-		  <span class="glyphicon glyphicon-map-marker"> </span>
-			<%= user.get("address") %>
-		</div>
-		
+	<% if (user.host_meals().length > 0) { %>
 		<div class="row">
-		  <h3 class="meal-header"> About </h3>
-		  <div class="meal-div">
-				<div class="indiv-rating about-user">
-		  	  <h5 class="bold-header"> A few words about <%= user.get("name") %> </h5>
-					<p> <%= user.get("about") %> </p>
+			<div class="cover-photo" style="background-image: url('<%= user.host_meals().models[0].get("photo_url") %>');">
+			</div>
+			<div class="row click-header" style="">
+				<div class="col-md-6 col-md-offset-4">
+					
 				</div>
-				<div class="indiv-rating about-user">
-		  	  <h5 class="bold-header"> The ambiance at my place </h5>
-					<p> <%= user.get("about") %> </p>
-				</div>
-				<div class="indiv-rating about-user">
-		  	  <h5 class="bold-header"> I would love to eat with</h5>
-					<p> <%= user.get("about") %> </p>
-				</div>
-				<div class="indiv-rating about-user">
-		  	  <h5 class="bold-header"> Favorite dishes </h5>
-					<p> <%= user.get("about") %> </p>
-				</div>
-				<div class="indiv-rating about-user">
-		  	  <h5 class="bold-header"> Favorite topics </h5>
-					<p> <%= user.get("about") %> </p>
-				</div>
-		  </div>
-		</div> <!-- basic-info -->
-		
-		<% if (user.host_meals().length > 0) { %>
-		<div class="row">
-		  <h3> Listings </h3>
-			<div class="row listings meal-div" style="background-image: url('<%= user.host_meals().models[0].get("photo_url") %>');"></div>
-		</div>
-		
-		<div class="row">
-		  <h3> Meals </h3>
-			<div class="row meals meal-div" style="background-image: url('<%= user.guest_meals().models[0].get("photo_url") %>');"></div>
+			</div>
 		</div>
 		<% } %>
+		<div class="row">
+			<div class="col-md-3 col-md-offset-1" style="margin-top: -200px;">
 		
-	</div>
+				<div class="host-pic user" style="background-image: url('<%= user.get("photo_url") %>');"> </div>
+				<h2> <%= user.get("name") %> </h2>
+				<div class="row">
+					<span class="glyphicon glyphicon-map-marker"> </span>
+					<%= user.get("address") %>
+				</div>
+		
+				<div class="row">
+					<h3 class="meal-header"> About </h3>
+					<div class="meal-div">
+						<div class="indiv-rating about-user">
+							<h5 class="bold-header"> A few words about <%= user.get("name") %> </h5>
+							<p> <%= user.get("about") %> </p>
+						</div>
+						<div class="indiv-rating about-user">
+							<h5 class="bold-header"> The ambiance at my place </h5>
+							<p> <%= user.get("about") %> </p>
+						</div>
+						<div class="indiv-rating about-user">
+							<h5 class="bold-header"> I would love to eat with</h5>
+							<p> <%= user.get("about") %> </p>
+						</div>
+						<div class="indiv-rating about-user">
+							<h5 class="bold-header"> Favorite dishes </h5>
+							<p> <%= user.get("about") %> </p>
+						</div>
+						<div class="indiv-rating about-user">
+							<h5 class="bold-header"> Favorite topics </h5>
+							<p> <%= user.get("about") %> </p>
+						</div>
+					</div>
+				</div> <!-- basic-info -->
+		
+				<% if (user.host_meals().length > 0) { %>
+					<div class="row">
+						<h3> Listings </h3>
+						<div class="row listings meal-div" style="background-image: url('<%= user.host_meals().models[0].get("photo_url") %>');"></div>
+					</div>
+		
+					<div class="row">
+						<h3> Meals </h3>
+						<div class="row meals meal-div" style="background-image: url('<%= user.guest_meals().models[0].get("photo_url") %>');"></div>
+					</div>
+					<% } %>
+		
+				</div>
 	
-	<div class="col-md-6 col-md-offset-1" id="main-content">
-		<div id="meals"></div>
-		<div id="listings"></div>
-	</div>
-</div> <!-- main row close -->
-</div> <!-- container close -->
+				<div class="col-md-6 col-md-offset-1" id="main-content">
+					<div id="meals"></div>
+					<div id="listings"></div>
+				</div>
+			</div> <!-- main row close -->
+		</div> <!-- container close -->
 
- <!-- :name, :address, :photo_url, :about -->
+		<!-- :name, :address, :photo_url, :about -->

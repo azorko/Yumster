@@ -5,6 +5,7 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 	initialize: function () {
 		this.meal_page = 1;
 		// this.collection.page = 1;
+		this.render();
     this.listenTo(this.collection, "sync", this.render);		
 	},
 	
