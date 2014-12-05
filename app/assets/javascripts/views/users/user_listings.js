@@ -63,6 +63,7 @@ Yumster.Views.UserListings = Backbone.CompositeView.extend({
 			});
 		$('body').prepend(this.modalView.render().$el);
 		this.modalView.delegateEvents();
+		setTimeout(this.render, 3000);
 	}
 	
 });

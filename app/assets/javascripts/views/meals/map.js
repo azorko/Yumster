@@ -27,6 +27,7 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	  google.maps.event.addListener(this._map, 'idle', function() { //never use "bounds_changed"
  			var topLeftLat = that._map.getBounds().Fa.j;
  			var topLeftLng = that._map.getBounds().wa.j;
+			// debugger
  			var bottomRightLat = that._map.getBounds().Fa.k;
  			var bottomRightLng = that._map.getBounds().wa.k;
  			Yumster.current_filters["top_left"] = [topLeftLat, topLeftLng];

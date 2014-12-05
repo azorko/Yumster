@@ -8,11 +8,10 @@ class Api::MealsController < Api::ApiController
     filter_params[:start_date] = "2000-01-01" if (!filter_params[:start_date] ||filter_params[:start_date] == "")
     filter_params[:end_date] = "2020-01-01" if (!filter_params[:end_date] || filter_params[:end_date] == "")
     filter_params[:tag] ||= ["Asian", "Western", "Middle Eastern", "Latin American"]
-    filter_params[:guest_num] ||= 1;
+    filter_params[:guest_num] ||= 1
     if filter_params[:top_left] && filter_params[:bottom_right]
     @meals = Meal.joins("LEFT OUTER JOIN users ON meals.host_id = users.id").where([ "price between :min_price and :max_price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num and lat between :bottom_right_lat and :top_left_lat and lng between :top_left_lng and :bottom_right_lng",
-      {max_price: filter_params[:max_price], min_price: filter_params[:min_price], start_date: filter_params[:start_date], end_date: filter_params[:end_date], tag: filter_params[:tag], guest_num: filter_params[:guest_num], bottom_right_lat: filter_params[:bottom_right][0], top_left_lat: filter_params[:top_left][0], top_left_lng: filter_params[:top_left][1], bottom_right_lng: filter_params[:bottom_right][1] } ]).page(params[:page].to_i);
-    
+      {max_price: filter_params[:max_price], min_price: filter_params[:min_price], start_date: filter_params[:start_date], end_date: filter_params[:end_date], tag: filter_params[:tag], guest_num: filter_params[:guest_num], bottom_right_lat: filter_params[:bottom_right][0], top_left_lat: filter_params[:top_left][0], top_left_lng: filter_params[:top_left][1], bottom_right_lng: filter_params[:bottom_right][1] } ]).page(params[:page].to_i)
     render :index_pages, locals: {
               models: @meals, 
               page_number: params[:page].to_i || 1,
