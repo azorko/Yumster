@@ -1,21 +1,38 @@
 <h3> Meals </h3>
 
-<% meals.forEach( function (meal) { %>
+<% meals.forEach( function (meal, index) { %>
+<% var booking = meal.get("booking") %>
 <div class="row">
 	<h3 class="meal-header"> <%= meal.get("title") %> </h3>
 	<div class="meal-div">
 		<div class="col-md-3">
-	    <div class="user-meal meals" style="background-image: url('<%= meal.get("photo_url") %>');"></div>
+			<% var mealPhoto %>
+			<% if (!meal.get("photo_url")) { %>
+				<% mealPhoto = "https://s3-us-west-1.amazonaws.com/yumster/cupcakes.jpg" %>
+			<% } else { %>
+				<% mealPhoto = meal.get("photo_url") %>
+			<% } %>
+	    <div data-meal-id="<%= meal.get('id') %>" class="user-meal meals meal-click" style="background-image: url('<%= mealPhoto %>');"></div>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-7">
+			<div class="row">
+				<span class="glyphicon glyphicon-user"> </span>
+				<%= booking.guest_num %>
+			</div>
 			<div class="row">
 				<span class="glyphicon glyphicon-calendar"> </span>
 				<%= meal.get("date") %>
 			</div>
 			<div class="row">
 				<span class="glyphicon glyphicon-map-marker"> </span>
+				<%= user.get("address") %>
 			</div>
+			<% if (current_user.get('id') === user.get('id')) { %>
 		</div>	
+			<div class="col-md-2">
+				<button style="width: 80px;" type="submit" data-meal-ind="<%= index %>" data-booking-id="<%= booking.id %>" id="button-search" class="search-button btn btn-default update" >Cancel </button>
+			</div>
+			<% } %>
 	</div>
 </div>
 <% }) %>

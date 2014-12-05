@@ -120,7 +120,15 @@
 			<div class="row" style="padding-left: 0.5vw;">
 			<% for (var i = 0; i < meals.models.length; i++) { %>
 				<% host = meals.models[i].basicHostData() %>
-				<div data-listing-num="<%= i %>" class="col-md-3 col-md-offset-1 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meals.models[i].get("photo_url") %>');">
+				
+				<% var mealPhoto %>
+				<% if (!meals.models[i].get("photo_url")) { %>
+					<% mealPhoto = "https://s3-us-west-1.amazonaws.com/yumster/cupcakes.jpg" %>
+				<% } else { %>
+					<% mealPhoto = meals.models[i].get("photo_url") %>
+				<% } %>
+				
+				<div data-listing-num="<%= i %>" class="col-md-3 col-md-offset-1 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= mealPhoto %>');">
 					<div class="host-profile">
 						<img src="<%= host.get('photo_url') %>" class= "host-pic">
 						<span style="float: left; margin-left: 5px;">

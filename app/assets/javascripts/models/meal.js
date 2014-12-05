@@ -32,6 +32,14 @@ Yumster.Models.Meal = Backbone.Model.extend({
 
     return this._guests;
 	},
+	
+	bookings: function () {
+    if(!this._bookings) {
+      this._bookings = new Yumster.Collections.GuestMealJoins([]);
+    }
+
+    return this._bookings;
+	},
 
   parse: function (response) {
     if(response.host) {
@@ -45,6 +53,10 @@ Yumster.Models.Meal = Backbone.Model.extend({
     if(response.guests) {
       this.guests().set(response.guests, { parse: true });
       delete response.guests;
+    }
+    if(response.bookings) {
+      this.bookings().set(response.bookings, { parse: true });
+      delete response.bookings;
     }
 
     return response;

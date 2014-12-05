@@ -1,0 +1,64 @@
+
+<div class="yum-modal-backdrop">
+</div>
+
+<div class="yum-modal">
+  <a class="yum-modal-dismiss glyphicon glyphicon-remove" href="javascript:void(0)" style="color: black;"></a>
+  <h4 class="form-header">
+		<% if (meal.isNew()) { %>
+			New Listing
+		<% } else { %>
+		  Update Listing
+		<% } %>
+	</h4>
+	
+	<span class='error' id='signin-errors'> </span>
+	
+	<form class="modal-input">
+		
+    <input class="modal-form search-bar" style="margin-bottom: 20px;" name="title" value="<%= meal.escape('title') %>" type="text" placeholder="Title" style=""><br>
+		
+		<div class="row">
+			<div class="col-md-8">
+		<textarea style="height: 200px; margin-bottom: 20px;" class="modal-form search-bar" name="about" placeholder="Describe your delicious meal"><%= meal.escape('about') %></textarea>
+		</div> <!-- close textarea -->
+		
+		<div class="col-md-4">
+		<div class="input-group">
+		  <span class="input-group-addon glyphicon glyphicon-cutlery"></span>
+			<select style="margin-top: 1px;" class="search-bar modal-form" name="tag">
+				<% if (!meal.get('tag')) { %>
+				  <option value="" disabled selected>Cuisine</option>
+				<% } %>
+				<% for (var item in cuisines) { %>
+					<% if (meal.get('tag') === cuisines[item]) { %>
+						<option selected value="<%= cuisines[item] %>"><%= cuisines[item] %></option>
+					<% } else { %>
+					  <option value="<%= cuisines[item]%>"><%= cuisines[item] %></option>
+						<% } %>
+			  <% } %>
+		  </select>
+		</div>
+		<br>
+		<div class="input-group">
+		  <span style="font-size: 20px; font-weight: bold;" class="input-group-addon">$</span>
+		  <input name="price" value="<%= meal.escape('price') %>" type="text" class="form-control modal-form" placeholder="Price">
+		</div>
+		<br>
+		<div class="input-group">
+		  <span class="input-group-addon glyphicon glyphicon-user"></span>
+		  <input style="margin-top: 1px;" name="max_guests" value="<%= meal.escape('max_guests') %>" type="text" class="form-control modal-form" placeholder="Maximum guests">
+		</div>
+		<br>
+		<div class="input-group">
+		  <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+		  <input style="margin-top: 1px;" placeholder="Meal Date" name="date" value="<%= meal.escape('date') %>"  class="textbox-n search-bar modal-form" type="text" onfocus="(this.type='date')">
+		</div>
+		</div> <!-- close input area -->
+		</div> <!-- close text/input area -->
+		
+		<br>
+	  <button style="border-radius: 0px; -webkit-appearance: none; margin-left: 2px;" type="submit" class='btn btn-default modal-button'>Submit</button>
+
+	</form>
+</div>

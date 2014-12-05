@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'newrelic_rpm'
 gem 'faker'
 gem 'kaminari'
+gem 'thin'
 
 group :doc do
   gem 'sdoc', require: false

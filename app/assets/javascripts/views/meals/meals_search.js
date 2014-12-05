@@ -3,7 +3,7 @@ Yumster.Views.MealsSearch = Backbone.CompositeView.extend({
   template: JST['meals/search'],
 	
 	initialize: function () {
-		this.parseQuery(); //main div
+		// this.parseQuery(); //main div
 	},
 	
   render: function () {
@@ -14,17 +14,17 @@ Yumster.Views.MealsSearch = Backbone.CompositeView.extend({
     return this;
   },
 	
-	parseQuery: function () {
-		var filters = {};
-		var query = Yumster.current_query;
-		query = query.split("&");
-		for(var i = 0; i < query.length; i++) {
-			query[i] = query[i].split("=");
-			filters[query[i][0]] = query[i][1];
-			filters[query[i][0]] = filters[query[i][0]].replace(/\+/g, " ");
-		}
-		Yumster.current_filters = filters;
-	},
+	// parseQuery: function () {
+// 		var filters = {};
+// 		var query = Yumster.current_query;
+// 		query = query.split("&");
+// 		for(var i = 0; i < query.length; i++) {
+// 			query[i] = query[i].split("=");
+// 			filters[query[i][0]] = query[i][1];
+// 			filters[query[i][0]] = filters[query[i][0]].replace(/\+/g, " ");
+// 		}
+// 		Yumster.current_filters = filters;
+// 	},
 	
   renderMap: function () {
     var view = new Yumster.Views.Map({

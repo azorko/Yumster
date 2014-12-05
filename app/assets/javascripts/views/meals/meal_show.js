@@ -7,7 +7,6 @@ Yumster.Views.MealShow = Backbone.View.extend({
 		this.user = new Yumster.Models.User();
 		this.user.fetch();
 		this.listenTo(this.user, "sync add remove reset", this.render);
-		// this.listenTo(this.model.ratings(), "sync add remove reset", this.render);
 	},
 	
 	events: {
@@ -15,7 +14,8 @@ Yumster.Views.MealShow = Backbone.View.extend({
 		"click #book": "book",
 		"change #guest_num": "changeCalc",
 		"click .new-review-link": "reviewForm",
-		"click #post-review": "postReview"
+		"click #post-review": "postReview",
+		"click .host-pic": "viewUser"
 	},
 	
 	render: function () {
@@ -54,12 +54,10 @@ Yumster.Views.MealShow = Backbone.View.extend({
 	},
 	
 	calcPrice: function (event) {
-		// event.preventDefault();
 		this.calc = true;
 		var gridEl = this.$el.find("#price-grid");
 		this.guest_num = this.$el.find("select").val();
 		var price = this.model.get("price");
-		// Yumster.total_price = price*guest_num*1.1;
 		var grid = "<table style='border-bottom: 1px solid #e7e7e7;' class='table table-hover'><tr><td>$" + price + " x " + this.guest_num + " Guests</td><td>$" + price*this.guest_num + "</td> </tr><tr><td>Service Fee</td><td>$" + Math.floor(.1*price*this.guest_num) +"</td> </tr> <tr><td> Total </td><td>$" + Math.floor(price*this.guest_num*1.1) + "</td></tr></table>";
 		gridEl.html(grid);
 		var bookButton = "<button style='margin-left: 10px; width: 100%;' type='submit' id='book' class='search-button btn btn-default'>Book </button>";
@@ -76,9 +74,6 @@ Yumster.Views.MealShow = Backbone.View.extend({
 			
 			var error = "<p style='text-align: center; color: green;'> Your request was sent. View the status of your request in your 'Guest Meals'. </p>";
 			
-			// function success () {
-// 				Backbone.history.navigate("#guest_meals", {trigger: true});
-// 			};
 			var that = this;
 			var booking = new Yumster.Models.GuestMealJoin();
 			booking.save({ meal_id: this.model.get("id"), guest_id: this.user.get("id"), guest_num: this.guest_num }, {
@@ -119,6 +114,12 @@ Yumster.Views.MealShow = Backbone.View.extend({
 			}
 		});
 		
+	},
+	
+	viewUser: function (event) {
+		var userId = $(event.currentTarget).data("user-id");
+		var user = Yumster.Collections.users.getOrFetch(userId);
+		Backbone.history.navigate("users/" + userId + "/meals", {trigger: true});
 	}
 
 });

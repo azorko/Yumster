@@ -13,6 +13,13 @@ Yumster.Routers.Router = Backbone.Router.extend({
 			$("#guest-pass").attr("value", "secret");
 		});
 		
+		$('.menu-click').on('click', function (event) {
+			event.preventDefault();
+			var query = $(event.currentTarget).data("query");
+			var userId = $(event.currentTarget).data("user-id");
+			Backbone.history.navigate("#/users/" + userId + "/" + query, { trigger: true });
+		});
+		
 		this.headerAuto = new google.maps.places.Autocomplete($("#location-header")[0], { types: ['geocode'] });
 		google.maps.event.addListener(this.headerAuto, "place_changed", this.autocompleteHeader.bind(this));
     
@@ -31,10 +38,9 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	},
 
   search: function (query) {
-		Yumster.current_filters = Yumster.current_filters || {};
-		Yumster.Collections.meals.fetch({data: { filters: Yumster.current_filters, page: 1 } });
-		// Yumster.Collections.meals.fetch({data: query});
 		Yumster.current_query = query;
+		this.parseQuery();
+		Yumster.Collections.meals.fetch({data: { filters: Yumster.current_filters, page: 1 } });
     var view = new Yumster.Views.MealsSearch({
       collection: Yumster.Collections.meals
     });
@@ -73,7 +79,20 @@ Yumster.Routers.Router = Backbone.Router.extend({
 		$("#location-header").attr("value", loc);
 		$("#header-lat").attr("value", geoLoc.k);
 		$("#header-lng").attr("value", geoLoc.B);
-	}
+	},
+	
+	parseQuery: function () {
+		var filters = {};
+		var query = Yumster.current_query;
+		query = query.split("&");
+		for(var i = 0; i < query.length; i++) {
+			query[i] = query[i].split("=");
+			filters[query[i][0]] = query[i][1];
+			filters[query[i][0]] = filters[query[i][0]].replace(/\+/g, " ");
+		}
+		// Yumster.current_filters = {};
+		Yumster.current_filters = filters;
+	},
 	
 });
 

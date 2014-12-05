@@ -6,7 +6,13 @@
 			
 			<div class="row">
 			  <h3 class="meal-header"> <%= meal.get("title") %> </h3>
-			  <div class="meal-img" style="background-image: url('<%= meal.get("photo_url") %>');"> </div>
+				<% var mealPhoto %>
+				<% if (!meal.get("photo_url")) { %>
+					<% mealPhoto = "https://s3-us-west-1.amazonaws.com/yumster/cupcakes.jpg" %>
+				<% } else { %>
+					<% mealPhoto = meal.get("photo_url") %>
+				<% } %>
+			  <div class="meal-img" style="background-image: url('<%= mealPhoto %>');"> </div>
 			</div> <!-- meal-photo -->
 			
 			<div class="row">
@@ -40,7 +46,7 @@
 				<% meal.ratings().forEach( function (rating) { %>
 	        <div class="indiv-rating">
 						<div class="col-md-2">
-					    <img class="host-pic author" src="<%= rating.get('author').photo_url %>">
+					    <img data-user-id="<%= rating.get('author').id %>" class="host-pic author" src="<%= rating.get('author').photo_url %>">
 							<h5 style="text-align: center; margin-top: 20px;"><%= rating.get("author").name %> </h5>
 						</div>
 						<div class="col-md-8" style="float: left; margin-left: 10px;">
@@ -101,7 +107,7 @@
 				<h3 class="meal-header"> Your Host </h3>
 				<div class="meal-div">
 					<div class="col-md-5">
-				    <img class="host-pic host" src="<%= host.get('photo_url') %>">
+				    <img data-user-id="<%= host.get('id') %>" class="host-pic host" src="<%= host.get('photo_url') %>">
 					</div>
 					<div class="col-md-7" style="float: left;">
 						<div style="font-size: 20px; border-bottom: 1px solid #e7e7e7;"><%= host.get("name") %> </div>
@@ -115,7 +121,7 @@
 				<div class="meal-div"style="padding-left: 2vw;">
 					<% meal.guests().forEach( function (guest) { %>
 						<div class="guest-div">
-							<img class="host-pic author" src="<%= guest.get('photo_url') %>">
+							<img data-user-id="<%= guest.get('id') %>" class="host-pic author" src="<%= guest.get('photo_url') %>">
 							<div><%= guest.get("name") %> </div>
 							<div>
 								<span class="glyphicon glyphicon-user" style="font-size: 13px;"> </span>

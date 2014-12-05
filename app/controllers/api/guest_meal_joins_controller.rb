@@ -20,6 +20,12 @@ class Api::GuestMealJoinsController < ApplicationController
     end
   end
   
+  def destroy
+    @guest_meal = GuestMealJoin.find(params[:id])
+    @guest_meal.destroy if @guest_meal
+    render :json => {}
+  end
+  
   private
 
   def guest_meal_params

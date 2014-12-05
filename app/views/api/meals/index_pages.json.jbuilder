@@ -9,3 +9,6 @@ json.meals do
 	
 	end
 end
+
+json.page page_number
+json.total_pages total_pages

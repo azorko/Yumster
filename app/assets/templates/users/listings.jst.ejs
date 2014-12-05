@@ -1,13 +1,28 @@
-<h3> Listings </h3>
+<div class="row">
+	<div class="col-md-6">
+    <h3> Listings </h3>
+  </div>
+	<% if (current_user.get('id') === user.get('id')) { %>
+	<div class="col-md-6">
+ <button style="border-radius: 0px; -webkit-appearance: none; margin-top: 20px; margin-left: 2px; float: right;" type="submit" class='btn btn-default modal-button'>New Listing</button>
+ </div>
+ <% } %>
+</div>
 
-<% listings.forEach( function (meal) { %>
+<% listings.forEach( function (meal, index) { %>
 <div class="row">
 	<h3 class="meal-header"> <%= meal.get("title") %> </h3>
 	<div class="meal-div">
 		<div class="col-md-3">
-	    <div class="user-meal meals" style="background-image: url('<%= meal.get("photo_url") %>');"></div>
+			<% var mealPhoto %>
+			<% if (!meal.get("photo_url")) { %>
+				<% mealPhoto = "https://s3-us-west-1.amazonaws.com/yumster/cupcakes.jpg" %>
+			<% } else { %>
+				<% mealPhoto = meal.get("photo_url") %>
+			<% } %>
+	    <div data-meal-id="<%= meal.get('id') %>" class="user-meal meals meal-click" style="background-image: url('<%= mealPhoto %>');"></div>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-7">
 			<div class="row">
 				<span class="glyphicon glyphicon-calendar"> </span>
 				<%= meal.get("date") %>
@@ -17,7 +32,16 @@
 				<span class="glyphicon glyphicon-map-marker"> </span>
 				<%= user.get("address") %>
 			</div>
-		</div>	
+		</div>
+		<% if (current_user.get('id') === user.get('id')) { %>
+		<div class="col-md-2">
+			<select data-meal-id="<%= meal.get('id') %>" data-meal-ind="<%= index %>" class="search-bar update" name="update">
+				<option value="" disabled selected>Manage</option>
+				<option value="update">Update</option>
+				<option value="delete">Delete</option>
+			</select>
+		</div>
+		<% } %>
 	</div>
 </div>
 <% }) %>

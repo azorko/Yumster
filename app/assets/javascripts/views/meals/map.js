@@ -2,8 +2,6 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	
 	template: JST['meals/map'],
 	
-	// tagName: "div",
-	
 	initialize: function () {
 		this.listenToOnce(this.collection, "sync", this.addMarkers);
 		this.listenTo(this.collection, "remove", this.removeMarker);
@@ -26,8 +24,7 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 		this._map = new google.maps.Map(this.$el.find("#search-map")[0], mapOptions);
 
 		var that = this;
-		// console.log("registering event")
-	  google.maps.event.addListener(this._map, 'idle', function() { //"bounds_changed"
+	  google.maps.event.addListener(this._map, 'idle', function() { //never use "bounds_changed"
  			var topLeftLat = that._map.getBounds().Fa.j;
  			var topLeftLng = that._map.getBounds().wa.j;
  			var bottomRightLat = that._map.getBounds().Fa.k;
@@ -40,7 +37,6 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	},
 	
 	newMarker: function (results, eventId) {
-		// debugger
 		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
 		        new google.maps.Size(21, 34),
 		        new google.maps.Point(0,0),
@@ -54,7 +50,6 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 			event: eventId
     });
 		Yumster.markers.push(marker);
-		// google.maps.event.addListener(marker, 'click', this.toggleBounce.bind(this));
 	},
 	
 	attachMarker: function (event) {
@@ -68,16 +63,6 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 		});
 	},
 	
-	// toggleBounce: function (event) {
-	// 	debugger
-	//     var marker = event.currentTarget;
-	//   if (marker.getAnimation() != null) {
-	//     marker.setAnimation(null);
-	//   } else {
-	//     marker.setAnimation(google.maps.Animation.BOUNCE);
-	//   }
-	// },
-
 	addMarkers: function(event){
 		Yumster.markers = [];
 		for (var i = 0; i < this.collection.length; i++) {
@@ -87,7 +72,6 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	},
 	
 	removeMarker: function (event) {
-		// debugger
 		var that = this;
 		Yumster.markers.forEach(function(marker, index) { 
 			if (marker.event === event.id) {

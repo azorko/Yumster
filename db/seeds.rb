@@ -31,7 +31,7 @@ User.create({email: "lara@yumster.com", password: "secret", name: "Lara", addres
 
 User.create({email: "sebastian@yumster.com", password: "secret", name: "Sebastian", address: "2144 Chestnut St, San Francisco, CA", lat: 37.8006178, lng: -122.43871250000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Dima.png", about: Faker::Lorem.paragraph });
 
-User.create({email: "guest@yumster.com", password: "secret", name: "Guest", address: "1601 Market St, San Francisco, CA", lat: 37.78105559999999, lng: -122.4114551, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Anastasia.png", about: Faker::Lorem.paragraph });
+User.create({email: "guest@yumster.com", password: "secret", name: "Guest", address: "1601 Market St, San Francisco, CA", lat: 37.78105559999999, lng: -122.4114551, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Panda", about: Faker::Lorem.paragraph });
 
 
 8.times do |i|
