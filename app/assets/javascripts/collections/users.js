@@ -12,13 +12,11 @@ Yumster.Collections.Users = Backbone.Collection.extend({
       user.fetch({
         success: function () {
           users.add(user);
-					// callback();
         }
       });
     } else {
       user.fetch();
     }
-
     return user;
   }
 });

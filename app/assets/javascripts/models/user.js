@@ -12,6 +12,7 @@ Yumster.Models.User = Backbone.Model.extend({
 	},
 	
   parse: function (response) {
+		debugger
     if(response.host_meals) {
       this.host_meals().set(response.host_meals, {parse: true});
       delete response.host_meals;

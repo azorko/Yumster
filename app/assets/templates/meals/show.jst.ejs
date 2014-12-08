@@ -6,13 +6,7 @@
 			
 			<div class="row">
 			  <h3 class="meal-header"> <%= meal.get("title") %> </h3>
-				<% var mealPhoto %>
-				<% if (!meal.get("photo_url")) { %>
-					<% mealPhoto = "https://s3-us-west-1.amazonaws.com/yumster/cupcakes.jpg" %>
-				<% } else { %>
-					<% mealPhoto = meal.get("photo_url") %>
-				<% } %>
-			  <div class="meal-img" style="background-image: url('<%= mealPhoto %>');"> </div>
+			  <div class="meal-img" style="background-image: url('<%= meal.get("photo_url") %>');"> </div>
 			</div> <!-- meal-photo -->
 			
 			<div class="row">

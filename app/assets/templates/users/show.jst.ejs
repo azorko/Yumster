@@ -1,13 +1,7 @@
 <div class="container-fluid" style="margin-bottom: 20px;">
 	<div style="height: 50px; width: auto;"></div>
-	<% var mealPhoto %>
-	<% if (!user.host_meals().models[0]) { %>
-		<% mealPhoto = "https://s3-us-west-1.amazonaws.com/yumster/cupcakes.jpg" %>
-	<% } else { %>
-		<% mealPhoto = user.host_meals().models[0].get("photo_url") %>
-	<% } %>
 		<div class="row">
-			<div class="cover-photo" style="background-image: url('<%= mealPhoto %>');">
+			<div class="cover-photo" style="background-image: url('<%= user.host_meals().models[0].get("photo_url") %>');">
 			</div>
 			<div class="row click-header" style="">
 				<div class="col-md-6 col-md-offset-5" style="padding-left: 0px;">

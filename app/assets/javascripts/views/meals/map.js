@@ -67,6 +67,10 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 			listingId: listing.id
     });
 		Yumster.markers.push(marker);
+		
+		google.maps.event.addListener(marker, "click", (function() {
+			this.clickMarker(marker, event)
+		}).bind(this));
 	},
 	
 	attachMarker: function (listing) {
@@ -107,6 +111,42 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 			}
 		});
 	},
+	
+	clickMarker: function (marker, event) {
+		if (this._listingWindow) {
+			this._listingWindow.close();
+		}
+
+		this._listingWindow && this._listingWindow.infoView.remove();
+		this._listingWindow = this._openInfoWindow(marker);
+		this._listingWindow.open(this._map, marker);
+	},
+
+	_openInfoWindow: function(marker) {
+		var meal = Yumster.Collections.meals.getOrFetch(marker.listingId);
+		var infoView = new Yumster.Views.MapMeal({ model: meal });
+
+		var info = new google.maps.InfoWindow({
+			content: infoView.template({ meal: meal }),
+			infoView: infoView,
+			buttons:{close:{show: 4}}
+		});
+		
+		google.maps.event.addListener(this._map, "click", function(){
+		  info.close();
+		});
+		
+		function show (event) {
+			var id = $(event.currentTarget).data("id");
+			Backbone.history.navigate("meals/" + id, {trigger: true});
+		};
+		
+		google.maps.event.addListener(info, 'domready', function () {
+		  google.maps.event.addDomListener(document.getElementById("meal-info"), 'click', show);
+		});	
+		
+		return info;
+		},
 	
 	// getCenter: function (center) {
 // 		var that = this;

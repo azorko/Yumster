@@ -7,7 +7,7 @@ Yumster.Views.UserShow = Backbone.CompositeView.extend({
 		this.user.fetch();
 		this.listenTo(this.user, "sync add remove reset", this.render);
 		
-    this.listenToOnce(this.model, "sync", this.render);
+    this.listenTo(this.model, "sync", this.render);
 		this.query = options.query;
 		this.renderListings();
 		this.renderMeals();
