@@ -3,20 +3,22 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	template: JST['meals/map'],
 	
 	initialize: function () {
-		// this.addMarkers();
-		// this.listenTo(this.collection, 'sync', this.addMarkers);
+		console.log('initializeMap');
 		Yumster.markers = [];
 		this.refreshListeners();
 		this.render();
+		
 	},
 	
 	refreshListeners: function () {
+		console.log("refreshListeners");
 		this.stopListening();
 		this.listenTo(this.collection, "add", this.attachMarker);
 		this.listenTo(this.collection, "remove", this.removeMarker);
 	},
 	
   render: function () {
+		console.log('rendering map');
 		var content = this.template();
 		this.$el.html(content);
 		this.renderMap();
@@ -30,18 +32,16 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 			center: new google.maps.LatLng(lat, lng),
 			zoom: 12
 		};
-		this._map = new google.maps.Map(this.$el.find("#search-map")[0], mapOptions);
+		this._map = new google.maps.Map(this.$el.find("#search-map")[0], mapOptions); //this._map ||
 
 		var that = this;
 	  google.maps.event.addListener(this._map, 'idle', function() { //never use "bounds_changed"
  			var topLeftLat = that._map.getBounds().Fa.j;
  			var topLeftLng = that._map.getBounds().wa.j;
-			// debugger
  			var bottomRightLat = that._map.getBounds().Fa.k;
  			var bottomRightLng = that._map.getBounds().wa.k;
  			Yumster.current_filters["top_left"] = [topLeftLat, topLeftLng];
  			Yumster.current_filters["bottom_right"] = [bottomRightLat, bottomRightLng];
-			// that.collection.fetch({data: query});
  			that.collection.fetch({data: { filters: Yumster.current_filters, page: Yumster.meal_page } });
  	  });
 	},
@@ -53,7 +53,7 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 		this._map.setCenter(newCenter);
 	},
 	
-	newMarker: function (results, eventId) {
+	newMarker: function (results, listing) {
 		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
 		        new google.maps.Size(21, 34),
 		        new google.maps.Point(0,0),
@@ -64,37 +64,45 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
       position: results[0].geometry.location,
 			animation: google.maps.Animation.DROP,
 			icon: pinImage,
-			event: eventId
+			listingId: listing.id
     });
 		Yumster.markers.push(marker);
 	},
 	
-	attachMarker: function (event) {
+	attachMarker: function (listing) {
 		var that = this;
-		var address = event.basicHostData().get("address");
+		var address = listing.basicHostData().get("address");
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode({ 'address': address }, function(results, status) {
 		  if (status == google.maps.GeocoderStatus.OK) {
-				that.newMarker(results, event.id);
+				that.newMarker(results, listing);
 			}
 		});
 	},
 	
-	addMarkers: function(event){
+	addMarkers: function() {
 		// debugger
 		// Yumster.markers = [];
-		for (var i = 0; i < this.collection.length; i++) {
-			this.attachMarker(event.models[i]);
-		}
-		// this.listenTo(this.collection, "add", this.attachMarker);
+		console.log('addMarkers');
+		this.collection.each(function (listing) {
+			this.attachMarker(listing);
+		}.bind(this));
 	},
 	
-	removeMarker: function (event) {
+	removeMarkers: function () {
+		console.log('removeMarkers');
+		_.each(Yumster.markers, function(marker) { 
+			marker.setMap(null);
+		});
+		
+		Yumster.markers = [];
+	},
+	
+	removeMarker: function (listing) {
 		var that = this;
 		Yumster.markers.forEach(function(marker, index) { 
-			if (marker.event === event.id) {
+			if (marker.listingId === listing.id) {
 				marker.setMap(null);
-				marker = null;
 				Yumster.markers.splice(index, 1);
 			}
 		});

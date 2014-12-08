@@ -129,15 +129,16 @@ font-family: 'Quicksand', sans-serif;
 
 .meal-info {
 	position: relative;
-	background-size: 260px 305px; //270 * 315
+	background-size: 25vw 17vw; //320 * 220
 	box-shadow: inset 0 -50px 200px #000;
 	color: white;
-	width: 260px;
-	height: 305px;
+	width: 25vw;
+	height: 17vw;
 	margin-top: 25px;
 	border: 10px solid white;
 	font-family: 'Quicksand', sans-serif;
 	outline: 1px solid #cccccc;
+//	margin-left: 20px;
 }
 
 .meal-info:hover {
@@ -145,10 +146,13 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .meal-blurb {
-	position: relative;
-	top: 180px;
+//	position: relative;
+//	top: 120px;
+//	left: 10px;
 	float: left;
 	width: 150px;
+	margin-top: 3vw;
+	margin-left: 10px;
 }
 
 .host-pic {
@@ -164,9 +168,13 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .host-profile {
-	position: relative;
-	top: 15px;
-	left: 10px;
+	float: left;
+	height: 50px;
+	width: 100%;
+	margin: 10px;
+//	position: relative;
+//	top: 15px;
+//	left: 10px;
 }
 
 .footer {
@@ -243,6 +251,19 @@ font-family: 'Quicksand', sans-serif;
 
 .glyphicon {
 	font-size: 20px;
+}
+
+.gap {
+	width: 30px;
+	height: 34px;
+	border-bottom-style: none !important;
+	border-top-style: none !important;
+	color: #A34775 !important;
+	text-align: center !important;
+}
+
+.gap:hover {
+	background-color: white !important;
 }
 
 //########## Map ###########
@@ -459,7 +480,7 @@ font-family: 'Quicksand', sans-serif;
 .yum-modal-backdrop {
   background-color: black;
   opacity: 0.5;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -470,7 +491,7 @@ font-family: 'Quicksand', sans-serif;
 
 .yum-modal {
   width: 50%;
-  position: absolute;
+  position: fixed;
 	top: 5%;
   left: 25%;
   z-index: 1032;

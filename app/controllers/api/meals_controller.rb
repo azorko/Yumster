@@ -1,22 +1,51 @@
 class Api::MealsController < Api::ApiController
   def index
     # @meals.includes(:users)
+    
     filter_params[:top_left] ||= [37.82809893199069, -122.51091101391603]
     filter_params[:bottom_right] ||= [37.72172180283414, -122.327919986084]
     filter_params[:max_price] ||= 50000
     filter_params[:min_price] ||= 0
-    filter_params[:start_date] = "2000-01-01" if (!filter_params[:start_date] ||filter_params[:start_date] == "")
-    filter_params[:end_date] = "2020-01-01" if (!filter_params[:end_date] || filter_params[:end_date] == "")
+    filter_params[:start_date] = "2000-01-01" if (!filter_params[:start_date] ||
+          filter_params[:start_date] == "")
+    filter_params[:end_date] = "2020-01-01" if (!filter_params[:end_date] || 
+          filter_params[:end_date] == "")
     filter_params[:tag] ||= ["Asian", "Western", "Middle Eastern", "Latin American"]
     filter_params[:guest_num] ||= 1
-    # if filter_params[:top_left] && filter_params[:bottom_right]
-    @meals = Meal.joins("LEFT OUTER JOIN users ON meals.host_id = users.id").where([ "price between :min_price and :max_price and date between :start_date and :end_date and tag in (:tag) and max_guests >= :guest_num and lat between :bottom_right_lat and :top_left_lat and lng between :top_left_lng and :bottom_right_lng",
-      {max_price: filter_params[:max_price], min_price: filter_params[:min_price], start_date: filter_params[:start_date], end_date: filter_params[:end_date], tag: filter_params[:tag], guest_num: filter_params[:guest_num], bottom_right_lat: filter_params[:bottom_right][0], top_left_lat: filter_params[:top_left][0], top_left_lng: filter_params[:top_left][1], bottom_right_lng: filter_params[:bottom_right][1] } ]).page(params[:page].to_i)
+    
+    betweens = <<-SQL
+    price BETWEEN :min_price AND :max_price 
+    AND date BETWEEN :start_date AND :end_date 
+    AND tag IN (:tag) AND max_guests >= :guest_num 
+    AND lat BETWEEN :bottom_right_lat AND :top_left_lat 
+    AND lng BETWEEN :top_left_lng AND :bottom_right_lng
+    SQL
+    
+    @meals = Meal.joins("LEFT OUTER JOIN users ON meals.host_id = users.id").where(
+      [ betweens,
+        {
+          max_price: filter_params[:max_price], 
+          min_price: filter_params[:min_price], 
+          start_date: filter_params[:start_date], 
+          end_date: filter_params[:end_date], 
+          tag: filter_params[:tag], 
+          guest_num: filter_params[:guest_num], 
+          bottom_right_lat: filter_params[:bottom_right][0], 
+          top_left_lat: filter_params[:top_left][0], 
+          top_left_lng: filter_params[:top_left][1], 
+          bottom_right_lng: filter_params[:bottom_right][1] 
+        } 
+      ]
+    )
+    
+    count = @meals.count
+    @meals = @meals.page(params[:page].to_i)
+    
     render :index_pages, locals: {
               models: @meals, 
               page_number: params[:page].to_i || 1,
               total_pages: @meals.total_pages,
-              total_count: @meals.total_count
+              total_count: count
             }
             
     # else
@@ -35,7 +64,7 @@ class Api::MealsController < Api::ApiController
   end
   
   def filter_params
-    params[:filters] ||= {}
+    @filter_params ||= (params[:filters] || {})
   end
   
   #distance between 2 points, for filtering based on radius and center location

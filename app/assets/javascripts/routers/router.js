@@ -1,7 +1,7 @@
 Yumster.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
 		Yumster.current_filters = {};
-		Yumster.map = new Yumster.Views.Map({
+		Yumster.mapView = new Yumster.Views.Map({
 		  collection: Yumster.Collections.meals
 		});
 		
@@ -43,9 +43,11 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	},
 
   search: function (query) {
-		Yumster.current_query = query;
-		this.parseQuery();
-		Yumster.map.changeCenter();
+		console.log('search');
+		Yumster.mapView.removeMarkers();
+		
+		Yumster.current_filters = this.parseQuery(query);
+		Yumster.mapView.changeCenter();
 		
     var view = new Yumster.Views.MealsSearch({
       collection: Yumster.Collections.meals
@@ -54,11 +56,11 @@ Yumster.Routers.Router = Backbone.Router.extend({
 		Yumster.Collections.meals.fetch({
 			data: { filters: Yumster.current_filters, page: 1 },
 			success: function (collection) {
+				// Yumster.mapView.addMarkers();
 			}
 		});
 
     this._swapView(view);
-		Yumster.map.refreshListeners();
   },
 	
 	mealShow: function (id, query) {
@@ -84,6 +86,7 @@ Yumster.Routers.Router = Backbone.Router.extend({
     this.currentView && this.currentView.remove();
     this.currentView = view;
     this.$rootEl.html(view.render().$el);
+		view.afterRender && view.afterRender();
   },
 	
 	autocompleteHeader: function () {
@@ -94,17 +97,15 @@ Yumster.Routers.Router = Backbone.Router.extend({
 		$("#header-lng").attr("value", geoLoc.B);
 	},
 	
-	parseQuery: function () {
+	parseQuery: function (query) {
 		var filters = {};
-		var query = Yumster.current_query;
 		query = query.split("&");
 		for(var i = 0; i < query.length; i++) {
 			query[i] = query[i].split("=");
 			filters[query[i][0]] = query[i][1];
 			filters[query[i][0]] = filters[query[i][0]].replace(/\+/g, " ");
 		}
-		// Yumster.current_filters = {};
-		Yumster.current_filters = filters;
+		return filters;
 	},
 	
 });

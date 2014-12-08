@@ -61,8 +61,7 @@ Yumster.Views.UserListings = Backbone.CompositeView.extend({
 		  new Yumster.Views.MealModal({
 				model: meal,
 				user: this.model,
-				collection: Yumster.Collections.meals,
-				host_meals: this.model.host_meals()
+				collection: Yumster.Collections.meals
 			});
 		$('body').prepend(this.modalView.render().$el);
 		this.modalView.delegateEvents();
