@@ -96,59 +96,27 @@
 	<!-- Meal Info Samples -->
 	
 	<div class="row" style="margin-left: 2vw; margin-bottom: 4vh;">
-		
-		<div class="col-md-3 col-md-offset-1 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/seafood.jpg');">
-			<div class="host-profile">
-				<img src="https://s3-us-west-1.amazonaws.com/yumster/host1.jpg" class="host-pic">
+		<div class="col-md-1" style="margin-left: -2.5vw;"> </div>
+		<% meals.forEach( function (meal) { %>
+		<% var host = meal.basicHostData() %>
+		<div class="col-md-3 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meal.get("photo_url") %>'); margin-left: 20px;">
+			<div class="row host-profile">
+				<img src="<%= host.get('photo_url') %>" class= "host-pic">
 				<span style="float: left; margin-left: 5px;">
-					Natasha's
+					<%= host.get("name")%>'s
 				</span>
 			</div>
-			<div class="meal-blurb">
-				<p class="tag">LATIN AMERICAN</p>
-				<p> Under the Sea </p>
-				<p style="font-size: 10px;">
-				  <span style="float: left;"> @Mission </span>
-					<span style="float: right;">$25/p </span>
-				</p>
-			</div>
-		</div>
-		
-				<div class="col-md-3 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/quiche.jpg'); margin-left: 20px;">
-					
-					<div class="host-profile">
-						<img src="https://s3-us-west-1.amazonaws.com/yumster/host2.jpg" class= "host-pic">
-						<span style="float: left; margin-left: 5px;">
-							Andrei's
-						</span>
+			<div class="row meal-blurb">
+				<p class="tag"><%= meal.get("tag") %></p>
+					<p> <%= meal.get("title") %> </p>
+						<p style="font-size: 10px;">
+							<span style="float: left; width: 100px;"> @<%= host.get('address') %> </span>
+							<span style="float: right;">$<%= meal.get('price') %>/p </span>
+						</p>
 					</div>
-					<div class="meal-blurb">
-						<p class="tag">WESTERN</p>
-							<p> French Breakfast </p>
-								<p style="font-size: 10px;">
-									<span style="float: left;"> @Castro </span>
-									<span style="float: right;">$20/p </span>
-								</p>
-							</div>
-			
-						</div>
+			</div>
 		
-						<div class="col-md-3 meal-info" style="background-image: url('https://s3-us-west-1.amazonaws.com/yumster/philly-cheese.jpg'); margin-left: 20px;">
-							
-							<div class="host-profile">
-								<img src="https://s3-us-west-1.amazonaws.com/yumster/host3.jpg" class= "host-pic">
-								<span style="float: left; margin-left: 5px;">
-									Marina's
-								</span>
-							</div>
-							<div class="meal-blurb">
-								<p class="tag">WESTERN</p>
-									<p> Philly Style </p>
-										<p style="font-size: 10px;">
-											<span style="float: left;"> @Japantown </span>
-											<span style="float: right;">$30/p </span>
-										</p>
-									</div>
-								</div>
-							</div>
+		<% }) %>
+	</div>
+		
 </div>

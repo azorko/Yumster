@@ -1,8 +1,10 @@
 <div class="container-fluid" style="margin-bottom: 20px;">
 	<div style="height: 50px; width: auto;"></div>
 		<div class="row">
+			<% if (user.host_meals().models[0]) { %>
 			<div class="cover-photo" style="background-image: url('<%= user.host_meals().models[0].get("photo_url") %>');">
 			</div>
+			<% } %>
 			<div class="row click-header" style="">
 				<div class="col-md-6 col-md-offset-5" style="padding-left: 0px;">
 					<span data-action="meals" class="header-button"> Meals </span>

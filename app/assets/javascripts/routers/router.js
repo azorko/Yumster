@@ -38,7 +38,15 @@ Yumster.Routers.Router = Backbone.Router.extend({
   },
 	
 	home: function () {
-    var view = new Yumster.Views.Home();
+		var meals = new Yumster.Collections.Meals();
+		var len = 15;
+		for (var i = 0; i < 3; i++) {
+			var randNum = Math.floor(Math.random() * len) + 1;
+			meals.add(Yumster.Collections.meals.getOrFetch(randNum));
+		}
+    var view = new Yumster.Views.Home({
+    	collection: meals
+    });
     this._swapView(view);
 	},
 
@@ -110,4 +118,4 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	
 });
 
-Yumster.cuisines = ["Asian", "Western", "Middle Eastern", "Latin American"];
+Yumster.cuisines = ["Asian", "Latin American", "Middle Eastern", "Western"];

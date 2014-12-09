@@ -3,25 +3,23 @@ Yumster.Views.Home = Backbone.View.extend({
   template: JST['home/home'],
 	
 	initialize: function () {
-		// this.user = new Yumster.Models.User();
-		// this.user.fetch();
+		this.listenTo(this.collection, "sync", this.render);
 	},
 	
 	events: {
 		"click #button-search": "submitSearch",
+		"click .meal-info": "show",
 	},
 	
   render: function () {
     var content = this.template({
-    	cuisines: Yumster.cuisines
+    	cuisines: Yumster.cuisines,
+			meals: this.collection
     });
     this.$el.html(content);
 
 		this.searchAuto = new google.maps.places.Autocomplete(this.$el.find("#location-search")[0], { types: ['geocode'] });
-		// this.headerAuto = new google.maps.places.Autocomplete($("#location-header")[0], { types: ['geocode'] });
-
 		google.maps.event.addListener(this.searchAuto, "place_changed", this.autocompleteSearch.bind(this));
-		// google.maps.event.addListener(this.headerAuto, "place_changed", this.autocompleteHeader.bind(this));
 				
     return this;
   },
@@ -40,12 +38,9 @@ Yumster.Views.Home = Backbone.View.extend({
 		this.$el.find("#location-search").attr("value", loc);
 	},
 	
-	// autocompleteHeader: function () {
-// 		var loc = this.headerAuto.getPlace();
-// 		var geoLoc = this.headerAuto.getPlace().geometry.location;
-// 		$("#location-header").attr("value", loc);
-// 		$("#header-lat").attr("value", geoLoc.k);
-// 		$("#header-lng").attr("value", geoLoc.B);
-// 	}
+	show: function (event) {
+		var id = $(event.currentTarget).data("id");
+		Backbone.history.navigate("meals/" + id, {trigger: true});
+	},
 
 });

@@ -15,6 +15,9 @@
 	<span class='error' id='signin-errors'> </span>
 	
 	<form class="modal-input">
+		<% if (meal.isNew()) { %>
+		<input type="hidden" name="photo_url" value="https://s3-us-west-1.amazonaws.com/yumster/cupcakes.jpg">
+		<% } %>
 		
     <input class="modal-form search-bar" style="margin-bottom: 20px;" name="title" value="<%= meal.escape('title') %>" type="text" placeholder="Title" style=""><br>
 		
