@@ -63,13 +63,10 @@
 					<% } %>
 				</select>
 		
-				<input id="location-search" type="text" name="location" class="search-bar" placeholder="Location" style="width: 230px;">
+				<input id="location-search" type="text" name="location" class="search-bar" placeholder="Location" style="width: 230px;" data-toggle="tooltip" data-placement="bottom" title="Get started by searching for meals in San Francisco, Mountain View, Cupertino, or Sunnyvale. ">
 		    <input placeholder="Start Date" name="start_date" class="search-bar" class="textbox-n" type="text" onfocus="(this.type='date')">
 				<input placeholder="End Date" name="end_date" class="search-bar" class="textbox-n" type="text" onfocus="(this.type='date')">
-				<!-- <input type="date" name="start_date" class="search-bar">
-
-				<input type="date" name="end_date" class="search-bar"> -->
-		
+			
 				<select class="search-bar" name="guest_num">
 					<option value="1" selected>1 Guest</option>
 					<option value="2">2 Guests</option>
@@ -120,3 +117,9 @@
 	</div>
 		
 </div>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

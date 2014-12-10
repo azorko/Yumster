@@ -10,14 +10,7 @@ class Api::RatingsController < ApplicationController
   end
   
   def index
-    @ratings = Rating.all #User.find(params[:user_id].ratings.page[
-    # paginates_per 4
- #    @ratings = @ratings.page(params[:page])
- #    render :json => {
- #              models: @ratings,
- #              page_number: params[:page],
- #              total_pages: @ratings.total_pages
- #            }
+    @ratings = Rating.all
     render json: @ratings
   end
   

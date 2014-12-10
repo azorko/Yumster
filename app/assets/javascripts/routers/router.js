@@ -40,9 +40,14 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	home: function () {
 		var meals = new Yumster.Collections.Meals();
 		var len = 15;
+		var prevChoices = [];
+		var randNum
 		for (var i = 0; i < 3; i++) {
-			var randNum = Math.floor(Math.random() * len) + 1;
-			meals.add(Yumster.Collections.meals.getOrFetch(randNum));
+			do {
+			randNum = Math.floor(Math.random() * len) + 1;
+		  } while (prevChoices.indexOf(randNum) !== -1);
+			prevChoices.push(randNum);
+			meals.add(Yumster.Collections.meals.getOrFetch(randNum) );
 		}
     var view = new Yumster.Views.Home({
     	collection: meals

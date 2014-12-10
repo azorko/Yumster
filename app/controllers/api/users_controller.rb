@@ -10,8 +10,6 @@ class Api::UsersController < Api::ApiController
       redirect_to root_url
     else
       render json: ["Invalid email and/or password."].to_json, status: 422
-      # flash.now[:errors] = @user.errors.full_messages
- #      render :new
     end
   end
   

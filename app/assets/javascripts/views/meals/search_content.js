@@ -4,7 +4,6 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 	
 	initialize: function () {
 		this.meal_page = 1;
-		// this.collection.page = 1;
 		this.render();
     this.listenTo(this.collection, "sync", this.render);		
 	},
@@ -60,7 +59,6 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 	updatePrice: function (event) {
 		this.updateSlider(event);
 		this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
-		// this.collection.fetch({data: Yumster.current_filters});
 	},
 	
 	show: function (event) {
@@ -72,7 +70,6 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 		var $filterEl = $(event.currentTarget);
 		Yumster.current_filters[$filterEl.attr("name")] = $filterEl.val();
 		this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
-		// this.collection.fetch({data: Yumster.current_filters});
 	},
 	
 	removeFilter: function (event) {
@@ -98,7 +95,6 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 		}
 		delete Yumster.current_filters[filterId];
 		this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
-		// this.collection.fetch({data: Yumster.current_filters});
 	},
 	
 	blueMarker: function (event) {

@@ -8,7 +8,6 @@ Yumster.Views.MapMeal = Backbone.View.extend({
 	render: function() {
 		var content = this.template({ meal: this.model });
 		this.$el.html(content);
-		// $(".gm-style-iw").next("div").remove();
 		return this;
 	},
 	

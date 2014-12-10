@@ -40,6 +40,13 @@ Yumster.Views.MealModal = Backbone.CompositeView.extend({
 			$("body").removeAttr("style");
 			that.remove();
 		};
+		
+		function error () {
+			$("#listing-errors").html("Please fill out all the fields.");
+			setTimeout(function () {
+				$("#listing-errors").html("");
+			}, 3000);
+		};
 
 		if(this.model.isNew()) {
 			var model = this.collection.create(attrs, {
@@ -47,10 +54,11 @@ Yumster.Views.MealModal = Backbone.CompositeView.extend({
 					that.user.host_meals().add(model);
 					$("body").removeAttr("style");
 					that.remove();
-				}
+				},
+				error: error
 			});
 		} else {
-			this.model.save(attrs, { success: success });
+			this.model.save(attrs, { success: success, error: error });
 		}
 	}
 	

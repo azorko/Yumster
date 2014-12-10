@@ -3,7 +3,6 @@ Yumster.Views.MealsSearch = Backbone.CompositeView.extend({
   template: JST['meals/search'],
 	
 	initialize: function () {
-		// this.parseQuery(); //main div
 		this.addMap();
 		this.addSearchContent();
 	},
