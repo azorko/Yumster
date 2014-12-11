@@ -8,10 +8,10 @@ Features:
 
 * Implemented the Google Maps API, markers with corresponding info windows added to map based on search results, database search triggered based on map bounds_changed event 
 
-* Avoided N + 1 queries to the database by fetching the specific model and all necessary associated models in one go
+* Avoided N + 1 queries to the database by fetching the relevant model and necessary associated models in one query
 
 * Used JSON JBuilder to return Rails models and their associated models for use in Backbone models and collections
 
 * Utilized the Kaminari gem to fetch paginated arrays of models and decrease page load time
 
-* Broke up complicated Backbone views into views focused on one functionality 
+* Created a Backbone Composite View class to help split multi-functional views into single-function views
