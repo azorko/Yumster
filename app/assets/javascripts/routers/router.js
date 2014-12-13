@@ -57,7 +57,7 @@ Yumster.Routers.Router = Backbone.Router.extend({
 
   search: function (query) {
 		console.log('search');
-		Yumster.mapView.removeMarkers();
+		// Yumster.mapView.removeMarkers();
 		
 		Yumster.current_filters = this.parseQuery(query);
 		Yumster.mapView.changeCenter();
@@ -69,7 +69,9 @@ Yumster.Routers.Router = Backbone.Router.extend({
 		Yumster.Collections.meals.fetch({
 			data: { filters: Yumster.current_filters, page: 1 },
 			success: function (collection) {
+				// Yumster.mapView.removeMarkers();
 				// Yumster.mapView.addMarkers();
+				// view.afterRender();
 			}
 		});
 

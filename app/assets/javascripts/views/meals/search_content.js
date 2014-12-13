@@ -98,16 +98,23 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 	},
 	
 	blueMarker: function (event) {
-		var num = $(event.currentTarget).data("listing-num");
-		var marker = Yumster.markers[num];
-		marker.setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|A1C6EB");
-		marker.setAnimation(google.maps.Animation.BOUNCE);
+		var id = $(event.currentTarget).data("id");
+		Yumster.markers.forEach(function(marker, index) { 
+			if (marker.listingId === id) {
+				marker.setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|A1C6EB");
+				marker.setAnimation(google.maps.Animation.BOUNCE);
+			}
+		});
 	},
 	
 	redMarker: function (event) {
-		var num = $(event.currentTarget).data("listing-num");
-		Yumster.markers[num].setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569");
-		Yumster.markers[num].setAnimation(null);
+		var id = $(event.currentTarget).data("id");
+		Yumster.markers.forEach(function(marker, index) { 
+			if (marker.listingId === id) {
+				marker.setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569");
+				marker.setAnimation(null);
+			}
+		});
 	},
 	
 	pageChange: function (event) {

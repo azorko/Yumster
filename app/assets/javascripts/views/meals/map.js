@@ -7,7 +7,6 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 		Yumster.markers = [];
 		this.refreshListeners();
 		this.render();
-		
 	},
 	
 	refreshListeners: function () {

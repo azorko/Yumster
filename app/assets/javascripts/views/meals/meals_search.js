@@ -13,6 +13,7 @@ Yumster.Views.MealsSearch = Backbone.CompositeView.extend({
     this.$el.html(content);
 		
 		this.attachSubviews();
+		this.afterRender();
     return this;
   },
 	
