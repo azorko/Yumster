@@ -114,8 +114,10 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 		event.preventDefault();
 		var chosenPage = Number($(event.target).data("page"));
 		if (chosenPage === 0) {
+			debugger
 			this.meal_page--;
 		} else if (chosenPage === -1) {
+			debugger
 			this.meal_page++;
 		} else {
 			this.meal_page = chosenPage;

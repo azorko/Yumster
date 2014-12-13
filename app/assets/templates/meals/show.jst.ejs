@@ -60,7 +60,7 @@
 			
 			<div class="people-info">
 			
-			<div class="row">
+			<div class="row" data-toggle="tooltip" data-placement="bottom" title="Sign in as a guest user to be able to join meals and write reviews.">
 				<h3 class="meal-header" style="background-color: #A34775; color: white;"> Join This Meal </h3>
 				<div class="meal-div">
 					<div class="row" style="margin-left: 0px;">
@@ -96,7 +96,7 @@
 				</div> <!-- meal-sign-up -->
 			</div>
 			
-			<div class="row">
+			<div class="row" data-toggle="tooltip" data-placement="bottom" title="Click on any user icon to view their profile page.">
 				<h3 class="meal-header"> Your Host </h3>
 				<div class="meal-div">
 					<div class="col-md-5">
@@ -132,3 +132,9 @@
 
 
 </div> <!-- container -->
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

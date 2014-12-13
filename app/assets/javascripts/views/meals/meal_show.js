@@ -72,7 +72,7 @@ Yumster.Views.MealShow = Backbone.View.extend({
 			var error = "<p style='text-align: center; color: red;'> You have already booked this meal. </p>";
 		} else {
 			
-			var error = "<p style='text-align: center; color: green;'> Your request was sent. View the status of your request in your 'Guest Meals'. </p>";
+			var error = "<p style='text-align: center; color: green;'> Your request was processed succesfully. </p>";
 			
 			var that = this;
 			var booking = new Yumster.Models.GuestMealJoin();

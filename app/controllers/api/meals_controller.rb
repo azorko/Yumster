@@ -37,6 +37,7 @@ class Api::MealsController < Api::ApiController
         } 
       ]
     )
+  
     
     count = @meals.count
     @meals = @meals.page(params[:page].to_i)

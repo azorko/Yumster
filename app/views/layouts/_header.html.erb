@@ -19,7 +19,7 @@
 						<div class='form-group'>
 							<input id="header-lat" type="hidden" name="lat">
 							<input id="header-lng" type="hidden" name="lng">
-							<input style="border-radius: 0px; -webkit-appearance: none; width: 230px;" type='text' id='location-header' class='form-control' name='location' placeholder='Location'>
+							<input style="border-radius: 0px; -webkit-appearance: none; width: 230px;" type='text' id='location-header' class='form-control' name='location' placeholder='Location' data-toggle="tooltip" data-placement="bottom" title="Get started by searching for meals in San Francisco, Mountain View, Cupertino, or Sunnyvale.">
 						</div>
 						<button style="border-radius: 0px; -webkit-appearance: none; margin-left: -4px;" type='submit' id="button-header" class='btn btn-default'>Search</button>
 					</form>
@@ -51,7 +51,7 @@
 					<a data-toggle="modal" data-target="#sign-up-modal">Sign Up
 					</a>
 				</li>
-				<li>
+				<li data-toggle="tooltip" data-placement="bottom" title="Sign in to update/create meal listings, and cancel current meals.">
 					<a data-toggle="modal" data-target="#sign-in-modal">Log In
 					</a>
 				</li>
@@ -100,3 +100,8 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 	
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

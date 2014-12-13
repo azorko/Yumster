@@ -36,10 +36,14 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 
 		var that = this;
 	  google.maps.event.addListener(this._map, 'idle', function() { //never use "bounds_changed"
- 			var topLeftLat = that._map.getBounds().Fa.j;
- 			var topLeftLng = that._map.getBounds().wa.j;
- 			var bottomRightLat = that._map.getBounds().Fa.k;
- 			var bottomRightLng = that._map.getBounds().wa.k;
+			var mapBounds = that._map.getBounds();
+			var southWest = mapBounds.getSouthWest();
+			var northEast = mapBounds.getNorthEast();
+			
+ 			var topLeftLat = northEast.lat();
+ 			var topLeftLng = southWest.lng();
+ 			var bottomRightLat = southWest.lat();
+ 			var bottomRightLng = northEast.lng();
  			Yumster.current_filters["top_left"] = [topLeftLat, topLeftLng];
  			Yumster.current_filters["bottom_right"] = [bottomRightLat, bottomRightLng];
  			that.collection.fetch({data: { filters: Yumster.current_filters, page: Yumster.meal_page } });
