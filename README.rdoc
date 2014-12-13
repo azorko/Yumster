@@ -1,28 +1,17 @@
-== README
+== Yumster
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Yumster is a platform for cooks and food enthusiasts to share home-cooked meals and experiences together. Cooks can list meals they would like to host at their home on the web app and specify a donation based pay they would like to recieve from any guests that sign up for their listing. Food enthusiasts can browse through posted meals and sign up. This project is influenced by Airbnb's home guest hosting platform. This project was created for the sole purpose of increasing programming experience. 
 
-Things you may want to cover:
+Features:
 
-* Ruby version
+* Javascript/jQuery on Backbone frontend with Ruby on Rails backend web app
 
-* System dependencies
+* Implemented the Google Maps API, markers with corresponding info windows added to map based on search results, database search triggered based on map bounds_changed event 
 
-* Configuration
+* Avoided N + 1 queries to the database by fetching the relevant model and necessary associated models in one query
 
-* Database creation
+* Used JSON JBuilder to return Rails models and their associated models for use in Backbone models and collections
 
-* Database initialization
+* Utilized the Kaminari gem to fetch paginated arrays of models and decrease page load time
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Created a Backbone Composite View class to help split multi-functional views into single-function views
