@@ -18,7 +18,7 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 		"click .remove-filter": "removeFilter",
 		"mouseenter .meal-info": "blueMarker",
 		"mouseleave .meal-info": "redMarker",
-		"click .pagination": "pageChange"
+		"click .pagination>li>a": "pageChange"
 	},
 	
   render: function () {
@@ -101,7 +101,7 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 		var id = $(event.currentTarget).data("id");
 		Yumster.markers.forEach(function(marker, index) { 
 			if (marker.listingId === id) {
-				marker.setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|A1C6EB");
+				marker.setIcon("https://s3-us-west-1.amazonaws.com/yumster/blue_pin.png");
 				marker.setAnimation(google.maps.Animation.BOUNCE);
 			}
 		});
@@ -111,7 +111,7 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 		var id = $(event.currentTarget).data("id");
 		Yumster.markers.forEach(function(marker, index) { 
 			if (marker.listingId === id) {
-				marker.setIcon("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569");
+				marker.setIcon("https://s3-us-west-1.amazonaws.com/yumster/red_pin.png");
 				marker.setAnimation(null);
 			}
 		});
@@ -119,12 +119,10 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 	
 	pageChange: function (event) {
 		event.preventDefault();
-		var chosenPage = Number($(event.target).data("page"));
+		var chosenPage = Number($(event.currentTarget).data("page"));
 		if (chosenPage === 0) {
-			debugger
 			this.meal_page--;
 		} else if (chosenPage === -1) {
-			debugger
 			this.meal_page++;
 		} else {
 			this.meal_page = chosenPage;

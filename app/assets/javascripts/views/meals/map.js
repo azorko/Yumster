@@ -3,6 +3,7 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	template: JST['meals/map'],
 	
 	initialize: function () {
+		this.AZ = 0;
 		console.log('initializeMap');
 		Yumster.markers = [];
 		this.refreshListeners();
@@ -17,7 +18,6 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	},
 	
   render: function () {
-		console.log('rendering map');
 		var content = this.template();
 		this.$el.html(content);
 		this.renderMap();
@@ -25,12 +25,17 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
   },
 	
 	renderMap: function () {
+		this.AZ++;
 		var lat = Number(Yumster.current_filters["lat"]) || 37.7749295;
 		var lng = Number(Yumster.current_filters["lng"]) || -122.4194155;
 		var mapOptions = {
 			center: new google.maps.LatLng(lat, lng),
-			zoom: 12
+			zoom: 12,
+			AZ: this.AZ
 		};
+		
+		this._map && google.maps.event.clearInstanceListeners(this._map);
+		delete this._map;
 		this._map = new google.maps.Map(this.$el.find("#search-map")[0], mapOptions); //this._map ||
 
 		var that = this;
@@ -38,9 +43,10 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 			var mapBounds = that._map.getBounds();
 			var southWest = mapBounds.getSouthWest();
 			var northEast = mapBounds.getNorthEast();
-			
+
  			var topLeftLat = northEast.lat();
  			var topLeftLng = southWest.lng();
+			
  			var bottomRightLat = southWest.lat();
  			var bottomRightLng = northEast.lng();
  			Yumster.current_filters["top_left"] = [topLeftLat, topLeftLng];
@@ -57,15 +63,15 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	},
 	
 	newMarker: function (results, listing) {
-		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
+		var pinImage = new google.maps.MarkerImage("https://s3-us-west-1.amazonaws.com/yumster/red_pin.png",
 		        new google.maps.Size(21, 34),
 		        new google.maps.Point(0,0),
 		        new google.maps.Point(10, 34));
-		
+		// debugger
     var marker = new google.maps.Marker({
       map: this._map,
       position: results[0].geometry.location,
-			animation: google.maps.Animation.DROP,
+			// animation: google.maps.Animation.DROP,
 			icon: pinImage,
 			listingId: listing.id
     });
@@ -77,6 +83,7 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	},
 	
 	attachMarker: function (listing) {
+		console.log('attach marker');
 		var that = this;
 		var address = listing.basicHostData().get("address");
 		var geocoder = new google.maps.Geocoder();
@@ -88,7 +95,6 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	},
 	
 	addMarkers: function() {
-		// debugger
 		// Yumster.markers = [];
 		console.log('addMarkers');
 		this.collection.each(function (listing) {
@@ -106,6 +112,8 @@ Yumster.Views.Map = Backbone.CompositeView.extend({
 	},
 	
 	removeMarker: function (listing) {
+		console.log('remove marker');
+		// debugger
 		var that = this;
 		Yumster.markers.forEach(function(marker, index) { 
 			if (marker.listingId === listing.id) {

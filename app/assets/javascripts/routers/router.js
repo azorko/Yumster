@@ -1,5 +1,9 @@
 Yumster.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
+		// create global nav bar view.
+		// nav bar view has click handler on 'sign in'
+		// click handler redirects to session/new with query string storing the document.URL
+		
 		Yumster.current_filters = {};
 		Yumster.mapView = new Yumster.Views.Map({
 		  collection: Yumster.Collections.meals
@@ -56,9 +60,6 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	},
 
   search: function (query) {
-		console.log('search');
-		// Yumster.mapView.removeMarkers();
-		
 		Yumster.current_filters = this.parseQuery(query);
 		Yumster.mapView.changeCenter();
 		
@@ -69,9 +70,8 @@ Yumster.Routers.Router = Backbone.Router.extend({
 		Yumster.Collections.meals.fetch({
 			data: { filters: Yumster.current_filters, page: 1 },
 			success: function (collection) {
-				// Yumster.mapView.removeMarkers();
 				// Yumster.mapView.addMarkers();
-				// view.afterRender();
+				Yumster.mapView.removeMarkers();
 			}
 		});
 
@@ -109,7 +109,7 @@ Yumster.Routers.Router = Backbone.Router.extend({
 		var geoLoc = this.headerAuto.getPlace().geometry.location;
 		$("#location-header").attr("value", loc);
 		$("#header-lat").attr("value", geoLoc.k);
-		$("#header-lng").attr("value", geoLoc.B);
+		$("#header-lng").attr("value", geoLoc.D);
 	},
 	
 	parseQuery: function (query) {

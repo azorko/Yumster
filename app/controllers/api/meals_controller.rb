@@ -21,7 +21,7 @@ class Api::MealsController < Api::ApiController
     AND lng BETWEEN :top_left_lng AND :bottom_right_lng
     SQL
     
-    @meals = Meal.joins("LEFT OUTER JOIN users ON meals.host_id = users.id").where(
+    @meals = Meal.includes(:user).joins("LEFT OUTER JOIN users ON meals.host_id = users.id").where(
       [ betweens,
         {
           max_price: filter_params[:max_price], 
@@ -37,8 +37,7 @@ class Api::MealsController < Api::ApiController
         } 
       ]
     )
-  
-    
+    # byebug
     count = @meals.count
     @meals = @meals.page(params[:page].to_i)
     
@@ -87,7 +86,10 @@ class Api::MealsController < Api::ApiController
 #   end
   
   def show
-    @meal = Meal.includes(:guests => :guest_meal_joins, :user => {:ratings => :author}).find(params[:id])
+    @meal = Meal.includes(:guests => :guest_meal_joins, :user => {:ratings => :author})
+                .find(params[:id])
+    # fail
+                # .where('guest_meal_joins.meal_id = ?', @meal.id)
         # @meal = Meal.find(params[:id])
     render :show
   end

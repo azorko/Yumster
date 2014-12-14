@@ -4,9 +4,10 @@ Yumster.Views.UserListings = Backbone.CompositeView.extend({
 	
 	initialize: function (options) {
 		this.user = options.user;
+		this.listenTo(this.model.host_meals(), "update-model", this.refetch);
 		this.listenTo(this.user, "sync add remove reset", this.render); //logged in user
     this.listenTo(this.model, "sync remove", this.render); //user whose profile is being viewed
-		this.listenTo(this.model.host_meals(), "sync add remove reset", this.render);
+		this.listenTo(this.model.host_meals(), "sync add remove reset change", this.render);
 		// this.listenTo(Yumster.Collections.meals, "sync add remove reset", this.render);	
 	},
 	
@@ -14,6 +15,14 @@ Yumster.Views.UserListings = Backbone.CompositeView.extend({
 		"change .update": "update",
 		"click .meal-click": "viewMeal",
 		"click .modal-button": "newListing"
+	},
+	
+	// test: function () {
+	// 	debugger;
+	// },
+	
+	refetch: function () {
+		this.model.fetch();
 	},
 	
   render: function () {
@@ -57,14 +66,14 @@ Yumster.Views.UserListings = Backbone.CompositeView.extend({
 	newListing: function (event) {
 		event.preventDefault();
 		var meal = new Yumster.Models.Meal();
-		this.modalView = this.modalView ||
-		  new Yumster.Views.MealModal({
+		debugger
+		modalView = new Yumster.Views.MealModal({
 				model: meal,
 				user: this.model,
 				collection: Yumster.Collections.meals
 			});
-		$('body').prepend(this.modalView.render().$el);
-		this.modalView.delegateEvents();
+		$('body').prepend(modalView.render().$el);
+		modalView.delegateEvents();
 	}
 	
 });

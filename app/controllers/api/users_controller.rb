@@ -24,7 +24,9 @@ class Api::UsersController < Api::ApiController
  # end
   
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    # :guests => :guest_meal_joins, :user => {:ratings => :author}
+    @user = User.includes(:guest_meals, :host_meals).find(params[:id])
     render :show
   end
 

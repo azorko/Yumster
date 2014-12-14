@@ -34,7 +34,7 @@ Yumster.Views.Home = Backbone.View.extend({
 		var loc = this.searchAuto.getPlace();
 		var geoLoc = this.searchAuto.getPlace().geometry.location;
 		this.$el.find("#lat-search").attr("value", geoLoc.k);
-		this.$el.find("#lng-search").attr("value", geoLoc.B);
+		this.$el.find("#lng-search").attr("value", geoLoc.D);
 		this.$el.find("#location-search").attr("value", loc);
 	},
 	

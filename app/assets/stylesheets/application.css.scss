@@ -160,14 +160,18 @@ font-family: 'Quicksand', sans-serif;
 	margin: 10px;
 }
 
+//.before-footer {
+//	height: 50px;
+//	width:100%;
+//}
+
 .footer {
-	display: none;
 	border: 1px solid rgb(231, 231, 231);
 	height: 50px;
-	background-color: white;
-	position:absolute;
-	bottom: 0;
+	background-color: #F8F8F8;
 	width:100%;
+//	position: fixed;
+//	bottom: 0;
 }
 
 //################## Search #####################
@@ -341,11 +345,14 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .people-info {
-	position: absolute;
-	top: 50px;
-	left: 15px;
-	right: 0;
-	bottom: 0;
+	overflow: auto;
+	height: 100vh;
+	margin-left: 20px;
+	//position: absolute;
+//	top: 50px;
+//	left: 15px;
+//	right: 0;
+//	bottom: 0;
 }
 
 //######################## User Profile ##################################
@@ -397,7 +404,7 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .click-header {
-	border: 1px solid #E7E7E7;
+	border: 1px solid #cccccc;
 	background-color: #F8F8F8;
 	height: 50px;
 	width: 100%;
@@ -413,26 +420,28 @@ font-family: 'Quicksand', sans-serif;
 	top: 0px;
 	left: 0px;
 	font-size: 25px;
-	border-right: 1px solid #E7E7E7;
-	border-left: 1px solid #E7E7E7;
+	border-right: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
 	width: 20vw;
 	margin-left: -1px;
-	height: 50px;
-	padding-top: 4px;
-	padding-right: 10px;
+	height: 46px;
+  padding-right: 10px;
 	padding-left: 10px;
-	padding-bottom: 17px;
+	padding-top: 8px;
+	padding-bottom: 11px;
 	margin-top: 20px;
 	font-align: center;
+	line-height:46px;
 }
 
 .header-button:hover {
 	background-color: #E7E7E7;
+	border: 1px solid #cccccc;
 }
 
-.header-button:active {
-	background-color: #E7E7E7;
-}
+//.header-button:active {
+//	background-color: #E7E7E7;
+//}
 
 //############################### Form Modal ###########################
 
