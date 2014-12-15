@@ -3,7 +3,7 @@
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input id="guest-email" name="user[email]" type="text" placeholder="Email"><br>
     <input id="guest-pass" name="user[password]" type="password" placeholder="Password"><br>
-	  <button style="border-radius: 0px; -webkit-appearance: none; margin-left: 2px;" type="submit" class='btn btn-default modal-button'>Submit</button>
+	  <button id="sign-in-button" style="border-radius: 0px; -webkit-appearance: none; margin-left: 2px;" type="submit" class='btn btn-default modal-button'>Submit</button>
 </form>
 <button style="border-radius: 0px; -webkit-appearance: none; margin-left: 2px;" id="guest-login" type="submit" class='btn btn-default modal-button'>Guest Login</button>
 
@@ -16,7 +16,9 @@
 				data: $(event.currentTarget).serialize(),
 				type: "POST",
 				success: function (data) {
-					window.location = '/';
+					window.location = document.URL;
+					$('#sign-in-modal').modal('toggle');
+					window.location.reload(true);
 				},
 				error: function (resp) {
 					$('#signin-errors').text(resp.responseJSON)

@@ -1,8 +1,5 @@
 Yumster.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
-		// create global nav bar view.
-		// nav bar view has click handler on 'sign in'
-		// click handler redirects to session/new with query string storing the document.URL
 		
 		Yumster.current_filters = {};
 		Yumster.mapView = new Yumster.Views.Map({
@@ -36,7 +33,7 @@ Yumster.Routers.Router = Backbone.Router.extend({
 	
   routes: {
 		"": "home",
-		"users/:id/:query": "userShow", //could make it optional /(:query)
+		"users/:id/:query": "userShow",
 		"search/*query": "search",
     "meals/:id": "mealShow"
   },

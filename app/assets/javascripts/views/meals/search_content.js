@@ -121,13 +121,19 @@ Yumster.Views.SearchContent = Backbone.CompositeView.extend({
 		event.preventDefault();
 		var chosenPage = Number($(event.currentTarget).data("page"));
 		if (chosenPage === 0) {
-			this.meal_page--;
+			if ($(event.currentTarget).attr("class") !== "disabled") {
+			  this.meal_page--;
+			}
 		} else if (chosenPage === -1) {
-			this.meal_page++;
+			if ($(event.currentTarget).attr("class") !== "disabled") {
+			  this.meal_page++;
+			}
 		} else {
 			this.meal_page = chosenPage;
 		}
-		this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
+		if ($(event.currentTarget).attr("class") !== "disabled") {
+		  this.collection.fetch({data: { filters: Yumster.current_filters, page: this.meal_page } });
+		}
 	}
 	
 });

@@ -16,7 +16,9 @@
 				data: $(event.currentTarget).serialize(),
 				type: "POST",
 				success: function (data) {
-					window.location = '/';
+					window.location = document.URL;
+					$('#sign-in-modal').modal('toggle');
+					window.location.reload(true);
 				},
 				error: function (resp) {
 					$('#signup-errors').text(resp.responseJSON)

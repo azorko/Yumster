@@ -171,9 +171,10 @@ font-family: 'Quicksand', sans-serif;
 
 .footer-icon {
 	float: left;
+	background-position: 50% 50%;
 	margin-right: 15px;
 	border-radius: 50px;
-	border: 2px solid #777777;
+	border: 1px solid #777777;
 	width: 40px;
 	height: 40px;
 	background-size: 40px 40px;
@@ -190,8 +191,12 @@ font-family: 'Quicksand', sans-serif;
 	border-top: 1px solid #777777;
 }
 
-.footer-link:link {
-	color: black !important;
+.footer-link a {
+	color: white;
+}
+
+.footer-link h4 {
+	color: #A34775;
 }
 
 .bold {
@@ -268,6 +273,16 @@ font-family: 'Quicksand', sans-serif;
 
 .gap:hover {
 	background-color: white !important;
+}
+
+.page {
+	min-width: 35px;
+	width: 35px;
+	color: #A34775;
+}
+
+.disabled {
+	background-color: #e7e7e7 !important;
 }
 
 //########## Map ###########
@@ -509,9 +524,16 @@ font-family: 'Quicksand', sans-serif;
 
 .search-bar.modal-form, .modal-form {
 	width: 100%;
-	height: 40px;
+	height: 45px;
 	border-radius: 0px;
+	margin-left: 0px;
 	-webkit-appearance: none;
+}
+
+.input-group-addon {
+	width: 45px;
+	min-width: 45px;
+	height: 45px;
 }
 
 .form-header {

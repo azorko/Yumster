@@ -29,7 +29,7 @@
 		<div class="col-md-4">
 		<div class="input-group">
 		  <span class="input-group-addon glyphicon glyphicon-cutlery"></span>
-			<select style="margin-top: 1px;" class="search-bar modal-form" name="tag">
+			<select style="margin-top: 1px; width: 10.6vw;" class="search-bar modal-form" name="tag">
 				<% if (!meal.get('tag')) { %>
 				  <option value="" disabled selected>Cuisine</option>
 				<% } %>
@@ -45,17 +45,17 @@
 		<br>
 		<div class="input-group">
 		  <span style="font-size: 20px; font-weight: bold;" class="input-group-addon">$</span>
-		  <input name="price" value="<%= meal.escape('price') %>" type="text" class="form-control modal-form" placeholder="Price">
+		  <input style="width: 10.6vw;" name="price" value="<%= meal.escape('price') %>" type="text" class="form-control modal-form" placeholder="Price">
 		</div>
 		<br>
 		<div class="input-group">
 		  <span class="input-group-addon glyphicon glyphicon-user"></span>
-		  <input style="margin-top: 1px;" name="max_guests" value="<%= meal.escape('max_guests') %>" type="text" class="form-control modal-form" placeholder="Maximum guests">
+		  <input style="margin-top: 1px; width: 10.6vw;" name="max_guests" value="<%= meal.escape('max_guests') %>" type="text" class="form-control modal-form" placeholder="Maximum guests">
 		</div>
 		<br>
 		<div class="input-group">
 		  <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-		  <input style="margin-top: 1px; max-width: 11vw;" placeholder="Meal Date" name="date" value="<%= meal.escape('date') %>"  class="textbox-n search-bar modal-form" type="text" onfocus="(this.type='date')">
+		  <input style="margin-top: 1px; width: 10.6vw;" placeholder="Meal Date" name="date" value="<%= meal.escape('date') %>"  class="textbox-n search-bar modal-form" type="text" onfocus="(this.type='date')">
 		</div>
 		</div> <!-- close input area -->
 		</div> <!-- close text/input area -->
