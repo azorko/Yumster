@@ -160,18 +160,47 @@ font-family: 'Quicksand', sans-serif;
 	margin: 10px;
 }
 
-//.before-footer {
-//	height: 50px;
-//	width:100%;
-//}
-
 .footer {
-	border: 1px solid rgb(231, 231, 231);
-	height: 50px;
-	background-color: #F8F8F8;
-	width:100%;
-//	position: fixed;
-//	bottom: 0;
+	height: 100%;
+	background-color: #2b2d2e;
+	color: white;
+	width: 100%;
+	overflow: auto;
+	padding-top: 50px;
+}
+
+.footer-icon {
+	float: left;
+	margin-right: 15px;
+	border-radius: 50px;
+	border: 2px solid #777777;
+	width: 40px;
+	height: 40px;
+	background-size: 40px 40px;
+}
+
+.footer-icon:hover {
+	opacity: 0.9;
+}
+
+.footer-contact {
+	padding-top: 20px;
+	padding-bottom: 50px;
+	font-align: center;
+	border-top: 1px solid #777777;
+}
+
+.footer-link:link {
+	color: black !important;
+}
+
+.bold {
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.bold a {
+	color: black;	
 }
 
 //################## Search #####################
