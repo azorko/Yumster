@@ -6,7 +6,7 @@ Features:
 
 * Javascript/jQuery on Backbone frontend with Ruby on Rails backend web app
 
-* Implemented the Google Maps API, markers with corresponding info windows added to map based on search results, database search triggered based on map bounds_changed event 
+* Implemented the Google Maps API, markers with corresponding info windows added to map based on search results, database search triggered based on map bounds_changed event
 
 * Avoided N + 1 queries to the database by fetching the relevant model and necessary associated models in limited queries
 
@@ -15,3 +15,5 @@ Features:
 * Utilized the Kaminari gem to fetch paginated arrays of models and decrease page load time
 
 * Created a Backbone Composite View class to help split multi-functional views into single-function views
+
+* Implemented custom Rails user authentication
