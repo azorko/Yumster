@@ -8,7 +8,7 @@ Features:
 
 * Implemented the Google Maps API, markers with corresponding info windows added to map based on search results, database search triggered based on map bounds_changed event 
 
-* Avoided N + 1 queries to the database by fetching the relevant model and necessary associated models in one query
+* Avoided N + 1 queries to the database by fetching the relevant model and necessary associated models in limited queries
 
 * Used JSON JBuilder to return Rails models and their associated models for use in Backbone models and collections
 
