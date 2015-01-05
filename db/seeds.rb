@@ -34,37 +34,37 @@ Meal.create({tag: "Asian", title: "Curries Galore", price: 20, max_guests: 10, h
 Meal.create({tag: "Western", title: "Almond Creme Crepe Cake", price: 15, max_guests: 10, host_id: 16, date: "#{year}-#{month}-13", photo_url: "https://s3-us-west-1.amazonaws.com/yumster/crepe_cake.jpg", about: Faker::Lorem.paragraph(12)})
 
 
-User.create({email: "natasha@yumster.com", password: "secret", name: "Natasha", address: "3255 21st St, San Francisco, CA", lat: 37.75685199999999, lng: -122.42031359999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/host1.jpg", about: Faker::Lorem.paragraph });
+User.create({email: "natasha@yumster.com", password: "secret", name: "Natasha", address: "3255 21st St, San Francisco, CA", lat: 37.75685199999999, lng: -122.42031359999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Katia.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "andrei@yumster.com", password: "secret", name: "Andrei", address: "429 Castro St, San Francisco, CA", lat: 37.7620333, lng: -122.43475910000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/host2.jpg", about: Faker::Lorem.paragraph });
+User.create({email: "andrei@yumster.com", password: "secret", name: "Andrei", address: "429 Castro St, San Francisco, CA", lat: 37.7620333, lng: -122.43475910000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Nikita.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "marina@yumster.com", password: "secret", name: "Marina", address: "1610 Geary Blvd, San Francisco, CA", lat: 37.7849934, lng: -122.43018119999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/host3.jpg", about: Faker::Lorem.paragraph });
+User.create({email: "marina@yumster.com", password: "secret", name: "Marina", address: "1610 Geary Blvd, San Francisco, CA", lat: 37.7849934, lng: -122.43018119999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Olga.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "shelly@yumster.com", password: "secret", name: "Shelly", address: "100 Transverse Dr, San Francisco, CA", lat: 37.769421, lng: -122.486214, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Nitzan.png", about: Faker::Lorem.paragraph });
+User.create({email: "shelly@yumster.com", password: "secret", name: "Shelly", address: "100 Transverse Dr, San Francisco, CA", lat: 37.769421, lng: -122.486214, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Nitzan.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "franchesca@yumster.com", password: "secret", name: "Franchesca", address: "1805 Geary Blvd, San Francisco, CA", lat: 37.7840042, lng: -122.43313319999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Lily", about: Faker::Lorem.paragraph });
+User.create({email: "franchesca@yumster.com", password: "secret", name: "Franchesca", address: "1805 Geary Blvd, San Francisco, CA", lat: 37.7840042, lng: -122.43313319999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Lily.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "jessica@yumster.com", password: "secret", name: "Jessica", address: "1601 Haight St, San Francisco, CA", lat: 37.7697907, lng: -122.44858240000002, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Tiffie.png", about: Faker::Lorem.paragraph });
+User.create({email: "jessica@yumster.com", password: "secret", name: "Jessica", address: "1601 Haight St, San Francisco, CA", lat: 37.7697907, lng: -122.44858240000002, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Tiffie.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "lara@yumster.com", password: "secret", name: "Lara", address: "679 Sutter St, San Francisco, CA", lat: 37.7885915, lng: -122.41148129999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Nev.png", about: Faker::Lorem.paragraph });
+User.create({email: "lara@yumster.com", password: "secret", name: "Lara", address: "679 Sutter St, San Francisco, CA", lat: 37.7885915, lng: -122.41148129999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Nev.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "sebastian@yumster.com", password: "secret", name: "Sebastian", address: "2144 Chestnut St, San Francisco, CA", lat: 37.8006178, lng: -122.43871250000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Dima.png", about: Faker::Lorem.paragraph });
+User.create({email: "sebastian@yumster.com", password: "secret", name: "Sebastian", address: "2144 Chestnut St, San Francisco, CA", lat: 37.8006178, lng: -122.43871250000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Dima.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "sophia@yumster.com", password: "secret", name: "Sophia", address: "736 W Dana St., Mountain View, CA", lat: 37.3923683, lng: -122.07892140000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Gina", about: Faker::Lorem.paragraph });
+User.create({email: "sophia@yumster.com", password: "secret", name: "Sophia", address: "736 W Dana St., Mountain View, CA", lat: 37.3923683, lng: -122.07892140000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Gina.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "artemus@yumster.com", password: "secret", name: "Artemus", address: "1945 Charleston Road, Mountain View, CA", lat: 37.4225275, lng: -122.0904213, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Chris", about: Faker::Lorem.paragraph });
+User.create({email: "artemus@yumster.com", password: "secret", name: "Artemus", address: "1945 Charleston Road, Mountain View, CA", lat: 37.4225275, lng: -122.0904213, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Chris.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "lucas@yumster.com", password: "secret", name: "Lucas", address: "855 E El Camino Real, Sunnyvale, CA", lat: 37.3546874, lng: -122.01528239999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Sahil", about: Faker::Lorem.paragraph });
+User.create({email: "lucas@yumster.com", password: "secret", name: "Lucas", address: "855 E El Camino Real, Sunnyvale, CA", lat: 37.3546874, lng: -122.01528239999999, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Sahil.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "isabella@yumster.com", password: "secret", name: "Isabella", address: "21840 McClellan Rd, Cupertino, CA", lat: 37.3144364, lng: -122.05667269999998, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Zhyliana", about: Faker::Lorem.paragraph });
+User.create({email: "isabella@yumster.com", password: "secret", name: "Isabella", address: "21840 McClellan Rd, Cupertino, CA", lat: 37.3144364, lng: -122.05667269999998, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Zhyliana.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "maya@yumster.com", password: "secret", name: "Maya", address: "2500 Grant Rd, Mountain View, CA", lat: 37.3694772, lng: -122.07991170000003, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Shefali", about: Faker::Lorem.paragraph });
+User.create({email: "maya@yumster.com", password: "secret", name: "Maya", address: "2500 Grant Rd, Mountain View, CA", lat: 37.3694772, lng: -122.07991170000003, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Shefali.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "eva@yumster.com", password: "secret", name: "Eva", address: "10123 N Wolfe Rd, Cupertino, CA", lat: 37.3271238, lng: -122.01519380000002, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Adity", about: Faker::Lorem.paragraph });
+User.create({email: "eva@yumster.com", password: "secret", name: "Eva", address: "10123 N Wolfe Rd, Cupertino, CA", lat: 37.3271238, lng: -122.01519380000002, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Adity.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "rodrigo@yumster.com", password: "secret", name: "Rodrigo", address: "1500 N Shoreline Blvd, Mountain View, CA", lat: 37.4146221, lng: -122.08096280000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Ashton", about: Faker::Lorem.paragraph });
+User.create({email: "rodrigo@yumster.com", password: "secret", name: "Rodrigo", address: "1500 N Shoreline Blvd, Mountain View, CA", lat: 37.4146221, lng: -122.08096280000001, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Ashton.jpg", about: Faker::Lorem.paragraph });
 
-User.create({email: "guest@yumster.com", password: "secret", name: "Guest", address: "588 N Mary Ave, Sunnyvale, CA", lat: 37.3932482, lng: -122.03691609999998, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Panda", about: Faker::Lorem.paragraph });
+User.create({email: "guest@yumster.com", password: "secret", name: "Guest", address: "588 N Mary Ave, Sunnyvale, CA", lat: 37.3932482, lng: -122.03691609999998, photo_url: "https://s3-us-west-1.amazonaws.com/yumster/Panda.jpg", about: Faker::Lorem.paragraph });
 
 
 16.times do |i|
