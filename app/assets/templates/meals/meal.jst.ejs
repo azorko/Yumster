@@ -1,4 +1,4 @@
-<div class="row">
+<div>
 	<% host = meal.basicHostData() %>
 	
 	<% var mealPhoto %>
@@ -8,18 +8,18 @@
 		<% mealPhoto = meal.get("photo_url") %>
 	<% } %>
 	
-	<div id="meal-info" class="col-md-3 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= mealPhoto %>'); border: none; margin: 0px; padding-right: 0px; margin-left: 40px;">
-		<div class="row host-profile">
+	<div id="meal-info" class="meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= mealPhoto %>'); border: none; margin: 0px;">
+		<div class="host-profile">
 			<img src="<%= host.get('photo_url') %>" class= "host-pic">
 			<span style="float: left; margin-left: 5px;">
 				<%= host.get("name")%>'s
 			</span>
 		</div>
-		<div class="row meal-blurb">
+		<div class="meal-blurb">
 			<p class="tag"><%= meal.get("tag") %></p>
 				<p> <%= meal.get("title") %> </p>
-					<p style="font-size: 10px;">
-						<span style="float: left; width: 100px;"> @<%= host.get('address') %> </span>
+					<p class="address-price" style="font-size: 10px;">
+						<span style="float: left; width: 10vw;"> @<%= host.get('address') %> </span>
 						<span style="float: right;">$<%= meal.get('price') %>/p </span>
 					</p>
 				</div>
