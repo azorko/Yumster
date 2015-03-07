@@ -51,8 +51,8 @@
 	</div>
 	
 	<!--Search Bar -->
-	<div class="row search-div">
-		<div class="col-md-10 col-md-offset-1">
+	<div class="search-div" style="display: flex; justify-content: center; overflow: auto;">
+
 			<form>
 		    <input type="hidden" id="lat-search" name="lat">
 				<input type="hidden" id="lng-search" name="lng">
@@ -78,13 +78,13 @@
 				<button type="submit" id="button-search" class="search-button btn btn-default" >Search </button>
 		
 			</form>
-		</div>
+		<!-- </div>	 -->
 	</div>
 	
 	<!--Explore your Neighborhood Header -->
 	
-	<div class="row" ><!-- style="margin-top: 15px;"> -->
-		<div class="col-md-8 col-md-offset-4 head">
+	<div style="display: flex; justify-content: center;" >
+		<div class="head">
 			<h2> Explore your Neighborhood </h2>
 			<h5> <i>...what tantalizing tastes await around the corner </i> </h5>
 		</div>
@@ -92,22 +92,23 @@
 	
 	<!-- Meal Info Samples -->
 	
-	<div class="row" style="margin-left: 2vw; margin-bottom: 4vh;">
-		<div class="col-md-1" style="margin-left: -2.5vw;"> </div>
+	<div style="display: flex; justify-content: center;">
+
 		<% meals.forEach( function (meal) { %>
 		<% var host = meal.basicHostData() %>
-		<div class="col-md-3 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meal.get("photo_url") %>'); margin-left: 20px;">
-			<div class="row host-profile">
+		<div class="meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meal.get("photo_url") %>'); margin: 10px 10px 20px 10px;">
+
+			<div class="host-profile">
 				<img src="<%= host.get('photo_url') %>" class= "host-pic">
 				<span style="float: left; margin-left: 5px;">
 					<%= host.get("name")%>'s
 				</span>
 			</div>
-			<div class="row meal-blurb">
+			<div class="meal-blurb">
 				<p class="tag"><%= meal.get("tag") %></p>
 					<p> <%= meal.get("title") %> </p>
 						<p style="font-size: 10px;">
-							<span style="float: left; width: 100px;"> @<%= host.get('address') %> </span>
+							<span style="float: left; width: 10vw;"> @<%= host.get('address') %> </span>
 							<span style="float: right;">$<%= meal.get('price') %>/p </span>
 						</p>
 					</div>

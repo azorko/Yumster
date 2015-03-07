@@ -71,10 +71,6 @@ div.carousel-caption h4 {
 	background-color: rgba(191, 116, 63, 0.17);//rgba(140, 114, 114, 0.22);//rgba(140, 114, 127, 0.44);
 }
 
-.search-div {
-	margin-left: 35px;
-}
-
 .search-bar {
 	border-radius: 0px;
 	border-left: none;
@@ -107,12 +103,13 @@ font-family: 'Quicksand', sans-serif;
 
 .tag {
 	background-color: #A34775;
-	height: 13px;
+	height: auto;
+	overflow: auto;
 	border-radius: 5px;
 	color: black;
   display: inline-block;
 	font-size: 10px;
-	margin-bottom: -15px;
+	margin-bottom: 0px;
 	padding-right: 2px;
 	padding-left: 2px;
 }
@@ -128,6 +125,7 @@ font-family: 'Quicksand', sans-serif;
 	border: 10px solid white;
 	font-family: 'Quicksand', sans-serif;
 	outline: 1px solid #cccccc;
+	padding: 10px;
 }
 
 .meal-info:hover {
@@ -136,9 +134,10 @@ font-family: 'Quicksand', sans-serif;
 
 .meal-blurb {
 	float: left;
-	width: 250px;
-	margin-top: 2.5vw;
-	margin-left: 10px;
+	width: 100%;
+	padding: 10px 10px 10px 10px;
+  height: 60%;
+	overflow: hidden;
 }
 
 .host-pic {
@@ -155,9 +154,10 @@ font-family: 'Quicksand', sans-serif;
 
 .host-profile {
 	float: left;
-	height: 50px;
+//	height: 50px;
+	height: 40%;
 	width: 100%;
-	margin: 10px;
+	padding: 10px;
 }
 
 .footer {
@@ -165,23 +165,23 @@ font-family: 'Quicksand', sans-serif;
 	background-color: #2b2d2e;
 	color: white;
 	width: 100%;
-	overflow: auto;
+	overflow: hidden;
 	padding-top: 50px;
 }
 
 .footer-icon {
 	float: left;
 	background-position: 50% 50%;
-	margin-right: 15px;
 	border-radius: 50px;
 	border: 1px solid #777777;
 	width: 40px;
 	height: 40px;
+	margin: 0 5px 0 5px;
 	background-size: 40px 40px;
 }
 
 .footer-icon:hover {
-	opacity: 0.9;
+	opacity: 0.8;
 }
 
 .footer-contact {
@@ -191,11 +191,11 @@ font-family: 'Quicksand', sans-serif;
 	border-top: 1px solid #777777;
 }
 
-.footer-link a {
+footer a {
 	color: white;
 }
 
-.footer-link h4 {
+footer h4 {
 	color: #A34775;
 }
 
@@ -220,10 +220,6 @@ font-family: 'Quicksand', sans-serif;
   padding-bottom: 20px;
   padding-top: 20px;
 	font-family: 'Quicksand', sans-serif;
-}
-
-.filter-div:hover {
-//	background-color: #FFFEFE;//#FEFDFD;//#FCFBFB;//#F7F7F7;//#FBFBFB;//#FFF8F8;
 }
 
 .search-bar.current-filter {
@@ -353,6 +349,7 @@ font-family: 'Quicksand', sans-serif;
 .indiv-rating {
 	width: 100%;
 	height: 15vh;
+	overflow: auto;
 	border-bottom: 1px solid #e7e7e7;
 	min-height: 125px;
 }
@@ -392,11 +389,6 @@ font-family: 'Quicksand', sans-serif;
 	overflow: auto;
 	height: 100vh;
 	margin-left: 20px;
-	//position: absolute;
-//	top: 50px;
-//	left: 15px;
-//	right: 0;
-//	bottom: 0;
 }
 
 //######################## User Profile ##################################
@@ -466,26 +458,16 @@ font-family: 'Quicksand', sans-serif;
 	font-size: 25px;
 	border-right: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
-	width: 20vw;
-	margin-left: -1px;
-	height: 46px;
-  padding-right: 10px;
-	padding-left: 10px;
-	padding-top: 8px;
-	padding-bottom: 11px;
-	margin-top: 20px;
-	font-align: center;
-	line-height:46px;
+	width: auto;
+	height: 48px;
+	padding: 10px;
+	text-align: center;
+	line-height: 28px;
 }
 
 .header-button:hover {
 	background-color: #E7E7E7;
-	border: 1px solid #cccccc;
 }
-
-//.header-button:active {
-//	background-color: #E7E7E7;
-//}
 
 //############################### Form Modal ###########################
 

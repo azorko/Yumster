@@ -121,7 +121,7 @@
 			</div>
 			
 			<!--listings -->
-			<div class="row" style="padding-left: 0.5vw;">
+			<div class="row" style="padding-left: 0.5vw; margin: 0 auto; width: 51vw;">
 			<% for (var i = 0; i < meals.models.length; i++) { %>
 				<% host = meals.models[i].basicHostData() %>
 				
@@ -132,18 +132,18 @@
 					<% mealPhoto = meals.models[i].get("photo_url") %>
 				<% } %>
 				
-				<div data-listing-num="<%= i %>" class="col-md-3 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= mealPhoto %>'); margin-left: 20px;">
-					<div class="row host-profile">
+				<div data-listing-num="<%= i %>" class="col-md-3 meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= mealPhoto %>'); margin-left: 10px 10px 20px 10px;">
+					<div class="host-profile">
 						<img src="<%= host.get('photo_url') %>" class= "host-pic">
 						<span style="float: left; margin-left: 5px;">
 							<%= host.get("name")%>'s
 						</span>
 					</div>
-					<div class="row meal-blurb">
+					<div class="meal-blurb">
 						<p class="tag"><%= meals.models[i].get("tag") %></p>
 							<p> <%= meals.models[i].get("title") %> </p>
 								<p style="font-size: 10px;">
-									<span style="float: left; width: 100px;"> @<%= host.get('address') %> </span>
+									<span style="float: left; width: 10vw;"> @<%= host.get('address') %> </span>
 									<span style="float: right;">$<%= meals.models[i].get('price') %>/p </span>
 								</p>
 							</div>
