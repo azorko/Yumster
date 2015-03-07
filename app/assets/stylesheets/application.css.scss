@@ -115,7 +115,7 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .meal-info {
-	position: relative;
+//	position: relative;
 	background-size: 25vw 17vw;
 	box-shadow: inset 0 -50px 200px #000;
 	color: white;
@@ -133,15 +133,22 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .meal-blurb {
-	float: left;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	justify-content: flex-end;
 	width: 100%;
 	padding: 10px 10px 10px 10px;
   height: 60%;
 	overflow: hidden;
 }
 
+.address-price {
+	display: block;
+	width: 100%;
+}
+
 .host-pic {
-  float: left;
 	border-radius: 50px;
 	border: 2px solid #A34775;
 	width: 40px;
@@ -153,8 +160,10 @@ font-family: 'Quicksand', sans-serif;
 }
 
 .host-profile {
-	float: left;
-//	height: 50px;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: row;
+	justify-content: flex-start;
 	height: 40%;
 	width: 100%;
 	padding: 10px;
