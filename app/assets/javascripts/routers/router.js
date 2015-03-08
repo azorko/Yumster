@@ -42,7 +42,7 @@ Yumster.Routers.Router = Backbone.Router.extend({
 		var meals = new Yumster.Collections.Meals();
 		var len = 15;
 		var prevChoices = [];
-		var randNum
+		var randNum;
 		for (var i = 0; i < 3; i++) {
 			do {
 			randNum = Math.floor(Math.random() * len) + 1;

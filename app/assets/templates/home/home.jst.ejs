@@ -51,8 +51,7 @@
 	</div>
 	
 	<!--Search Bar -->
-	<div class="search-div" style="display: flex; justify-content: center; overflow: auto;">
-
+	<div class="search-div" style="width: 75vw; margin: 0 auto; display: flex; justify-content: center; overflow: auto;">
 			<form>
 		    <input type="hidden" id="lat-search" name="lat">
 				<input type="hidden" id="lng-search" name="lng">
@@ -84,7 +83,7 @@
 	<!--Explore your Neighborhood Header -->
 	
 	<div style="display: flex; justify-content: center;" >
-		<div class="head">
+		<div class="head" style="width: 35vw; margin: 0 auto;">
 			<h2> Explore your Neighborhood </h2>
 			<h5> <i>...what tantalizing tastes await around the corner </i> </h5>
 		</div>
@@ -92,8 +91,7 @@
 	
 	<!-- Meal Info Samples -->
 	
-	<div style="display: flex; justify-content: center;">
-
+	<div class="row" style="width: 90vw; margin: 0 auto; display: flex; justify-content: center;">
 		<% meals.forEach( function (meal) { %>
 		<% var host = meal.basicHostData() %>
 		<div class="meal-info" data-id ="<%= host.get('id') %>" style="background-image: url('<%= meal.get("photo_url") %>'); margin: 10px 10px 20px 10px;">
